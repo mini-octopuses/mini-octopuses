@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
 
 const UserModel = require('../models/user')
 const GameModel = require('../models/game')
@@ -12,34 +13,40 @@ router.get('/', function (req, res, next) {
 
 //* Routes for sign-up and login
 router.post('/sign-up', function (req, res, next) {
+  let user = {}
   res.json({ result: true, user })
 })
 router.post('/login', function (req, res, next) {
-
+  let user = {}
   res.json({ result: true, user })
 })
 
 
 //* Routes for games
 router.post('/generate-game', function (req, res, next) {
+  let game = {}
   res.json({ result: true, game })
 })
 
 router.post('/save-game', function (req, res, next) {
+  let user = {}
   res.json({ result: true, user })
 })
 
 router.post('/get-user-all-games', function (req, res, next) {
+  let gameList = []
   res.json({ result: true, gameList })
 })
 
 
 //* Routes for user
 router.put('/update-user/', function (req, res, next) {
+  let user = {}
   res.json({ result: true, user });
 })
 
 router.get('/get-user', function (req, res, next) {
+  let user = {}
   res.json({ result: true, user });
 })
 
@@ -73,4 +80,4 @@ router.delete('/delete-user', function (req, res, next) {
 //   res.json({ result: true, user });
 // })
 
-router.module.exports = router;
+module.exports = router;
