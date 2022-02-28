@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import StyleGuide from "../style/styleGuide";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -28,7 +28,8 @@ export default function Categories(props) {
                         <LinearGradient start={[0, 0.5]}
                             end={[1, 0.5]}
                             colors={['#F81C8F', '#FFA353']}
-                            style={{ borderRadius: 40 }}>
+                            style={{ borderRadius: 40,  width:  Dimensions.get('window').width/1.3 + 6,
+                            height:  Dimensions.get('window').height/11 + 6 }}>
                             <View style={StyleGuide.buttonGradientToppic}>
                                 <Text style={StyleGuide.button}>HTML</Text>
                             </View>

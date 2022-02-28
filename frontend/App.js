@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Remote debugger']);
 
 //* Import of the navigation tools
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,6 +9,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 //* Import of the 2 blank pages
+
+
 import PageOne from './screens/PageOne';
 import PageTwo from './screens/PageTwo';
 
