@@ -48,6 +48,16 @@ const StyleGuide = {
         width: Dimensions.get('window').width / 1.3,
         height: Dimensions.get('window').height / 11,
     },
+    disabledButton: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 3,
+        backgroundColor: "#757575",
+        borderRadius: 5,
+        width: Dimensions.get('window').width / 1.3,
+        height: Dimensions.get('window').height / 11,
+    },
     buttonFilled: {
         margin: 18,
         textAlign: "center",

@@ -24,7 +24,7 @@ export default function Categories(props) {
         token: "qsdf55azert555zerty",
         profilPicture: "",
         isGuest: false,
-        topics: ["React", "HTML"],
+        topics: ["HTML", "MongoDB"],
         // gameList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'games' }],
         // progression: [{ topic: String, numberCorrect: Number }]
     }
@@ -74,9 +74,9 @@ export default function Categories(props) {
                 <TouchableOpacity onPress={() => props.navigation.navigate('PageTwo')}>
                     <LinearGradient start={[0, 0.5]}
                         end={[1, 0.5]}
-                        colors={['#F81C8F', '#FFA353']}
+                        colors={!fakeUser.topics.length ? ['#757575', '#757575'] : ['#F81C8F', '#FFA353']}
                         style={{ borderRadius: 5 }}>
-                        <View style={StyleGuide.buttonGradientFilled}>
+                        <View style={!fakeUser.topics.length ? StyleGuide.disabledButton : StyleGuide.buttonGradientFilled}>
                             <Text style={StyleGuide.buttonFilled}>Valider</Text>
                         </View>
                     </LinearGradient>
