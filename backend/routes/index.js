@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 const UserModel = require('../models/user')
 const GameModel = require('../models/game')
 const QuestionModel = require('../models/question')
+const TopicModel = require('../models/topic')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
