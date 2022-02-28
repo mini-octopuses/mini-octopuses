@@ -1,11 +1,28 @@
+import { Dimensions } from 'react-native';
+
 const StyleGuide = {
     container: {
         backgroundColor: '#2B2B2B',
         flex: 1,
         justfyContent: 'center',
         alignItems: 'center',
+        position: 'relative',
     },
-    buttonStyle: {
+    profileImage: {
+        width: 55,
+        height: 55,
+        borderRadius: 50,
+        marginTop: 30,
+        marginLeft: 10
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: Dimensions.get('window').width / 1,
+        marginBottom: 20
+    },
+    buttonMargin: {
         marginTop: 20,
     },
     buttonGradient: {
@@ -19,7 +36,6 @@ const StyleGuide = {
         margin: 18,
         textAlign: "center",
         textAlignVertical: 'center',
-        // backgroundColor: "white",
         color: 'white',
         fontSize: 20,
     },
@@ -34,9 +50,24 @@ const StyleGuide = {
         margin: 18,
         textAlign: "center",
         textAlignVertical: 'center',
-        // backgroundColor: "white",
         color: 'white',
         fontSize: 20,
+    },
+    buttonGradientToppic: {
+        margin: 3,
+        backgroundColor: "#2B2B2B",
+        borderRadius: 40,
+        width: 300,
+        height: 70,
+    },
+    fontSize: {
+        fontSize: 20,
+        marginBottom: 20,
+    },
+    footer: {
+        backgroundColor: '#2B2B2B',
+        position: 'absolute',
+        bottom: 0,
     },
 };
 

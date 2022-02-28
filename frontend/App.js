@@ -13,6 +13,8 @@ import PageTwo from './screens/PageTwo';
 //* Import of the tools required for redux
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
+import Home from './screens/Home';
+import Categories from './screens/Categories';
 
 import useless from './reducers/useless'
 const store = createStore(combineReducers({ useless }));
@@ -24,6 +26,8 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="PageOne" component={PageOne} />
           <Stack.Screen name="PageTwo" component={PageTwo} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Categories" component={Categories} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
