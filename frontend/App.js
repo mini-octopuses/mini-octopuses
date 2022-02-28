@@ -1,4 +1,7 @@
-import React from "react";
+
+import React from 'react';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Remote debugger']);
 
 //* Import of the navigation tools
 import { NavigationContainer } from "@react-navigation/native";

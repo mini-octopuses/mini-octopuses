@@ -29,11 +29,10 @@ const StyleGuide = {
         margin: 3,
         backgroundColor: "#2B2B2B",
         borderRadius: 5,
-        width:  Dimensions.get('window').width/1.2,
+        width:  Dimensions.get('window').width/1.3,
         height:  Dimensions.get('window').height/11,
     },
-    buttonTitle: {
-        margin: 18,
+    button: {
         textAlign: "center",
         textAlignVertical: 'center',
         color: 'white',
@@ -43,7 +42,7 @@ const StyleGuide = {
         margin: 3,
         colors: ['#F81C8F', '#FFA353'],
         borderRadius: 5,
-        width:  Dimensions.get('window').width/1.2,
+        width:  Dimensions.get('window').width/1.3,
         height:  Dimensions.get('window').height/11,
     },
     buttonFilled: {
@@ -54,11 +53,14 @@ const StyleGuide = {
         fontSize: 20,
     },
     buttonGradientToppic: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         margin: 3,
         backgroundColor: "#2B2B2B",
         borderRadius: 40,
-        width: 300,
-        height: 70,
+        width:  Dimensions.get('window').width/1.3,
+        height: Dimensions.get('window').height / 11,
     },
     fontSize: {
         fontSize: 20,
