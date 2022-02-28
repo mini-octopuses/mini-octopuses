@@ -6,7 +6,7 @@ const StyleGuide = {
         flex: 1,
         justfyContent: 'center',
         alignItems: 'center',
-        position: 'relative',
+        // position: 'relative',
     },
     buttonStyle: {
         marginTop: 20,
@@ -51,8 +51,8 @@ const StyleGuide = {
         alignItems:'center',
         borderRadius:10,
         backgroundColor: '#4267B2',
-        width:  Dimensions.get('window').width/1.2,
-        height:  Dimensions.get('window').height/11,
+        width: Dimensions.get('window').width/1.2,
+        height: Dimensions.get('window').height/11,
     },
     titleFacebookButton:{
         color:'#fff',
@@ -60,16 +60,24 @@ const StyleGuide = {
     },
     googlePicto:{
         aspectRatio: 2.5, 
-       
         resizeMode: 'contain',
     },
     logo:{
-        width:  Dimensions.get('window').width/1.2,
+        width:  Dimensions.get('window').width/1.5,
         resizeMode: 'contain',
-        position:'absolute',
-        top: 10,
-        
+    },
+    input:{
+        flex:1,
+        justfyContent:"center",
+        width:  Dimensions.get('window').width/1.5,
+        height:  Dimensions.get('window').height/15,
+        backgroundColor:"#fff",
+        borderRadius:10,
+
     }
+
+    
+
 };
 
 export default StyleGuide;

@@ -23,7 +23,7 @@ export default function SplashScreen(props){
                         style={{ borderRadius: 5 }}
                     >
                         <View style={StyleGuide.buttonGradient}>
-                        <Text style={StyleGuide.button}>Autre page</Text>
+                        <Text style={StyleGuide.buttonTitle}>Autre page</Text>
                         </View>
                     </LinearGradient>
                 </TouchableOpacity>

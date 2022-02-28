@@ -8,7 +8,7 @@ import StyleGuide from "../style/styleGuide";
 
 
 
-export default function AllConnexion(){
+export default function AllConnexion(props){
     return(
         <ImageBackground source={require('../assets/bg.png')} style={StyleGuide.container}>
             <Image source={require('../assets/Logo.png') } style={StyleGuide.logo} />
@@ -33,7 +33,7 @@ export default function AllConnexion(){
             </View>
 
             <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => props.navigation.navigate("SignUp")} >
                     <LinearGradient
                     start={[0, 0.5]}
                     end={[1, 0.5]}
@@ -93,30 +93,5 @@ export default function AllConnexion(){
 //         position: 'relative',
         
 //       },
-//       logo:{
-//           width:  Dimensions.get('window').width/1.2,
-//           resizeMode: 'contain',
-//           position:'absolute',
-//           top: 10,
-          
-//       },
 
-//       GoogleButton:{
-//         flexDirection: 'row',
-//         justifyContent: 'space-evenly',
-//         alignItems:'center',
-        
-//         borderRadius:10,
-//         width:  Dimensions.get('window').width/1.2,
-//         height:  Dimensions.get('window').height/12,
-//         marginBottom: 20,
-      
-
-//       },
-//       buttonTitle:{
-//           fontSize:22,
-//           fontWeight:'bold',
-//           color:'#757575'
-
-//       }
 // })

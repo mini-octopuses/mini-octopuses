@@ -10,6 +10,7 @@ import PageOne from "./screens/PageOne";
 import PageTwo from "./screens/PageTwo";
 import SplashScreen from "./screens/SplashScreen";
 import AllConnexion from "./screens/AllConnexion";
+import SignUp from "./screens/SignUp";
 
 //* Import of the tools required for redux
 import { Provider } from "react-redux";
@@ -26,6 +27,7 @@ export default function App() {
           <Stack.Screen name="PageOne" component={PageOne} />
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
           <Stack.Screen name="AllConnexion" component={AllConnexion} />
+          <Stack.Screen name="SignUp" component={SignUp} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
