@@ -9,22 +9,34 @@ import { Button } from 'react-native-elements';
 function ResultScreen(props) {
     let myScore = 0;
 
+
+    const tempGameGenerator = () => {
+        console.log('tempGenerator')
+    }
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
             <View style={styles.container}>
                 <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
                 <Text style={{ fontSize: 34, color: 'white' }}>{myScore} / 8</Text>
 
-                <Button title='REJOUER' onPress={() => console.log('Pressing replay button')} />
+                <Button title='REJOUER'
+                    onPress={() => {
+                        console.log('Pressing replay button')
+                    }} />
 
                 {/* //* Needs redirect towards another page */}
                 <Button title='VOIR les réponses' onPress={() => {
                     console.log('Pressing history button')
+                    tempGameGenerator()
                     props.navigation.navigate('HistoryScreen')
                 }} />
 
                 {/* //* Needs redirect towards the homePage */}
-                <Button title='Accueil' onPress={() => console.log('Pressing homePage button')} />
+                <Button title='Accueil'
+                    onPress={() => {
+                        console.log('Pressing homePage button')
+                    }} />
             </View>
         </SafeAreaView >
     )
