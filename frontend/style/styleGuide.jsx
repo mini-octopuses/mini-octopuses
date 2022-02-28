@@ -29,8 +29,8 @@ const StyleGuide = {
         margin: 3,
         backgroundColor: "#2B2B2B",
         borderRadius: 5,
-        width:  Dimensions.get('window').width/1.3,
-        height:  Dimensions.get('window').height/11,
+        width: Dimensions.get('window').width / 1.3,
+        height: Dimensions.get('window').height / 11,
     },
     button: {
         textAlign: "center",
@@ -39,11 +39,14 @@ const StyleGuide = {
         fontSize: 20,
     },
     buttonGradientFilled: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         margin: 3,
         colors: ['#F81C8F', '#FFA353'],
         borderRadius: 5,
-        width:  Dimensions.get('window').width/1.3,
-        height:  Dimensions.get('window').height/11,
+        width: Dimensions.get('window').width / 1.3,
+        height: Dimensions.get('window').height / 11,
     },
     buttonFilled: {
         margin: 18,
@@ -59,7 +62,7 @@ const StyleGuide = {
         margin: 3,
         backgroundColor: "#2B2B2B",
         borderRadius: 40,
-        width:  Dimensions.get('window').width/1.3,
+        width: Dimensions.get('window').width / 1.3,
         height: Dimensions.get('window').height / 11,
     },
     fontSize: {
@@ -71,51 +74,51 @@ const StyleGuide = {
         position: 'absolute',
         bottom: 0,
     },
-    googleButton:{
+    googleButton: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        alignItems:'center',
-        borderRadius:10,
+        alignItems: 'center',
+        borderRadius: 10,
         backgroundColor: '#fff',
-        width:  Dimensions.get('window').width/1.2,
-        height:  Dimensions.get('window').height/11,
+        width: Dimensions.get('window').width / 1.2,
+        height: Dimensions.get('window').height / 11,
     },
-    titleGoogleButton:{
-        color:'#757575',
-        fontSize :20,
+    titleGoogleButton: {
+        color: '#757575',
+        fontSize: 20,
     },
-    facebookButton:{
+    facebookButton: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        alignItems:'center',
-        borderRadius:10,
+        alignItems: 'center',
+        borderRadius: 10,
         backgroundColor: '#4267B2',
-        width: Dimensions.get('window').width/1.2,
-        height: Dimensions.get('window').height/11,
+        width: Dimensions.get('window').width / 1.2,
+        height: Dimensions.get('window').height / 11,
     },
-    titleFacebookButton:{
-        color:'#fff',
-        fontSize :20,
+    titleFacebookButton: {
+        color: '#fff',
+        fontSize: 20,
     },
-    googlePicto:{
-        aspectRatio: 2.5, 
+    googlePicto: {
+        aspectRatio: 2.5,
         resizeMode: 'contain',
     },
-    logo:{
-        width:  Dimensions.get('window').width/1.5,
+    logo: {
+        width: Dimensions.get('window').width / 1.5,
         resizeMode: 'contain',
     },
-    input:{
-        flex:1,
-        justfyContent:"center",
-        width:  Dimensions.get('window').width/1.5,
-        height:  Dimensions.get('window').height/15,
-        backgroundColor:"#fff",
-        borderRadius:10,
+    input: {
+        flex: 1,
+        justfyContent: "center",
+        width: Dimensions.get('window').width / 1.5,
+        height: Dimensions.get('window').height / 15,
+        backgroundColor: "#fff",
+        borderRadius: 10,
 
     }
 
-    
+
 
 };
 

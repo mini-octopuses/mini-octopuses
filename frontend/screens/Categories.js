@@ -17,8 +17,17 @@ export default function Categories(props) {
         { "name": "Express" },
         { "name": "Javascript" }];
 
-
-
+    const fakeUser = {
+        username: "Aija",
+        password: "test",
+        email: "aija@aija.com",
+        token: "qsdf55azert555zerty",
+        profilPicture: "",
+        isGuest: false,
+        topics: ["React", "HTML"],
+        // gameList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'games' }],
+        // progression: [{ topic: String, numberCorrect: Number }]
+    }
 
     return (
 
@@ -41,11 +50,8 @@ export default function Categories(props) {
                             <LinearGradient start={[0, 0.5]}
                                 end={[1, 0.5]}
                                 colors={['#F81C8F', '#FFA353']}
-                                style={{
-                                    borderRadius: 40, width: Dimensions.get('window').width / 1.3 + 6,
-                                    height: Dimensions.get('window').height / 11 + 6
-                                }}>
-                                <View style={StyleGuide.buttonGradientToppic}>
+                                style={{ borderRadius: 40, marginBottom: 12 }}>
+                                <View style={fakeUser.topics.includes(item.name) ? StyleGuide.buttonGradientFilled : StyleGuide.buttonGradientToppic}>
                                     <Text style={StyleGuide.button}>{item.name}</Text>
                                 </View>
                             </LinearGradient>
@@ -53,8 +59,6 @@ export default function Categories(props) {
 
                     })}
                 </View>
-
-
 
                 <View style={StyleGuide.buttonMargin}>
                     <TouchableOpacity>
