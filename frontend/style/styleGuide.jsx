@@ -29,10 +29,10 @@ const StyleGuide = {
         margin: 3,
         backgroundColor: "#2B2B2B",
         borderRadius: 5,
-        width: 300,
-        height: 70,
+        width:  Dimensions.get('window').width/1.2,
+        height:  Dimensions.get('window').height/11,
     },
-    button: {
+    buttonTitle: {
         margin: 18,
         textAlign: "center",
         textAlignVertical: 'center',
@@ -43,8 +43,8 @@ const StyleGuide = {
         margin: 3,
         colors: ['#F81C8F', '#FFA353'],
         borderRadius: 5,
-        width: 300,
-        height: 70,
+        width:  Dimensions.get('window').width/1.2,
+        height:  Dimensions.get('window').height/11,
     },
     buttonFilled: {
         margin: 18,
@@ -69,6 +69,52 @@ const StyleGuide = {
         position: 'absolute',
         bottom: 0,
     },
+    googleButton:{
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems:'center',
+        borderRadius:10,
+        backgroundColor: '#fff',
+        width:  Dimensions.get('window').width/1.2,
+        height:  Dimensions.get('window').height/11,
+    },
+    titleGoogleButton:{
+        color:'#757575',
+        fontSize :20,
+    },
+    facebookButton:{
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems:'center',
+        borderRadius:10,
+        backgroundColor: '#4267B2',
+        width: Dimensions.get('window').width/1.2,
+        height: Dimensions.get('window').height/11,
+    },
+    titleFacebookButton:{
+        color:'#fff',
+        fontSize :20,
+    },
+    googlePicto:{
+        aspectRatio: 2.5, 
+        resizeMode: 'contain',
+    },
+    logo:{
+        width:  Dimensions.get('window').width/1.5,
+        resizeMode: 'contain',
+    },
+    input:{
+        flex:1,
+        justfyContent:"center",
+        width:  Dimensions.get('window').width/1.5,
+        height:  Dimensions.get('window').height/15,
+        backgroundColor:"#fff",
+        borderRadius:10,
+
+    }
+
+    
+
 };
 
 export default StyleGuide;
