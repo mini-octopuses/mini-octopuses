@@ -22,6 +22,12 @@ router.post('/login', function (req, res, next) {
   res.json({ result: true, user })
 })
 
+router.get('/topics', async function (req, res, next) {
+
+  let topicFromBack = await TopicModel.find()
+  res.json({ topicFromBack })
+})
+
 
 //* Routes for games
 router.post('/generate-game', function (req, res, next) {
