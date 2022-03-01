@@ -9,6 +9,8 @@ import { FontAwesome } from '@expo/vector-icons';
 export default function Categories(props) {
 
     const [allTopicList, setAllTopicList] = useState([]);
+    const [disabled, setDisabled] = useState(false)
+
 
     useEffect(() => {
         async function loadData() {
@@ -47,6 +49,7 @@ export default function Categories(props) {
         topics: ["HTML", "MongoDB"],
         // gameList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'games' }],
         // progression: [{ topic: String, numberCorrect: Number }]
+        // "HTML", "MongoDB"
     }
 
     const selectTopic = async () => {
@@ -95,8 +98,13 @@ export default function Categories(props) {
 
             </ScrollView>
 
+
             <View style={StyleGuide.footer}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('PageTwo')}>
+                <TouchableOpacity onPress={() => {
+                    if (fakeUser.topics.length) {
+                        props.navigation.navigate('HistoryScreen')
+                    }
+                }}>
                     <LinearGradient start={[0, 0.5]}
                         end={[1, 0.5]}
                         colors={!fakeUser.topics.length ? ['#757575', '#757575'] : ['#F81C8F', '#FFA353']}
