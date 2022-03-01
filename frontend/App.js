@@ -14,6 +14,11 @@ import PageTwo from "./screens/PageTwo";
 import SplashScreen from "./screens/SplashScreen";
 import AllConnexion from "./screens/AllConnexion";
 import SignUp from "./screens/SignUp";
+import PageThree from './screens/PageThree';
+
+import ResultScreen from './screens/ResultScreen';
+import HistoryScreen from './screens/HistoryScreen'
+
 
 //* Import of the tools required for redux
 import { Provider } from "react-redux";
@@ -36,6 +41,13 @@ export default function App() {
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
           <Stack.Screen name="AllConnexion" component={AllConnexion} />
           <Stack.Screen name="SignUp" component={SignUp} />
+
+          {/* Christian's test pages DO NOT TOUCH */}
+          <Stack.Screen name="PageThree" component={PageThree} />
+          <Stack.Screen name="ResultScreen" component={ResultScreen} />
+          <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
+
+
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
