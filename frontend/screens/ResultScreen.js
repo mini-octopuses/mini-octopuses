@@ -11,7 +11,7 @@ function ResultScreen(props) {
 
 
     const tempGameGenerator = () => {
-        console.log('tempGenerator')
+        console.log('consolelog to be replaced', 'by a fake data generator')
     }
 
     return (

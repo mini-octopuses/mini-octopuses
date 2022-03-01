@@ -13,9 +13,10 @@ import SyntaxHighlighter from 'react-native-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/styles/prism';
 
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 function HistoryScreen(props) {
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
 
     const questionText = `const octopuses = [
         { name: 'Blip', waterType: 'salty' },
@@ -41,14 +42,13 @@ function HistoryScreen(props) {
                         <Image style={styles.userIcon} source={require('../assets/favicon.png')} />
                         <Text style={styles.username}>#username</Text>
                     </View>
+                    {/* Add code to display a setting button on the right part of the screen opposite to the avatar */}
                 </View>
 
                 {/* This is the code block with the questions */}
                 <View style={styles.container}>
                     <Text style={{ fontSize: 34, color: 'white' }}>Question title something ?</Text>
-                    <SyntaxHighlighter language='javascript'
-                        style={darcula}
-                        highlighter={"prism" || "hljs"}>
+                    <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"}>
                         {questionText}
                     </SyntaxHighlighter>
                     <StatusBar style="auto" />
@@ -58,18 +58,17 @@ function HistoryScreen(props) {
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     {/*  Display of the answers */}
                     <View style={{ flexDirection: 'row' }}>
-                        <Button title='Answer one' buttonStyle={{ width: windowWidth / 2.2, height: windowHeight / 7, backgroundColor: 'black', margin: 7, borderRadius: 10 }} onPress={() => console.log('Button pressed', 'A1')} />
-                        <Button title='Answer two' buttonStyle={{ width: windowWidth / 2.2, height: windowHeight / 7, backgroundColor: '#56A754', margin: 7, borderRadius: 10 }} onPress={() => console.log('Button pressed', 'A2')} />
+                        <Button title='Answer one' buttonStyle={styles.buttonBlack} />
+                        <Button title='Answer two' buttonStyle={styles.buttonGreen} />
                     </View>
                     <View style={{ flexDirection: 'row' }}>
-                        <Button title='Answer three' buttonStyle={{ width: windowWidth / 2.2, height: windowHeight / 7, backgroundColor: '#BB312C', margin: 7, borderRadius: 10 }} onPress={() => console.log('Button pressed', 'A3')} />
-                        <Button title='Answer four' buttonStyle={{ width: windowWidth / 2.2, height: windowHeight / 7, backgroundColor: 'black', margin: 7, borderRadius: 10 }} onPress={() => console.log('Button pressed', 'A4')} />
+                        <Button title='Answer three' buttonStyle={styles.buttonRed} />
+                        <Button title='Answer four' buttonStyle={styles.buttonBlack} />
                     </View>
 
                     {/* Display of prev and next */}
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', width: windowWidth / 1.1, padding: 10 }}>
                         <Pressable onPress={() => console.log('Button pressed', 'Prev')}>
-                            {/* <FontAwesome5 name="arrow-left" size={24} color="black" /> */}
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <FontAwesome name="arrow-left" size={24} color="white" />
                                 <Text style={{ color: 'white', marginLeft: 10 }}>Précédent</Text>
@@ -116,6 +115,27 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    buttonBlack: {
+        width: windowWidth / 2.2,
+        height: windowHeight / 7,
+        backgroundColor: 'black',
+        margin: 7,
+        borderRadius: 10
+    },
+    buttonGreen: {
+        width: windowWidth / 2.2,
+        height: windowHeight / 7,
+        backgroundColor: '#56A754',
+        margin: 7,
+        borderRadius: 10
+    },
+    buttonRed: {
+        width: windowWidth / 2.2,
+        height: windowHeight / 7,
+        backgroundColor: '#BB312C',
+        margin: 7,
+        borderRadius: 10,
     }
 });
 
