@@ -9,7 +9,6 @@ import { FontAwesome } from '@expo/vector-icons';
 export default function Categories(props) {
 
     const [allTopicList, setAllTopicList] = useState([]);
-    const [disabled, setDisabled] = useState(false)
 
 
     useEffect(() => {
@@ -66,7 +65,7 @@ export default function Categories(props) {
                     <Image style={StyleGuide.profileImage} source={require('../assets/Laureline.jpeg')} />
                     <Text style={{ marginLeft: 10 }}>#Laureloop</Text>
                 </View>
-                <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="gear" size={35} color="black" />
+                <FontAwesome onPress={() => props.navigation.navigate('Settings')} style={{ marginTop: 10, marginRight: 10 }} name="gear" size={35} color="white" />
             </View>
 
             <Text style={StyleGuide.fontSize}>Sélectionnes tes themes préférés</Text>

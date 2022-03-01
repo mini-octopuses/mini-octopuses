@@ -26,6 +26,9 @@ const StyleGuide = {
         marginTop: 20,
     },
     buttonGradient: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         margin: 3,
         backgroundColor: "#2B2B2B",
         borderRadius: 5,
