@@ -26,8 +26,9 @@ import { createStore, combineReducers } from "redux";
 import Home from "./screens/Home";
 import Categories from "./screens/Categories";
 
-import useless from "./reducers/useless";
-const store = createStore(combineReducers({ useless }));
+import useless from './reducers/useless'
+import game from './reducers/game';
+const store = createStore(combineReducers({ useless, game }));
 
 export default function App() {
   return (
