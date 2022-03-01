@@ -19,7 +19,8 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 
 import useless from './reducers/useless'
-const store = createStore(combineReducers({ useless }));
+import game from './reducers/game';
+const store = createStore(combineReducers({ useless, game }));
 
 export default function App() {
   return (
