@@ -30,28 +30,29 @@ import { createStore, combineReducers } from "redux";
 
 import useless from './reducers/useless'
 import game from './reducers/game';
-import user from './reducers/user'
-const store = createStore(combineReducers({ useless, game, user }));
+const store = createStore(combineReducers({ useless, game }));
 
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="PageOne" component={PageOne} />
-          <Stack.Screen name="PageTwo" component={PageTwo} />
-          <Stack.Screen name="SplashScreen" component={SplashScreen} />
-          <Stack.Screen name="Loading" component={Loading} />
-          <Stack.Screen name="AllConnexion" component={AllConnexion} />
-          <Stack.Screen name="SignIn" component={SignIn} />
-          <Stack.Screen name="SignUp" component={SignUp} />
+          {/* <Stack.Screen name="PageOne" component={PageOne} /> */}
+          {/* <Stack.Screen name="PageTwo" component={PageTwo} /> */}
+          {/* <Stack.Screen name="SplashScreen" component={SplashScreen} /> */}
+          {/* <Stack.Screen name="Loading" component={Loading} /> */}
+          {/* <Stack.Screen name="AllConnexion" component={AllConnexion} /> */}
+          {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
+          {/* <Stack.Screen name="SignUp" component={SignUp} /> */}
+          {/* <Stack.Screen name="PageThree" component={PageThree} /> */}
+
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Categories" component={Categories} />
 
           {/* Christian's test pages DO NOT TOUCH */}
-          <Stack.Screen name="PageThree" component={PageThree} />
+          {/* <Stack.Screen name="PageThree" component={PageThree} /> */}
           <Stack.Screen name="ResultScreen" component={ResultScreen} />
           <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
         </Stack.Navigator>

@@ -60,11 +60,11 @@ function HistoryScreen(props) {
         )
     }
 
-    // let username = "Hikenou"
+    let username = "Hikenou"
 
-    console.log(JSON.stringify(props.game.userAnswers))
+    // console.log(JSON.stringify(props.game.userAnswers))
 
-    console.log(props.user.profilPicture)
+    // console.log(props.user.profilPicture)
     // let path = props.user.profilPicture
     // let str = require(`${props.user.profilPicture}`)
     // let str = require(`${props.user.profilPicture}`)
@@ -83,7 +83,9 @@ function HistoryScreen(props) {
                         {/* <Image style={styles.userIcon} source={str} /> */}
                         {/* <Image style={styles.userIcon} source={require(props.user.profilPicture)} /> */}
 
-                        <Text style={styles.username}>#{props.user.username}</Text>
+                        {/* <Text style={styles.username}>#{props.user.username}</Text> */}
+                        <Text style={styles.username}>#{username}</Text>
+
                     </View>
                     {/* //* Add code to display a setting button on the right part of the screen opposite to the avatar */}
                 </View>

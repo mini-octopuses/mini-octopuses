@@ -12,7 +12,7 @@ function ResultScreen(props) {
     let myScore = 0;
 
     const tempGameGenerator = () => {
-        props.saveUser(user)
+        // props.saveUser(user)
         // props.saveGame(brutGame);
         props.saveGame(brutGame2)
     }
@@ -369,7 +369,6 @@ console.log("The word " + word + sentence.includes(word) ? 'is' : 'is not' + "in
                 <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text>
             </View>
 
-
             <View style={StyleGuide.footer}>
                 {/* //* Replay button */}
                 {/* <Button title='Rejouer'
@@ -468,10 +467,11 @@ function mapDispatchToProps(dispatch) {
     return {
         saveGame: function (game) {
             dispatch({ type: 'saveGame', game })
-        },
-        saveUser: function (user) {
-            dispatch({ type: 'saveUser', user })
         }
+        // ,
+        // saveUser: function (user) {
+        //     dispatch({ type: 'saveUser', user })
+        // }
     }
 }
 export default connect(null, mapDispatchToProps)(ResultScreen);
