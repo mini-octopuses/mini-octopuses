@@ -5,21 +5,21 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import StyleGuide from "../style/styleGuide";
 import FormInput from "../components/formInput";
+import configIp from "../config.js";
 import Logo from "../components/Logo";
 
 
 
-export default function SignUp(props){
+export default function SignIn(props){
 
-    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password,setPassword]= useState("");
 
-    const signUp = async()=>{
-        let user = await fetch('http://192.168.10.156:3000/sign-up',{
+    const signIn = async()=>{
+        let user = await fetch(`${configIp.myIp}/sign-in`,{
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `username=${username}&email=${email}&password=${password}&isGuest=false`
+            body: `email=${email}&password=${password}`
             
         })
         let backResponse = await user.json()
@@ -33,15 +33,13 @@ export default function SignUp(props){
     return(
         <View style={StyleGuide.container}>
            <Logo/>
-            <Text h3>Inscription</Text>
-
-            <FormInput placeholder='Prénom / Pseudo' icon='pseudo'value={username} onChangeText={(val)=> setUsername(val)} />
+            <Text h3>Connexion</Text> 
 
             <FormInput placeholder='Email' icon='email' value={email} onChangeText={(val) => setEmail(val)} />
             <FormInput placeholder='Mot de passe' value={password} onChangeText={(val) =>setPassword(val)} />
 
             <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity onPress={() => signUp() }>
+                <TouchableOpacity onPress={() => signIn() }>
                     <LinearGradient
                     start={[0, 0.5]}
                     end={[1, 0.5]}
@@ -54,6 +52,7 @@ export default function SignUp(props){
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
+
         </View>    
 
     )

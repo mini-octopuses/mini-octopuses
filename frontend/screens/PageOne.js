@@ -9,7 +9,7 @@ export default function PageOne(props) {
       source={require("../assets/training_bc.png")}
       style={StyleGuide.container}
     >
-      <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => props.navigation.navigate("Home")}>
+      <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => props.navigation.navigate("SplashScreen")}>
         <LinearGradient
           start={[0, 0.5]}
           end={[1, 0.5]}
