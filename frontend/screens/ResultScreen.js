@@ -13,8 +13,8 @@ function ResultScreen(props) {
 
     const tempGameGenerator = () => {
         props.saveUser(user)
-        props.saveGame(brutGame);
-        // props.saveGame(brutGame2)
+        // props.saveGame(brutGame);
+        props.saveGame(brutGame2)
     }
 
     let user = {
@@ -194,11 +194,7 @@ function ResultScreen(props) {
         questions: [
             {
                 "title": "What is the value of sum at the of the loop ?",
-                "code": `let sum = 0;
-
-for (let i = 0; i <= 3; i++) {
-    sum += i;
-}`,
+                "code": "let sum = 0;\n\nfor (let i = 0; i <= 3; i++) {\n\tsum += i;\n}",
                 "topic": "JavaScript",
                 "answers": [
                     {
@@ -217,9 +213,7 @@ for (let i = 0; i <= 3; i++) {
             },
             {
                 "title": "What will be displayed by console.log() ?",
-                "code": `let sum; 
-
-console.log(sum)`,
+                "code": "let sum;\n\nconsole.log(sum)",
                 "topic": "JavaScript",
                 "answers": [
                     {
@@ -238,10 +232,7 @@ console.log(sum)`,
             },
             {
                 "title": "What is the output of the following code ?",
-                "code": `let str='hello';
-let num=12;
-
-console.log(hello+num)`,
+                "code": `let str='hello';\nlet num=12;\n\nconsole.log(hello+num)`,
                 "topic": "JavaScript",
                 "answers": [
                     {
@@ -260,7 +251,7 @@ console.log(hello+num)`,
             },
             {
                 "title": "What does the following code do ?",
-                "code": "let str = str.charAt(0).toUpperCase() + str.slice(1);",
+                "code": "let str;\n\nstr.charAt(0).toUpperCase() + str.slice(1);",
                 "topic": "JavaScript",
                 "answers": [
                     {
@@ -279,11 +270,7 @@ console.log(hello+num)`,
             },
             {
                 "title": "What is the output of the following code ?",
-                "code": `const array = ['hello', 'my', 'name', 'is', 'John'];
-                
-const result = array.filter(e => e.length >= 4);
-
-console.log(result);`,
+                "code": `const array = ['hello', 'my', 'name', 'is', 'John'];\n\nconst result = array.filter(e => e.length >= 4);\n\nconsole.log(result);`,
                 "topic": "JavaScript",
                 "answers": [
                     {

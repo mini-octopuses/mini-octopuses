@@ -36,13 +36,13 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="PageOne" component={PageOne} />
+          {/* <Stack.Screen name="PageOne" component={PageOne} />
           <Stack.Screen name="PageTwo" component={PageTwo} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Categories" component={Categories} />
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
           <Stack.Screen name="AllConnexion" component={AllConnexion} />
-          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="SignUp" component={SignUp} /> */}
 
           {/* Christian's test pages DO NOT TOUCH */}
           <Stack.Screen name="PageThree" component={PageThree} />
