@@ -10,21 +10,27 @@ export default function Categories(props) {
 
     const [allTopicList, setAllTopicList] = useState([]);
 
-    useEffect(() => {
-        async function loadData() {
-            let topicFromBack = await fetch('http://192.168.43.224:3000/topics')
 
-            const body = await topicFromBack.json()
-            let setAllTopicListCopy = [...allTopicList]
 
-            body.topicFromBack.map((item) => {
-                setAllTopicListCopy.push(item)
-            })
 
-            setAllTopicList(setAllTopicListCopy)
-        }
-        loadData();
-    }, [])
+    //
+    // useEffect(() => {
+    //     async function loadData() {
+    //         let topicFromBack = await fetch('http://192.168.43.224:3000/topics')
+    //
+    //         const body = await topicFromBack.json()
+    //         let setAllTopicListCopy = [...allTopicList]
+    //
+    //         body.topicFromBack.map((item) => {
+    //             setAllTopicListCopy.push(item)
+    //         })
+    //
+    //         setAllTopicList(setAllTopicListCopy)
+    //     }
+    //     loadData();
+    // }, [])
+
+    console.log(allTopicList)
 
     console.log(allTopicList)
 

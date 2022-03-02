@@ -39,6 +39,8 @@ export default function Home(props) {
                 </TouchableOpacity>
             </View>
 
+            <TouchableOpacity onPress={() => props.navigation.navigate("PageThree")}><Text>Test</Text></TouchableOpacity>
+
             <View style={StyleGuide.buttonMargin}>
                 <TouchableOpacity onPress={() => props.navigation.navigate('PageTwo')}>
                     <LinearGradient start={[0, 0.5]}
