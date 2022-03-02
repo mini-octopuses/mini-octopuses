@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {View, Image,TouchableOpacity } from 'react-native';
+import {View, Image, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
-import { LinearGradient } from "expo-linear-gradient";
 
 import StyleGuide from "../style/styleGuide";
+import SquareButtonBorder from "../components/SquareButtonBorder";
 import FormInput from "../components/formInput";
 import Logo from "../components/Logo";
 
@@ -40,20 +40,8 @@ export default function SignUp(props){
             <FormInput placeholder='Email' icon='email' value={email} onChangeText={(val) => setEmail(val)} />
             <FormInput placeholder='Mot de passe' value={password} onChangeText={(val) =>setPassword(val)} />
 
-            <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity onPress={() => signUp() }>
-                    <LinearGradient
-                    start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={["#F81C8F", "#FFA353"]}
-                    style={{ borderRadius: 5 }}
-                >
-                        <View style={StyleGuide.buttonGradient}>
-                          <Text style={StyleGuide.buttonTitle}> Valider</Text>
-                        </View>    
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>
+            <SquareButtonBorder onPress={() => signUp()} buttonTitle="Confirmer" />
+
         </View>    
 
     )

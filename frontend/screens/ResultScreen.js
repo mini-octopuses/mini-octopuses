@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, ImageBackground, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
-import { LinearGradient } from "expo-linear-gradient";
-import StyleGuide from "../style/styleGuide";
+import { View, Text, ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+
+import StyleGuide from "../style/styleGuide";
+import SquareButtonBorder from "../components/SquareButtonBorder";
+import SquareButtonFilled from "../components/SquareButtonFilled";
+
 import { connect } from 'react-redux';
 
 //* Import icons will be removed later on
@@ -397,95 +399,24 @@ function ResultScreen(props) {
 
             <View style={StyleGuide.footer}>
                 {/* //* Replay button */}
-                {/* <Button title='Rejouer'
-                    onPress={() => {
-                        console.log('Pressing replay button')
-                    }} /> */}
-
-                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
-                    console.log('Pressing replay button')
-                }}>
-                    <LinearGradient start={[0, 0.5]}
-                        end={[1, 0.5]}
-                        colors={['#F81C8F', '#FFA353']}
-                        style={{ borderRadius: 5 }}>
-                        <View style={StyleGuide.squareButtonFilled}>
-                            <Text style={StyleGuide.buttonTitle}>Rejouer</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
-
+                <SquareButtonFilled onPress={() => props.navigation.navigate("Categories")} buttonTitle="Rejouer" />
 
                 {/* //* Needs to generate fake data */}
-                {/* <Button title='Voir les réponses' onPress={() => {
-                    console.log('Pressing history button')
-                    tempGameGenerator()
-                    props.navigation.navigate('HistoryScreen')
-                }} /> */}
-
-
-                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
-                    console.log('Pressing history button')
-                    tempGameGenerator()
-                    props.navigation.navigate('HistoryScreen')
-                }}>
-                    <LinearGradient
-                        start={[0, 0.5]}
-                        end={[1, 0.5]}
-                        colors={["#F81C8F", "#FFA353"]}
-                        style={{ borderRadius: 5 }}
-                    >
-                        <View style={StyleGuide.squareButtonBorder}>
-                            <Text style={StyleGuide.buttonTitle}>Voir les réponses</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
-
-
+                <SquareButtonBorder onPress={() => { props.navigation.navigate("HistoryScreen"), tempGameGenerator() }} buttonTitle="Voir les réponses" />
 
                 {/* //* Needs redirect towards the homePage */}
                 {/* <Button title='Accueil'
                     onPress={() => {
                         console.log('Pressing homePage button')
                     }} /> */}
+                <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Accueil" />
 
-                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
-                    console.log('Pressing homePage button')
-                }}>
-                    <LinearGradient
-                        start={[0, 0.5]}
-                        end={[1, 0.5]}
-                        colors={["#F81C8F", "#FFA353"]}
-                        style={{ borderRadius: 5 }}
-                    >
-                        <View style={StyleGuide.squareButtonBorder}>
-                            <Text style={StyleGuide.buttonTitle}>Accueil</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
             </View>
-
-
 
         </ImageBackground>
     )
 }
 
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         backgroundColor: '#2b2b2b'
-//     },
-//     title: {
-//         fontSize: 40,
-//         fontWeight: 'bold',
-//         marginTop: 60,
-//         marginBottom: 20
-//     }
-// });
 
 function mapDispatchToProps(dispatch) {
     return {

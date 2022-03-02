@@ -4,6 +4,7 @@ import { Text } from 'react-native-elements';
 import { LinearGradient } from "expo-linear-gradient";
 
 import StyleGuide from "../style/styleGuide";
+import SquareButtonBorder from "../components/SquareButtonBorder";
 import FormInput from "../components/formInput";
 import configIp from "../config.js";
 import Logo from "../components/Logo";
@@ -38,20 +39,8 @@ export default function SignIn(props){
             <FormInput placeholder='Email' icon='email' value={email} onChangeText={(val) => setEmail(val)} />
             <FormInput placeholder='Mot de passe' value={password} onChangeText={(val) =>setPassword(val)} />
 
-            <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity onPress={() => signIn() }>
-                    <LinearGradient
-                    start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={["#F81C8F", "#FFA353"]}
-                    style={{ borderRadius: 5 }}
-                >
-                        <View style={StyleGuide.buttonGradient}>
-                          <Text style={StyleGuide.buttonTitle}> Valider</Text>
-                        </View>    
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>
+            <SquareButtonBorder onPress={() => signIn()} buttonTitle="Confirmer" />
+
 
         </View>    
 

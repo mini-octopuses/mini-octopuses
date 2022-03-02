@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, ImageBackground, Image, Switch } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import StyleGuide from "../style/styleGuide";
+import { View, Text, ImageBackground, Image, Switch } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
+
+import StyleGuide from "../style/styleGuide";
+import SquareButtonBorder from "../components/SquareButtonBorder";
+import SquareButtonFilled from "../components/SquareButtonFilled";
 
 
 export default function Settings(props) {
@@ -64,34 +66,8 @@ export default function Settings(props) {
                 {swithc}
             </View>
 
-
-
-            <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => props.navigation.navigate('Home')}>
-                <LinearGradient start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={['#F81C8F', '#FFA353']}
-                    style={{ borderRadius: 5 }}>
-                    <View style={StyleGuide.squareButtonFilled}>
-                        <Text style={StyleGuide.buttonTitle}>Se déconnecter</Text>
-                    </View>
-                </LinearGradient>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => props.navigation.navigate("Home")}>
-                <LinearGradient
-                    start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={["#F81C8F", "#FFA353"]}
-                    style={{ borderRadius: 5 }}
-                >
-                    <View style={StyleGuide.squareButtonBorder}>
-                        <Text style={StyleGuide.buttonTitle}>Supprimer le compte</Text>
-                    </View>
-                </LinearGradient>
-            </TouchableOpacity>
-
-
+            <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Se déconnecter" />
+            <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Supprimer le compte" />
 
         </ImageBackground>
     );
