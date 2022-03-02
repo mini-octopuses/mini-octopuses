@@ -2,7 +2,7 @@ node_modules/
 .expo/
 dist/
 npm-debug.*
-configIp.js
+config.js
 *.jks
 *.p8
 *.p12
