@@ -31,16 +31,10 @@ export default function AllConnexion(props){
                 </TouchableOpacity>
             </View>
 
-
             <SquareButtonBorder onPress={() => props.navigation.navigate("SignUp")} buttonTitle="S'inscrire" />
             <SquareButtonBorder onPress={() => props.navigation.navigate("SignIn")} buttonTitle="Se connecter" />
             <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Jouer en tant qu'invité" />
 
-
-            <View>
-                <Text>pouette</Text>
-                <Text>Chouette</Text>
-            </View>
         </ImageBackground>
     )
 }
