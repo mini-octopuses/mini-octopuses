@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import StyleGuide from "../style/styleGuide";
 import FormInput from "../components/formInput";
+import Logo from "../components/Logo";
 
 
 
@@ -31,10 +32,7 @@ export default function SignUp(props){
 
     return(
         <View style={StyleGuide.container}>
-            {/* <Image source={require('../assets/Logo.png') } style={StyleGuide.logo} /> */}
-            <Image source={require('../assets/LogoText.png') } />
-            <Text h3 style= {{color:'#fff', textAlign:'center'}} >Dev Quizz Battle
-            </Text>
+           <Logo/>
             <Text h3>Inscription</Text>
 
             <FormInput placeholder='Prénom / Pseudo' icon='pseudo'value={username} onChangeText={(val)=> setUsername(val)} />
@@ -56,7 +54,6 @@ export default function SignUp(props){
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
-
         </View>    
 
     )

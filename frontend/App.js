@@ -9,6 +9,7 @@ const Stack = createStackNavigator();
 import PageOne from "./screens/PageOne";
 import PageTwo from "./screens/PageTwo";
 import SplashScreen from "./screens/SplashScreen";
+import Loading from "./screens/Loading";
 import AllConnexion from "./screens/AllConnexion";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="PageOne" component={PageOne} />
           <Stack.Screen name="PageTwo" component={PageTwo} />
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
+          <Stack.Screen name="Loading" component={Loading} />
           <Stack.Screen name="AllConnexion" component={AllConnexion} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="SignIn" component={SignIn} />

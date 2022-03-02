@@ -5,6 +5,8 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import StyleGuide from "../style/styleGuide";
 import FormInput from "../components/formInput";
+import configIp from "../config.js";
+import Logo from "../components/Logo";
 
 
 
@@ -14,7 +16,7 @@ export default function SignIn(props){
     const [password,setPassword]= useState("");
 
     const signIn = async()=>{
-        let user = await fetch('http://192.168.10.156:3000/sign-in',{
+        let user = await fetch(`${configIp.myIp}/sign-in`,{
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `email=${email}&password=${password}`
@@ -30,10 +32,7 @@ export default function SignIn(props){
 
     return(
         <View style={StyleGuide.container}>
-            {/* <Image source={require('../assets/Logo.png') } style={StyleGuide.logo} /> */}
-            <Image source={require('../assets/LogoText.png') } />
-            <Text h3 style= {{color:'#fff', textAlign:'center'}} >Dev Quizz Battle
-            </Text>
+           <Logo/>
             <Text h3>Connexion</Text> 
 
             <FormInput placeholder='Email' icon='email' value={email} onChangeText={(val) => setEmail(val)} />

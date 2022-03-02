@@ -4,6 +4,8 @@ import { Text } from 'react-native-elements';
 
 import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from "expo-linear-gradient";
+
+import Logo from "../components/Logo";
 import StyleGuide from "../style/styleGuide";
 
 
@@ -11,10 +13,7 @@ import StyleGuide from "../style/styleGuide";
 export default function AllConnexion(props){
     return(
         <ImageBackground source={require('../assets/bg.png')} style={StyleGuide.container}>
-            <Image source={require('../assets/Logo.png') } style={StyleGuide.logo} />
-            <Image source={require('../assets/LogoText.png') } />
-            <Text h2 style= {{color:'#fff', textAlign:'center'}} >Dev Quizz Battle
-            </Text>
+            <Logo/>
 
             <View style={StyleGuide.buttonStyle}>
                 <TouchableOpacity >
