@@ -7,6 +7,8 @@ import SquareButtonBorder from "../components/SquareButtonBorder";
 import FormInput from "../components/formInput";
 import Logo from "../components/Logo";
 
+import config from "../config";
+
 
 
 export default function SignUp(props){
@@ -16,7 +18,7 @@ export default function SignUp(props){
     const [password,setPassword]= useState("");
 
     const signUp = async()=>{
-        let user = await fetch('http://192.168.10.156:3000/sign-up',{
+        let user = await fetch(`${config.myIp}/sign-up`,{
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `username=${username}&email=${email}&password=${password}&isGuest=false`
