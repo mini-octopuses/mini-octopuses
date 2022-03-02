@@ -2,18 +2,11 @@ import { Dimensions } from 'react-native';
 
 const StyleGuide = {
     container: {
-        backgroundColor: '#2B2B2B',
         flex: 1,
         justfyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-    },
-    profileImage: {
-        width: 55,
-        height: 55,
-        borderRadius: 50,
-        marginTop: 30,
-        marginLeft: 10
+        backgroundColor: '#2B2B2B',
     },
     header: {
         flexDirection: 'row',
@@ -22,62 +15,68 @@ const StyleGuide = {
         width: Dimensions.get('window').width / 1,
         marginBottom: 20
     },
-    buttonMargin: {
-        marginTop: 20,
+    profileImageButton: {
+        width: 50,
+        height: 50,
+        borderRadius: 50,
+        marginTop: 30,
+        marginLeft: 10
     },
-    buttonGradient: {
-        margin: 3,
-        backgroundColor: "#2B2B2B",
-        borderRadius: 5,
-        width: Dimensions.get('window').width / 1.3,
-        height: Dimensions.get('window').height / 11,
-    },
-    button: {
+    buttonTitle: {
         textAlign: "center",
         textAlignVertical: 'center',
         color: 'white',
         fontSize: 20,
     },
-    buttonGradientFilled: {
+    squareButtonBorder: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 3,
+        backgroundColor: "#2B2B2B",
+        borderRadius: 5,
+        width: Dimensions.get('window').width / 1.3 + 6,
+        height: Dimensions.get('window').height / 11 + 6,
+    },
+    squareButtonFilled: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 3,
         colors: ['#F81C8F', '#FFA353'],
         borderRadius: 5,
-        width: Dimensions.get('window').width / 1.3,
-        height: Dimensions.get('window').height / 11,
+        width: Dimensions.get('window').width / 1.3 + 6,
+        height: Dimensions.get('window').height / 11 + 6,
     },
-    disabledButton: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 3,
-        backgroundColor: "#757575",
-        borderRadius: 5,
-        width: Dimensions.get('window').width / 1.3,
-        height: Dimensions.get('window').height / 11,
-    },
-    buttonFilled: {
-        margin: 18,
-        textAlign: "center",
-        textAlignVertical: 'center',
-        color: 'white',
-        fontSize: 20,
-    },
-    buttonGradientToppic: {
+    roundButtonBorder: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 3,
         backgroundColor: "#2B2B2B",
         borderRadius: 40,
-        width: Dimensions.get('window').width / 1.3,
-        height: Dimensions.get('window').height / 11,
+        width: Dimensions.get('window').width / 1.3 + 6,
+        height: Dimensions.get('window').height / 11 + 6,
     },
-    fontSize: {
-        fontSize: 20,
-        marginBottom: 20,
+    roundButtonFilled: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 3,
+        colors: ['#F81C8F', '#FFA353'],
+        borderRadius: 40,
+        width: Dimensions.get('window').width / 1.3 + 6,
+        height: Dimensions.get('window').height / 11 + 6,
+    },
+    squareButtonDisable: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 3,
+        backgroundColor: "#757575",
+        borderRadius: 5,
+        width: Dimensions.get('window').width / 1.3 + 6,
+        height: Dimensions.get('window').height / 11 + 6,
     },
     footer: {
         backgroundColor: '#2B2B2B',

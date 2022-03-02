@@ -15,6 +15,8 @@ import SplashScreen from "./screens/SplashScreen";
 import AllConnexion from "./screens/AllConnexion";
 import SignUp from "./screens/SignUp";
 import PageThree from './screens/PageThree';
+import Settings from './screens/Settings';
+import Profile from './screens/Profile';
 
 import ResultScreen from './screens/ResultScreen';
 import HistoryScreen from './screens/HistoryScreen'
@@ -42,6 +44,8 @@ export default function App() {
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
           <Stack.Screen name="AllConnexion" component={AllConnexion} />
           <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="Profile" component={Profile} />
 
           {/* Christian's test pages DO NOT TOUCH */}
           <Stack.Screen name="PageThree" component={PageThree} />
