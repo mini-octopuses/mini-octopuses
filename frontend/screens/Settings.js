@@ -24,75 +24,76 @@ export default function Settings(props) {
             source={require("../assets/Profile.png")}
             style={StyleGuide.container}
         >
-
-
-            <FontAwesome onPress={() => props.navigation.navigate('Home')} style={{ marginTop: 10, marginRight: 10 }} name="arrow-left" size={25} color="white" />
+            <View style={StyleGuide.header}>
+                <FontAwesome onPress={() => props.navigation.navigate('Home')} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+            </View>
 
             <View>
-                <Image style={StyleGuide.profileImage} source={require('../assets/Laureline.jpeg')} />
-                <Text style={{ marginLeft: 10 }}>#Laureloop</Text>
+                <Image style={{ width: 130, height: 130, borderRadius: 50 }} source={require('../assets/Laureline.jpeg')} />
+                <Text style={{ fontSize: 20, marginBottom: 50 }}>#laureloop</Text>
             </View>
 
 
-            <Text>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="volume-up" size={25} color="white" />
-                Effets sonores
+                <Text>Effets sonores</Text>
                 {swithc}
-            </Text>
+            </View>
 
-            <Text>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="music" size={25} color="white" />
-                Musique
+                <Text>Musique</Text>
                 {swithc}
-            </Text>
+            </View>
 
-            <Text>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="car" size={25} color="white" />
-                Vibration
+                <Text>Vibration</Text>
                 {swithc}
-            </Text>
+            </View>
 
-            <Text>
+
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="heart" size={25} color="white" />
-                Notifications
+                <Text>Notifications</Text>
                 {swithc}
-            </Text>
+            </View>
 
-            <Text>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="globe" size={25} color="white" />
-                Langage
-            </Text>
-
-
-            <View style={StyleGuide.buttonMargin}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
-                    <LinearGradient
-                        start={[0, 0.5]}
-                        end={[1, 0.5]}
-                        colors={["#F81C8F", "#FFA353"]}
-                        style={{ borderRadius: 5 }}
-                    >
-                        <View style={StyleGuide.buttonGradient}>
-                            <Text style={StyleGuide.button}>Button to Home</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
+                <Text>Langage</Text>
+                {swithc}
             </View>
 
-            <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("SplashScreen")}>
-                    <LinearGradient
-                        start={[0, 0.5]}
-                        end={[1, 0.5]}
-                        colors={["#F81C8F", "#FFA353"]}
-                        style={{ borderRadius: 5 }}
-                    >
-                        <View style={StyleGuide.buttonGradientFilled}>
-                            <Text style={StyleGuide.buttonFilled}>Button to page 2</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>
+
+
+            <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => props.navigation.navigate('Home')}>
+                <LinearGradient start={[0, 0.5]}
+                    end={[1, 0.5]}
+                    colors={['#F81C8F', '#FFA353']}
+                    style={{ borderRadius: 5 }}>
+                    <View style={StyleGuide.squareButtonFilled}>
+                        <Text style={StyleGuide.buttonTitle}>Se déconnecter</Text>
+                    </View>
+                </LinearGradient>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => props.navigation.navigate("Home")}>
+                <LinearGradient
+                    start={[0, 0.5]}
+                    end={[1, 0.5]}
+                    colors={["#F81C8F", "#FFA353"]}
+                    style={{ borderRadius: 5 }}
+                >
+                    <View style={StyleGuide.squareButtonBorder}>
+                        <Text style={StyleGuide.buttonTitle}>Supprimer le compte</Text>
+                    </View>
+                </LinearGradient>
+            </TouchableOpacity>
+
+
+
         </ImageBackground>
     );
 }

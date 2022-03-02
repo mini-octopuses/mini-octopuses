@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
 import StyleGuide from "../style/styleGuide";
 import { LinearGradient } from "expo-linear-gradient";
-
-
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function Categories(props) {
 
     const [allTopicList, setAllTopicList] = useState([]);
-
 
     useEffect(() => {
         async function loadData() {
@@ -21,7 +18,6 @@ export default function Categories(props) {
             body.topicFromBack.map((item) => {
                 setAllTopicListCopy.push(item)
             })
-
             setAllTopicList(setAllTopicListCopy)
         }
         loadData();
@@ -45,41 +41,40 @@ export default function Categories(props) {
         token: "qsdf55azert555zerty",
         profilPicture: "",
         isGuest: false,
-        topics: ["HTML", "MongoDB"],
+        topics: ["MongoDB"],
         // gameList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'games' }],
         // progression: [{ topic: String, numberCorrect: Number }]
         // "HTML", "MongoDB"
     }
 
-    const selectTopic = async () => {
-
-
-    }
+    // const selectTopic = async () => {
+    // }
 
     return (
 
-        <View style={StyleGuide.container}>
+        <SafeAreaView style={StyleGuide.container}>
 
             <View style={StyleGuide.header}>
-                <View>
-                    <Image style={StyleGuide.profileImage} source={require('../assets/Laureline.jpeg')} />
-                    <Text style={{ marginLeft: 10 }}>#Laureloop</Text>
-                </View>
-                <FontAwesome onPress={() => props.navigation.navigate('Settings')} style={{ marginTop: 10, marginRight: 10 }} name="gear" size={35} color="white" />
+                <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
+                    <Image style={StyleGuide.profileImageButton} source={require('../assets/Laureline.jpeg')} />
+                    <Text style={{ marginLeft: 10 }}>#laureloop</Text>
+                </TouchableOpacity>
+                <FontAwesome onPress={() => props.navigation.navigate('Settings')} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
             </View>
 
-            <Text style={StyleGuide.fontSize}>Sélectionnes tes themes préférés</Text>
-            <ScrollView style={{ flex: 1, height: 50 }}>
+            <Text style={{ fontSize: 20, marginBottom: 20, }}>Sélectionnes tes themes préférés</Text>
 
-                <View style={StyleGuide.buttonMargin}>
+            <ScrollView style={{ flex: 1 }}>
+
+                <View>
                     {allTopicList.map((item, i) => {
-                        return <TouchableOpacity key={i} onPress={() => selectTopic()}>
+                        return <TouchableOpacity key={i} onPress={() => props.navigation.navigate('Categories')}>
                             <LinearGradient start={[0, 0.5]}
                                 end={[1, 0.5]}
                                 colors={['#F81C8F', '#FFA353']}
                                 style={{ borderRadius: 40, marginBottom: 12 }}>
-                                <View style={fakeUser.topics.includes(item.name) ? StyleGuide.buttonGradientFilled : StyleGuide.buttonGradientToppic}>
-                                    <Text style={StyleGuide.button}>{item.name}</Text>
+                                <View style={fakeUser.topics.includes(item.name) ? StyleGuide.roundButtonFilled : StyleGuide.roundButtonBorder}>
+                                    <Text style={StyleGuide.buttonTitle}>{item.name}</Text>
                                 </View>
                             </LinearGradient>
                         </TouchableOpacity>
@@ -87,16 +82,14 @@ export default function Categories(props) {
                     })}
                 </View>
 
-                <View style={StyleGuide.buttonMargin}>
-                    <TouchableOpacity>
-                        <View style={{ backgroundColor: '#2B2B2B', height: 80 }}>
-                            <Text style={{ borderColor: '#2B2B2B' }}></Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity>
+                    <View style={{ backgroundColor: '#2B2B2B', height: 80 }}>
+                        <Text style={{ borderColor: '#2B2B2B' }}></Text>
+                    </View>
+                </TouchableOpacity>
+
 
             </ScrollView>
-
 
             <View style={StyleGuide.footer}>
                 <TouchableOpacity onPress={() => {
@@ -108,16 +101,13 @@ export default function Categories(props) {
                         end={[1, 0.5]}
                         colors={!fakeUser.topics.length ? ['#757575', '#757575'] : ['#F81C8F', '#FFA353']}
                         style={{ borderRadius: 5 }}>
-                        <View style={!fakeUser.topics.length ? StyleGuide.disabledButton : StyleGuide.buttonGradientFilled}>
-                            <Text style={StyleGuide.buttonFilled}>Valider</Text>
+                        <View style={!fakeUser.topics.length ? StyleGuide.squareButtonDisable : StyleGuide.squareButtonFilled}>
+                            <Text style={StyleGuide.buttonTitle}>Valider</Text>
                         </View>
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
 
-
-
-
-        </View>
+        </SafeAreaView>
     )
 }
