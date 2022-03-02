@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ImageBackground, Image, Switch } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-
 import StyleGuide from "../style/styleGuide";
 import { FontAwesome } from '@expo/vector-icons';
 

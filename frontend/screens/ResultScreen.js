@@ -1,8 +1,9 @@
-
 import React from 'react';
-import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
-
+import { LinearGradient } from "expo-linear-gradient";
+import StyleGuide from "../style/styleGuide";
+import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 
 //* Import icons will be removed later on
@@ -382,49 +383,109 @@ function ResultScreen(props) {
     // }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
-            <View style={styles.container}>
-                <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
-                <Text style={{ fontSize: 34, color: 'white' }}>{myScore} / 8</Text>
+        <ImageBackground
+            source={require("../assets/Profile.png")}
+            style={StyleGuide.container}
+        >
+            <FontAwesome style={{ marginTop: 70, color: '#FFCB53' }} name="trophy" size={170} color="white" />
 
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 250 }}>
+                <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
+                <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text>
+            </View>
+
+
+            <View style={StyleGuide.footer}>
                 {/* //* Replay button */}
-                <Button title='REJOUER'
+                {/* <Button title='Rejouer'
                     onPress={() => {
                         console.log('Pressing replay button')
-                    }} />
+                    }} /> */}
+
+                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
+                    console.log('Pressing replay button')
+                }}>
+                    <LinearGradient start={[0, 0.5]}
+                        end={[1, 0.5]}
+                        colors={['#F81C8F', '#FFA353']}
+                        style={{ borderRadius: 5 }}>
+                        <View style={StyleGuide.squareButtonFilled}>
+                            <Text style={StyleGuide.buttonTitle}>Rejouer</Text>
+                        </View>
+                    </LinearGradient>
+                </TouchableOpacity>
+
 
                 {/* //* Needs to generate fake data */}
-                <Button title='VOIR les réponses' onPress={() => {
+                {/* <Button title='Voir les réponses' onPress={() => {
                     console.log('Pressing history button')
                     tempGameGenerator()
                     props.navigation.navigate('HistoryScreen')
-                }} />
+                }} /> */}
+
+
+                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
+                    console.log('Pressing history button')
+                    tempGameGenerator()
+                    props.navigation.navigate('HistoryScreen')
+                }}>
+                    <LinearGradient
+                        start={[0, 0.5]}
+                        end={[1, 0.5]}
+                        colors={["#F81C8F", "#FFA353"]}
+                        style={{ borderRadius: 5 }}
+                    >
+                        <View style={StyleGuide.squareButtonBorder}>
+                            <Text style={StyleGuide.buttonTitle}>Voir les réponses</Text>
+                        </View>
+                    </LinearGradient>
+                </TouchableOpacity>
+
+
 
                 {/* //* Needs redirect towards the homePage */}
-                <Button title='Accueil'
+                {/* <Button title='Accueil'
                     onPress={() => {
                         console.log('Pressing homePage button')
-                    }} />
+                    }} /> */}
+
+                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
+                    console.log('Pressing homePage button')
+                }}>
+                    <LinearGradient
+                        start={[0, 0.5]}
+                        end={[1, 0.5]}
+                        colors={["#F81C8F", "#FFA353"]}
+                        style={{ borderRadius: 5 }}
+                    >
+                        <View style={StyleGuide.squareButtonBorder}>
+                            <Text style={StyleGuide.buttonTitle}>Accueil</Text>
+                        </View>
+                    </LinearGradient>
+                </TouchableOpacity>
             </View>
-        </SafeAreaView >
+
+
+
+        </ImageBackground>
     )
 }
 
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#2b2b2b'
-    },
-    title: {
-        fontSize: 40,
-        fontWeight: 'bold',
-        marginTop: 60,
-        marginBottom: 20
-    }
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//         backgroundColor: '#2b2b2b'
+//     },
+//     title: {
+//         fontSize: 40,
+//         fontWeight: 'bold',
+//         marginTop: 60,
+//         marginBottom: 20
+//     }
+// });
 
 function mapDispatchToProps(dispatch) {
     return {

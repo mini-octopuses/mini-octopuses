@@ -10,7 +10,7 @@ export default function Categories(props) {
 
     useEffect(() => {
         async function loadData() {
-            let topicFromBack = await fetch('http://192.168.43.224:3000/topics')
+            let topicFromBack = await fetch('http://192.168.10.161:3000/topics')
 
             const body = await topicFromBack.json()
             let setAllTopicListCopy = [...allTopicList]
@@ -94,7 +94,7 @@ export default function Categories(props) {
             <View style={StyleGuide.footer}>
                 <TouchableOpacity onPress={() => {
                     if (fakeUser.topics.length) {
-                        props.navigation.navigate('HistoryScreen')
+                        props.navigation.navigate('ResultScreen')
                     }
                 }}>
                     <LinearGradient start={[0, 0.5]}
