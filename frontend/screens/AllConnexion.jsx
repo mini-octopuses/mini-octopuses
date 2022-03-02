@@ -48,7 +48,7 @@ export default function AllConnexion(props){
             </View>
 
             <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => props.navigation.navigate("SignIn")}>
                     <LinearGradient
                     start={[0, 0.5]}
                     end={[1, 0.5]}
