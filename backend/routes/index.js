@@ -65,28 +65,21 @@ router.post("/sign-up", async function (req, res, next) {
 
 //route signIn
 router.post("/sign-in", async function (req, res, next) {
-  let user = {};
-  if (
-    req.body.email.trim().toLowerCase() === "" ||
-    req.body.password.trim() === ""
-  ) {
-    return res.json({ result: "Merci de bien remplir tous les champs" });
-  } else {
-    let user = await UserModel.findOne({
-      email: req.body.email,
-    });
-    if (user) {
-      if (bcrypt.compareSync(req.body.password, user.password)) {
-        return res.json({ result: true, token: user.token });
-      } else {
-        return res.json({ result: "Utilisateur non trouvé" });
-      }
-    } else {
-      return res.json({ result: "Utilisateur non trouvé" });
-    }
-  }
+  let user = await UserModel.findOne({
+    email: req.body.email,
+  });
+  console.log("toto", user);
 
-  return res.json({ result: true, user });
+  if (user) {
+    if (bcrypt.compareSync(req.body.password, user.password)) {
+      console.log("toto", user);
+      return res.json({ result: true, token: user.token, user });
+    } else {
+      return res.json({ result: false, message: "Utilisateur non trouvé" });
+    }
+  } else {
+    return res.json({ result: false, message: "Utilisateur non trouvé" });
+  }
 });
 
 //* Routes for games
