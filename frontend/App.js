@@ -26,6 +26,7 @@ import HistoryScreen from "./screens/HistoryScreen";
 import SettingsGuest from "./screens/SettingsGuest";
 import PastBattles from "./screens/PastBattles";
 import TrainingScreen from "./screens/TrainingScreen";
+import ProfileSetting from "./screens/ProfileSetting";
 
 //* Import of the tools required for redux
 import { Provider } from "react-redux";
@@ -55,6 +56,7 @@ export default function App() {
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="SettingsGuest" component={SettingsGuest} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="ProfileSetting" component={ProfileSetting} />
           <Stack.Screen name="Categories" component={Categories} />
           <Stack.Screen name="PastBattles" component={PastBattles} />
 

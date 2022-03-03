@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Image, TouchableOpacity } from "react-native";
 import { Text } from "react-native-elements";
+import { connect } from "react-redux";
 
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
@@ -9,7 +10,7 @@ import Logo from "../components/Logo";
 
 import config from "../config";
 
-export default function SignUp(props) {
+function SignUp(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +23,9 @@ export default function SignUp(props) {
     });
     let backResponse = await user.json();
 
+    console.log(backResponse);
     if (backResponse.result) {
+      props.saveUser(backResponse.user);
       props.navigation.navigate("Home");
     }
     console.log(backResponse);
@@ -56,3 +59,18 @@ export default function SignUp(props) {
     </View>
   );
 }
+
+function maDispatchToProps(dispatch) {
+  return {
+    saveUser: function (gameUser) {
+      dispatch({ type: "saveUser", gameUser });
+    },
+  };
+}
+
+function mapStatesToProps(state) {
+  console.log(state);
+  return { user: state.user };
+}
+
+export default connect(mapStatesToProps, maDispatchToProps)(SignUp);

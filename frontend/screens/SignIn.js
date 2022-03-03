@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { View, Image, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { Text } from "react-native-elements";
-import { LinearGradient } from "expo-linear-gradient";
 import { connect } from "react-redux";
 
 import StyleGuide from "../style/styleGuide";
 import FormInput from "../components/FormInput";
 import configIp from "../config.js";
 import Logo from "../components/Logo";
+import SquareButtonBorder from "../components/SquareButtonBorder";
 
 function SignIn(props) {
   const [email, setEmail] = useState("");
@@ -46,20 +46,7 @@ function SignIn(props) {
         onChangeText={(val) => setPassword(val)}
       />
 
-      <View style={StyleGuide.buttonStyle}>
-        <TouchableOpacity onPress={() => signIn()}>
-          <LinearGradient
-            start={[0, 0.5]}
-            end={[1, 0.5]}
-            colors={["#F81C8F", "#FFA353"]}
-            style={{ borderRadius: 5 }}
-          >
-            <View style={StyleGuide.buttonGradient}>
-              <Text style={StyleGuide.buttonTitle}> Valider</Text>
-            </View>
-          </LinearGradient>
-        </TouchableOpacity>
-      </View>
+      <SquareButtonBorder onPress={() => signIn()} buttonTitle="Valider" />
     </View>
   );
 }

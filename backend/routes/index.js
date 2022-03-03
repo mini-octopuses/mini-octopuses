@@ -88,7 +88,7 @@ router.post("/sign-up", async function (req, res, next) {
         message: "La création de votre compte a rencontré un problème",
       });
     } else {
-      res.json({ result: true, newUser });
+      res.json({ result: true, user: newUserStatus });
     }
   }
 });
@@ -129,10 +129,10 @@ const shuffleArray = (array) => {
     array[i] = array[j];
     array[j] = temp;
   }
-}
-router.post('/generate-game', async function (req, res, next) {
-  let topics = req.body.topics.split('/')
-  console.log(req.body)
+};
+router.post("/generate-game", async function (req, res, next) {
+  let topics = req.body.topics.split("/");
+  console.log(req.body);
   let gameQuestions = [];
   for (const elem of topics) {
     let data = await QuestionModel.find({ topic: elem });
@@ -153,36 +153,35 @@ router.post('/generate-game', async function (req, res, next) {
     score: 0,
     userAnswers: [],
     questions: gameQuestions,
-  })
-  let saveStatus = await newGame.save()
+  });
+  let saveStatus = await newGame.save();
   if (!saveStatus) {
-    return res.json({ result: false })
+    return res.json({ result: false });
   }
-  res.json({ result: true, game: saveStatus })
+  res.json({ result: true, game: saveStatus });
+});
 
-  
-router.get('/generate-game', async function (req, res, next) {
-
-  let allQuestions = await QuestionModel.find()
+router.get("/generate-game", async function (req, res, next) {
+  let allQuestions = await QuestionModel.find();
 
   //let topics = req.body.topics.split('+')
- //  let topics = req.body
- //  let gameQuestions = [];
- //  for (const elem of topics) {
- //    let data = await QuestionModel.find({ topic: elem })
- //    if (data.length !== 0) {
- //      shuffleArray(data)
- //      for (let i = 0; i < 8; i++) {
- //        gameQuestions.push(data[i])
- //      }
- //    }
- //  }
- //  if (gameQuestions.length !== 8) {
- //    shuffleArray(gameQuestions)
- //    gameQuestions = gameQuestions.slice(0, 8);
- //  }
-  res.json({ result: true, questions:allQuestions }) // result: true , game: gameQuestions
-})
+  //  let topics = req.body
+  //  let gameQuestions = [];
+  //  for (const elem of topics) {
+  //    let data = await QuestionModel.find({ topic: elem })
+  //    if (data.length !== 0) {
+  //      shuffleArray(data)
+  //      for (let i = 0; i < 8; i++) {
+  //        gameQuestions.push(data[i])
+  //      }
+  //    }
+  //  }
+  //  if (gameQuestions.length !== 8) {
+  //    shuffleArray(gameQuestions)
+  //    gameQuestions = gameQuestions.slice(0, 8);
+  //  }
+  res.json({ result: true, questions: allQuestions }); // result: true , game: gameQuestions
+});
 
 //*------------------------------------------------------------------------------------------------//
 //*  /save-game

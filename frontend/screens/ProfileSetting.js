@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-  Image,
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, Text, ImageBackground, Image } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { connect } from "react-redux";
 
 import StyleGuide from "../style/styleGuide";
-import { FontAwesome } from "@expo/vector-icons";
+import SquareButtonBorder from "../components/SquareButtonBorder";
+import SquareButtonFilled from "../components/SquareButtonFilled";
 
-export default function ProfileSettings(props) {
+function ProfileSettings(props) {
   return (
     <ImageBackground
       source={require("../assets/Profile.png")}
@@ -33,7 +29,7 @@ export default function ProfileSettings(props) {
           source={require("../assets/Laureline.jpeg")}
         />
         <Text style={{ fontSize: 20, marginBottom: 50 }}>
-          test #{props.saveUser(backResponse.user.username)}
+          test #{props.user.username}
         </Text>
       </View>
       <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
@@ -44,36 +40,22 @@ export default function ProfileSettings(props) {
           color="white"
         />
       </View>
-      <TouchableOpacity
-        style={{ marginBottom: 12 }}
+      <SquareButtonFilled
         onPress={() => props.navigation.navigate("Home")}
-      >
-        <LinearGradient
-          start={[0, 0.5]}
-          end={[1, 0.5]}
-          colors={["#F81C8F", "#FFA353"]}
-          style={{ borderRadius: 5 }}
-        >
-          <View style={StyleGuide.squareButtonFilled}>
-            <Text style={StyleGuide.buttonTitle}>Se déconnecter</Text>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{ marginBottom: 12 }}
-        onPress={() => props.navigation.navigate("Home")}
-      >
-        <LinearGradient
-          start={[0, 0.5]}
-          end={[1, 0.5]}
-          colors={["#F81C8F", "#FFA353"]}
-          style={{ borderRadius: 5 }}
-        >
-          <View style={StyleGuide.squareButtonBorder}>
-            <Text style={StyleGuide.buttonTitle}>Supprimer le compte</Text>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
+        buttonTitle="Enregistrer les modifications"
+      />
+      <SquareButtonBorder
+        onPress={() => props.navigation.navigate("SplashScreen")}
+        buttonTitle="Supprimer le compte"
+      />
     </ImageBackground>
   );
 }
+
+// ATTENTION lorsqu'on veut lire une props redux il faut obligatoirement mettre la fonction et l'exporter
+function mapStatesToProps(state) {
+  console.log(state);
+  return { user: state.user };
+}
+
+export default connect(mapStatesToProps, null)(ProfileSettings);
