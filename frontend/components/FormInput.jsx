@@ -43,7 +43,7 @@ export default function FormInput(props){
                     style={{marginLeft:5, color:"lightgrey", fontSize:16}}
                     leftIcon={{ type: 'font-awesome', name: 'lock', color:"lightgrey"}}
                     containerStyle = {{width:Dimensions.get('window').width/1.2, 
-                    height:Dimensions.get('window').height/12,backgroundColor:'#fff', borderRadius:10, marginTop:20}}
+                    height:Dimensions.get('window').height/12,backgroundColor:'#fff', borderRadius:10, marginTop:20, marginBottom:20}}
                     inputContainerStyle = {{borderBottomWidth:0, 
                     height:Dimensions.get('window').height/12,backgroundColor:'#fff', borderRadius:10}}>
                 </Input>

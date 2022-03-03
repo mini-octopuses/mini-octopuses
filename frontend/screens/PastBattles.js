@@ -14,11 +14,10 @@ export default function PastBattles(props) {
         <View style={StyleGuide.container}>
 
             <View style={StyleGuide.header}>
-                <FontAwesome onPress={() => props.navigation.navigate('Home')} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+                <FontAwesome onPress={() => props.navigation.goBack()} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
             </View>
 
             <Text style={{ fontSize: 20, marginBottom: 20, }}>Batailles passées</Text>
-
 
             <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_321" />
             <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_753" />

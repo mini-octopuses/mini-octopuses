@@ -4,8 +4,6 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
-import SquareButtonFilled from "../components/SquareButtonFilled";
-
 
 export default function SettingsGuest(props) {
 
@@ -26,7 +24,7 @@ export default function SettingsGuest(props) {
             style={StyleGuide.container}
         >
             <View style={StyleGuide.header}>
-                <FontAwesome onPress={() => props.navigation.navigate('Home')} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+                <FontAwesome onPress={() => props.navigation.goBack()} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
             </View>
 
             <View>
@@ -59,21 +57,19 @@ export default function SettingsGuest(props) {
                 {swithc}
             </View>
 
+            <View style={StyleGuide.footer}>
 
-            <TouchableOpacity >
                 <View style={StyleGuide.googleButton}>
                     <Image source={require('../assets/google.png')} style={StyleGuide.googlePicto} />
-                    <Text style={StyleGuide.titleGoogleButton}> Connexion avec Google</Text>
+                    <Text style={StyleGuide.titleGoogleButton}> Connexion Google</Text>
                 </View>
-            </TouchableOpacity>
 
-            <TouchableOpacity style={StyleGuide.facebookButton} >
-                <FontAwesome name="facebook" size={24} color="white" />
-                <Text style={StyleGuide.titleFacebookButton}> Connexion avec Facebook</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={StyleGuide.facebookButton} >
+                    <FontAwesome name="facebook" size={27} color="white" />
+                    <Text style={StyleGuide.titleFacebookButton}> Connexion Facebook</Text>
+                </TouchableOpacity>
 
-            <View style={StyleGuide.footer}>
-                <SquareButtonBorder onPress={() => props.navigation.navigate("PastBattles")} buttonTitle="PastBattles" />
+                <SquareButtonBorder onPress={() => props.navigation.navigate("SignUp")} buttonTitle="S'incrire" />
             </View>
         </ImageBackground>
     );
