@@ -1,10 +1,12 @@
 
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, Pressable } from 'react-native';
+import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, Pressable, ImageBackground, TouchableOpacity } from 'react-native';
 
 // import { Image } from 'react-native-elements';
 //* Import react native elements
 import { Button } from 'react-native-elements';
+import StyleGuide from "../style/styleGuide";
+import { FontAwesome } from "@expo/vector-icons";
 
 //* Imports for synthax highlighting for code blocks
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
@@ -53,39 +55,50 @@ function TrainingScreen(props) {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
-            <View style={{ flex: 1, backgroundColor: '#2b2b2b' }}>
-                {/* //* This is the header */}
-                <View style={{ flexDirection: 'row', marginLeft: 10, marginTop: 10 }}>
-                    <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
-                        <Image style={styles.userIcon} source={require('./../assets/favicon.png')} />
-                        <Text style={styles.username}>#{username}</Text>
-                    </View>
-                    {/* //* Add code to display a setting button on the right part of the screen opposite to the avatar */}
-                </View>
+        <ImageBackground
+            source={require("../assets/training_bc.png")}
+            style={StyleGuide.container}
+        >
 
-                {/* //* This is the code block with the questions */}
-                <View style={styles.container}>
-                    <Text style={{ fontSize: 34, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[index].title}</Text>
-                    <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"}>
-                        {props.game.questions[index].code}
-                    </SyntaxHighlighter>
-                </View>
+            <View style={StyleGuide.header}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+                    <Image
+                        style={StyleGuide.profileImageButton}
+                        source={require("../assets/Laureline.jpeg")}
+                    />
+                    <Text style={{ marginLeft: 10, color: 'white' }}>#laureloop</Text>
+                </TouchableOpacity>
+                <FontAwesome
+                    onPress={() => props.navigation.navigate("Settings")}
+                    style={{ marginTop: 15, marginRight: 10 }}
+                    name="gear"
+                    size={35}
+                    color="white"
+                />
+            </View>
 
-                {/* //*Container for answers */}
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    {/* //*Display of the answers */}
-                    <View style={{ flexDirection: 'row' }}>
-                        <Button title={props.game.questions[index].answers[0].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(0)} />
-                        <Button title={props.game.questions[index].answers[1].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(1)} />
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Button title={props.game.questions[index].answers[2].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(2)} />
-                        <Button title={props.game.questions[index].answers[3].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(3)} />
-                    </View>
+            {/* //* This is the code block with the questions */}
+            <View style={styles.container}>
+                <Text style={{ fontSize: 34, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[index].title}</Text>
+                <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"}>
+                    {props.game.questions[index].code}
+                </SyntaxHighlighter>
+            </View>
+
+            {/* //*Container for answers */}
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                {/* //*Display of the answers */}
+                <View style={{ flexDirection: 'row' }}>
+                    <Button title={props.game.questions[index].answers[0].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(0)} />
+                    <Button title={props.game.questions[index].answers[1].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(1)} />
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Button title={props.game.questions[index].answers[2].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(2)} />
+                    <Button title={props.game.questions[index].answers[3].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(3)} />
                 </View>
             </View>
-        </SafeAreaView >
+
+        </ImageBackground>
     )
 }
 
@@ -98,10 +111,10 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     container: {
-        flex: 1,
+        flex: 0.4,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#2b2b2b'
+        backgroundColor: 'transparent'
     },
     username: {
         color: 'white',

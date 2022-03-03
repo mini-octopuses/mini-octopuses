@@ -135,7 +135,7 @@ function Categories(props) {
         </View>
 
         <TouchableOpacity>
-          <View style={{ backgroundColor: "#2B2B2B", height: 80 }}>
+          <View style={{ backgroundColor: "#2B2B2B", height: 130 }}>
             <Text style={{ borderColor: "#2B2B2B" }}></Text>
           </View>
         </TouchableOpacity>
