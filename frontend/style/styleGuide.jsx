@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 const StyleGuide = {
     container: {
         flex: 1,
-        justfyContent: 'center',
+        justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
         backgroundColor: '#2B2B2B',
