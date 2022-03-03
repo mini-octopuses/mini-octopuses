@@ -1,10 +1,11 @@
 
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, Pressable } from 'react-native';
+import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, Pressable, ImageBackground, TouchableOpacity } from 'react-native';
 
 // import { Image } from 'react-native-elements';
 //* Import react native elements
 import { Button } from 'react-native-elements';
+import StyleGuide from "../style/styleGuide";
 
 //* Import icons will be removed later on
 import { FontAwesome } from '@expo/vector-icons';
@@ -20,16 +21,10 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 //* Use a dynamic user instead of a static one
-//* Generate a real game instead of a using a fake one
-//* Try to style the result page a little bit
-//* Change question extension from json to js
 
 function HistoryScreen(props) {
-
-    //title, score, userAnswers, topic, answers
     const [index, setIndex] = useState(0)
 
-    // console.log(props.user);
     function setButtonStyle(buttonPos) {
         if (props.game.questions[index].answers[buttonPos].isCorrect) return styles.buttonGreen
         if (buttonPos === props.game.userAnswers[index]) return styles.buttonRed
@@ -62,77 +57,72 @@ function HistoryScreen(props) {
 
     let username = "Hikenou"
 
-    // console.log(JSON.stringify(props.game.userAnswers))
-
-    // console.log(props.user.profilPicture)
-    // let path = props.user.profilPicture
-    // let str = require(`${props.user.profilPicture}`)
-    // let str = require(`${props.user.profilPicture}`)
-    // let str = require(path)
-    // let picPath = require({ path })
-
-
-
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
-            <View style={{ flex: 1, backgroundColor: '#2b2b2b' }}>
-                {/* //* This is the header */}
-                <View style={{ flexDirection: 'row', marginLeft: 10, marginTop: 10 }}>
-                    <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
-                        <Image style={styles.userIcon} source={require('./../assets/favicon.png')} />
-                        {/* <Image style={styles.userIcon} source={str} /> */}
-                        {/* <Image style={styles.userIcon} source={require(props.user.profilPicture)} /> */}
+        <ImageBackground
+            source={require("../assets/training_bc.png")}
+            style={StyleGuide.container}
+        >
 
-                        {/* <Text style={styles.username}>#{props.user.username}</Text> */}
-                        <Text style={styles.username}>#{username}</Text>
-
-                    </View>
-                    {/* //* Add code to display a setting button on the right part of the screen opposite to the avatar */}
-                </View>
-
-                {/* //* This is the code block with the questions */}
-                <View style={styles.container}>
-                    <Text style={{ fontSize: 34, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[index].title}</Text>
-                    <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"}>
-                        {props.game.questions[index].code}
-                    </SyntaxHighlighter>
-                </View>
-
-                {/* //*Container for answers */}
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    {/* //*Display of the answers */}
-                    <View style={{ flexDirection: 'row' }}>
-                        <Button title={props.game.questions[index].answers[0].answer} buttonStyle={setButtonStyle(0)} />
-                        <Button title={props.game.questions[index].answers[1].answer} buttonStyle={setButtonStyle(1)} />
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Button title={props.game.questions[index].answers[2].answer} buttonStyle={setButtonStyle(2)} />
-                        <Button title={props.game.questions[index].answers[3].answer} buttonStyle={setButtonStyle(3)} />
-                    </View>
-
-                    {/* //*Display of prev and next */}
-                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', width: windowWidth / 1.1, padding: 10 }}>
-                        <Pressable onPress={() => {
-                            console.log('Button pressed', 'Prev')
-                            index > 0 ? setIndex(index - 1) : setIndex(0)
-                        }}>
-                            <View style={setPrevButtonStyle()}>
-                                <FontAwesome name="arrow-left" size={24} color="white" />
-                                <Text style={{ color: 'white', marginLeft: 10 }}>Précédent</Text>
-                            </View>
-                        </Pressable>
-
-                        <Pressable onPress={() => {
-                            console.log('Button pressed', 'Next')
-                            index < 7 ? setIndex(index + 1) : props.navigation.navigate('ResultScreen')
-                        }}>
-                            {setNextButtonArea()}
-                        </Pressable>
-                    </View>
-                </View>
-
+            <View style={StyleGuide.header}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+                    <Image
+                        style={StyleGuide.profileImageButton}
+                        source={require("../assets/Laureline.jpeg")}
+                    />
+                    <Text style={{ marginLeft: 10, color: 'white' }}>#laureloop</Text>
+                </TouchableOpacity>
+                <FontAwesome
+                    onPress={() => props.navigation.navigate("Settings")}
+                    style={{ marginTop: 15, marginRight: 10 }}
+                    name="gear"
+                    size={35}
+                    color="white"
+                />
             </View>
-        </SafeAreaView >
+
+            {/* //* This is the code block with the questions */}
+            <View style={styles.container}>
+                <Text style={{ fontSize: 34, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[index].title}</Text>
+                <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"}>
+                    {props.game.questions[index].code}
+                </SyntaxHighlighter>
+            </View>
+
+            {/* //*Container for answers */}
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                {/* //*Display of the answers */}
+                <View style={{ flexDirection: 'row' }}>
+                    <Button title={props.game.questions[index].answers[0].answer} buttonStyle={setButtonStyle(0)} />
+                    <Button title={props.game.questions[index].answers[1].answer} buttonStyle={setButtonStyle(1)} />
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Button title={props.game.questions[index].answers[2].answer} buttonStyle={setButtonStyle(2)} />
+                    <Button title={props.game.questions[index].answers[3].answer} buttonStyle={setButtonStyle(3)} />
+                </View>
+
+                {/* //*Display of prev and next */}
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', width: windowWidth / 1.1, padding: 10 }}>
+                    <Pressable onPress={() => {
+                        console.log('Button pressed', 'Prev')
+                        index > 0 ? setIndex(index - 1) : setIndex(0)
+                    }}>
+                        <View style={setPrevButtonStyle()}>
+                            <FontAwesome name="arrow-left" size={24} color="white" />
+                            <Text style={{ color: 'white', marginLeft: 10 }}>Précédent</Text>
+                        </View>
+                    </Pressable>
+
+                    <Pressable onPress={() => {
+                        console.log('Button pressed', 'Next')
+                        index < 7 ? setIndex(index + 1) : props.navigation.navigate('ResultScreen')
+                    }}>
+                        {setNextButtonArea()}
+                    </Pressable>
+                </View>
+            </View>
+
+
+        </ImageBackground>
     )
 }
 
@@ -146,7 +136,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     container: {
-        flex: 1,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#2b2b2b'
