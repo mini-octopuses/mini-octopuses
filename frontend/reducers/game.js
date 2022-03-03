@@ -7,5 +7,10 @@ export default function (game = {}, action) {
         gameCopy.userAnswers = action.answers
         return gameCopy
     }
+    if (action.type === 'saveScore') {
+        let gameCopy = { ...game }
+        gameCopy.score = action.score;
+        return gameCopy
+    }
     return game
 }

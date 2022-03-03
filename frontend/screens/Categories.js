@@ -37,17 +37,19 @@ function Categories(props) {
         let rawResponse = await fetch(`${config.myIp}/generate-game`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'deviceLang=EN&topics=JavaScript/Regex'
+            // body: 'deviceLang=EN&topics=JavaScript/Regex'
+            // body: 'deviceLang=EN&topics=React/ReactNative'
+            body: 'deviceLang=EN&topics=React/ReactNative/JavaScript/Regex'
+
+
         });
         let response = await rawResponse.json()
         if (response.result) {
-            // console.log(response.game)
             //* Check backend not responding with the correct schema
             props.saveGame(response.game)
-            console.log(props.game)
-            // console.log(response.game.questions.length)
             props.navigation.navigate("TrainingScreen");
-
+        } else {
+            console.log("Error questions not found")
         }
     }
     // console.log(allTopicList);
@@ -86,7 +88,7 @@ function Categories(props) {
                         style={StyleGuide.profileImageButton}
                         source={require("../assets/Laureline.jpeg")}
                     />
-                    <Text style={{ marginLeft: 10 }}>#laureloop</Text>
+                    <Text style={{ marginLeft: 10, color: 'white' }}>#laureloop</Text>
                 </TouchableOpacity>
                 <FontAwesome
                     onPress={() => props.navigation.navigate("Settings")}
@@ -97,7 +99,7 @@ function Categories(props) {
                 />
             </View>
 
-            <Text style={{ fontSize: 20, marginBottom: 20 }}>
+            <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>
                 Sélectionnes tes themes préférés
             </Text>
 
@@ -134,10 +136,7 @@ function Categories(props) {
                 <TouchableOpacity
                     onPress={() => {
                         if (fakeUser.topics.length) {
-                            //! Fetch to generate a game here with the corresponding topics
                             generateGame();
-                            console.log("SHOULD FETCH DATA HERE")
-                            // props.navigation.navigate("ResultScreen");
                         }
                     }}
                 >

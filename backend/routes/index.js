@@ -12,6 +12,8 @@ const TopicModel = require("../models/topic");
 let data_JS_theoretical = require('../dist/js_theoretical')
 let data_JS_practical = require('../dist/js_practical')
 let data_REGEX_theoretical = require('../dist/regex_theoretical');
+let data_react = require('../dist/react')
+let data_reactNative = require('../dist/react_native')
 
 
 /* GET home page. */
@@ -48,6 +50,8 @@ router.post('/populate-database', async function (req, res, next) {
   pushInDB(data_JS_theoretical)
   pushInDB(data_JS_practical)
   pushInDB(data_REGEX_theoretical)
+  pushInDB(data_react)
+  pushInDB(data_reactNative)
   res.json({ result: true })
 })
 
@@ -140,8 +144,8 @@ const shuffleArray = array => {
 }
 router.post('/generate-game', async function (req, res, next) {
   let topics = req.body.topics.split('/')
-  console.log(req.body)
   let gameQuestions = [];
+
   for (const elem of topics) {
     let data = await QuestionModel.find({ topic: elem })
     if (data.length !== 0) {
@@ -149,6 +153,8 @@ router.post('/generate-game', async function (req, res, next) {
       for (let i = 0; i < 8; i++) {
         gameQuestions.push(data[i])
       }
+    } else {
+      return res.json({ result: false, message: "/generate-game error: Questions not found" })
     }
   }
   if (gameQuestions.length !== 8) {
@@ -156,7 +162,6 @@ router.post('/generate-game', async function (req, res, next) {
     gameQuestions = gameQuestions.slice(0, 8);
   }
 
-  //* Add code to generate a new game (from gameModel)
   let newGame = new GameModel({
     score: 0,
     userAnswers: [],
@@ -164,7 +169,7 @@ router.post('/generate-game', async function (req, res, next) {
   })
   let saveStatus = await newGame.save()
   if (!saveStatus) {
-    return res.json({ result: false })
+    return res.json({ result: false, message: "/generate-game error: Game generation failed" })
   }
   res.json({ result: true, game: saveStatus })
 })

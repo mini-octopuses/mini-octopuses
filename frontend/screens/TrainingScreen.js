@@ -12,28 +12,42 @@ import { darcula } from 'react-syntax-highlighter/styles/prism';
 
 //* Import for the connection to the store
 import { connect } from 'react-redux';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 //* Use a dynamic user instead of a static one
-//* Generate a real game instead of a using a fake one
-//* Try to style the result page a little bit
-//* Change question extension from json to js
 
 function TrainingScreen(props) {
     const [index, setIndex] = useState(0)
     const [userAnswers, setUserAnswers] = useState([])
     let username = "Hikenou"
 
+    function getFinalScore(answers) {
+        let score = 0;
+        for (let i = 0; i < props.game.questions.length; i++) {
+            for (let j = 0; j < props.game.questions[i].answers.length; j++) {
+                if (props.game.questions[i].answers[j].isCorrect && answers[i] === j) {
+                    score++;
+                }
+            }
+        }
+        props.saveScore(score)
+    }
 
-    function increaseIndex(posClicked) {
+    async function increaseIndex(posClicked) {
+        console.log(posClicked)
         setUserAnswers([...userAnswers, posClicked])
         if (index < 7) setIndex(index + 1);
         if (index === 7) {
-            props.saveAnswers(userAnswers)
+            let tab = [...userAnswers, posClicked]
+            props.saveAnswers(tab)
+            getFinalScore(tab);
             setIndex(0);
-            //* Save the game before navigating
+            setUserAnswers([]);
+            // props.saveScore()
+            //* todo: Save the game in user
             props.navigation.navigate('ResultScreen')
         }
     }
@@ -74,8 +88,6 @@ function TrainingScreen(props) {
         </SafeAreaView >
     )
 }
-
-
 
 const styles = StyleSheet.create({
     userIcon: {
@@ -138,6 +150,9 @@ function mapDispatchToProps(dispatch) {
         },
         saveAnswers: function (answers) {
             dispatch({ type: 'saveGameAnswers', answers })
+        },
+        saveScore: function (score) {
+            dispatch({ type: 'saveScore', score })
         }
     }
 }

@@ -20,16 +20,10 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 //* Use a dynamic user instead of a static one
-//* Generate a real game instead of a using a fake one
-//* Try to style the result page a little bit
-//* Change question extension from json to js
 
 function HistoryScreen(props) {
-
-    //title, score, userAnswers, topic, answers
     const [index, setIndex] = useState(0)
 
-    // console.log(props.user);
     function setButtonStyle(buttonPos) {
         if (props.game.questions[index].answers[buttonPos].isCorrect) return styles.buttonGreen
         if (buttonPos === props.game.userAnswers[index]) return styles.buttonRed
@@ -62,17 +56,6 @@ function HistoryScreen(props) {
 
     let username = "Hikenou"
 
-    // console.log(JSON.stringify(props.game.userAnswers))
-
-    // console.log(props.user.profilPicture)
-    // let path = props.user.profilPicture
-    // let str = require(`${props.user.profilPicture}`)
-    // let str = require(`${props.user.profilPicture}`)
-    // let str = require(path)
-    // let picPath = require({ path })
-
-
-
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
             <View style={{ flex: 1, backgroundColor: '#2b2b2b' }}>
@@ -80,10 +63,6 @@ function HistoryScreen(props) {
                 <View style={{ flexDirection: 'row', marginLeft: 10, marginTop: 10 }}>
                     <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
                         <Image style={styles.userIcon} source={require('./../assets/favicon.png')} />
-                        {/* <Image style={styles.userIcon} source={str} /> */}
-                        {/* <Image style={styles.userIcon} source={require(props.user.profilPicture)} /> */}
-
-                        {/* <Text style={styles.username}>#{props.user.username}</Text> */}
                         <Text style={styles.username}>#{username}</Text>
 
                     </View>

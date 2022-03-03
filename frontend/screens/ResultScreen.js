@@ -7,11 +7,24 @@ import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
 
 import { connect } from 'react-redux';
-
-//* Import icons will be removed later on
+import config from '../config';
 
 function ResultScreen(props) {
     let myScore = 0;
+
+    async function generateGame() {
+        let rawResponse = await fetch(`${config.myIp}/generate-game`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'deviceLang=EN&topics=JavaScript/Regex'
+        });
+        let response = await rawResponse.json()
+        if (response.result) {
+            //* Check backend not responding with the correct schema
+            props.saveGame(response.game)
+            props.navigation.navigate("TrainingScreen");
+        }
+    }
 
     return (
         <ImageBackground
@@ -23,7 +36,8 @@ function ResultScreen(props) {
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 250 }}>
                 <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
                 {/* <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text> */}
-                <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text>
+                {/* <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text> */}
+                <Text style={{ fontSize: 70, color: 'white' }}>{props.game.score} / 8</Text>
             </View>
 
             <View style={StyleGuide.footer}>
@@ -32,7 +46,8 @@ function ResultScreen(props) {
                 <SquareButtonFilled
                     onPress={() => {
                         //* Add code to generate a new game
-                        props.navigation.navigate('TrainingScreen')
+                        generateGame()
+                        // props.navigation.navigate('TrainingScreen')
                     }} buttonTitle="Rejouer" />
 
                 {/* //* Needs to generate fake data */}
@@ -47,22 +62,6 @@ function ResultScreen(props) {
     )
 }
 
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         backgroundColor: '#2b2b2b'
-//     },
-//     title: {
-//         fontSize: 40,
-//         fontWeight: 'bold',
-//         marginTop: 60,
-//         marginBottom: 20
-//     }
-// });
-
 function mapStateToProps(state) {
     return ({ game: state.game })
 }
@@ -71,10 +70,6 @@ function mapDispatchToProps(dispatch) {
         saveGame: function (game) {
             dispatch({ type: 'saveGame', game })
         }
-        // ,
-        // saveUser: function (user) {
-        //     dispatch({ type: 'saveUser', user })
-        // }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ResultScreen);
