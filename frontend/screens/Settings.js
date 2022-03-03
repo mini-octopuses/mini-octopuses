@@ -9,6 +9,12 @@ import SquareButtonFilled from "../components/SquareButtonFilled";
 
 export default function Settings(props) {
 
+
+    const [effetSonore, setEffetSonore] = useState(false);
+    const [musique, setMusique] = useState(false);
+    const [vibration, setVibration] = useState(false);
+    const [notification, setNotification] = useState(false);
+    const [langage, setLangage] = useState(false);
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
