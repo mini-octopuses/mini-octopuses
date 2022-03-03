@@ -98,28 +98,6 @@ export default function Settings(props) {
         {swithc}
       </View>
 
-      <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-        <FontAwesome
-          style={{ marginTop: 10, marginRight: 10 }}
-          name="heart"
-          size={25}
-          color="white"
-        />
-        <Text>Notifications</Text>
-        {swithc}
-      </View>
-
-      <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-        <FontAwesome
-          style={{ marginTop: 10, marginRight: 10 }}
-          name="globe"
-          size={25}
-          color="white"
-        />
-        <Text>Langage</Text>
-        {swithc}
-      </View>
-
       <SquareButtonFilled
         onPress={() => props.navigation.navigate("SplashScreen")}
         buttonTitle="Se déconnecter"

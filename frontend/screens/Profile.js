@@ -21,79 +21,22 @@ function Profile(props) {
       style={StyleGuide.container}
     >
       <View style={StyleGuide.header}>
-        <FontAwesome
-          onPress={() => props.navigation.navigate("Home")}
-          style={{ marginTop: 30, marginLeft: 10 }}
-          name="arrow-left"
-          size={25}
-          color="white"
-        />
-        <FontAwesome
-          onPress={() => props.navigation.navigate("Settings")}
-          style={{ marginTop: 30, marginRight: 10 }}
-          name="gear"
-          size={35}
-          color="white"
-        />
+        <FontAwesome onPress={() => props.navigation.navigate("Home")} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+        <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 30, marginRight: 10 }} name="gear" size={35} color="white" />
       </View>
 
       <View>
-        <Image
-          style={{ width: 130, height: 130, borderRadius: 50 }}
-          source={require("../assets/Laureline.jpeg")}
-        />
+        <Image style={{ width: 130, height: 130, borderRadius: 50 }} source={require("../assets/Laureline.jpeg")} />
         <Text style={{ fontSize: 20, marginBottom: 50 }}>
           {props.user.username}
-          <FontAwesome5
-            name="pen"
-            size={24}
-            color="white"
-            onPress={() => props.navigation.navigate("ProfileSetting")}
-          />
+          <FontAwesome5 name="pen" size={24} color="white" onPress={() => props.navigation.navigate("ProfileSetting")} />
         </Text>
       </View>
 
-      <Text style={{ fontSize: 20, marginBottom: 20 }}>
-        Voici ta progression
-      </Text>
+      <Text style={{ fontSize: 20, marginBottom: 20 }}>Voici ta progression</Text>
+      <ScrollView style={{ flex: 1 }}>
 
-      <View style={StyleGuide.header}>
-        <FontAwesome
-          onPress={() => props.navigation.goBack()}
-          style={{ marginTop: 30, marginLeft: 10 }}
-          name="arrow-left"
-          size={25}
-          color="white"
-        />
-        <FontAwesome
-          onPress={() => props.navigation.navigate("Settings")}
-          style={{ marginTop: 30, marginRight: 10 }}
-          name="gear"
-          size={35}
-          color="white"
-        />
-      </View>
-
-      <View>
-        <Image
-          style={{ width: 130, height: 130, borderRadius: 50 }}
-          source={require("../assets/Laureline.jpeg")}
-        />
-        <Text style={{ fontSize: 20, marginBottom: 50 }}>#laureloop</Text>
-      </View>
-
-      <Text style={{ fontSize: 20, marginBottom: 20 }}>
-        Voici ta progression
-      </Text>
-
-      <ScrollView style={{ flex: 1 }}></ScrollView>
-
-      <View style={StyleGuide.footer}>
-        <SquareButtonBorder
-          onPress={() => props.navigation.navigate("PastBattles")}
-          buttonTitle="Duels terminés"
-        />
-      </View>
+      </ScrollView>
     </ImageBackground>
   );
 }

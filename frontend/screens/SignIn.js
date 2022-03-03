@@ -8,6 +8,8 @@ import FormInput from "../components/FormInput";
 import configIp from "../config.js";
 import Logo from "../components/Logo";
 import SquareButtonBorder from "../components/SquareButtonBorder";
+import { FontAwesome } from "@expo/vector-icons";
+
 
 function SignIn(props) {
   const [email, setEmail] = useState("");
@@ -31,6 +33,15 @@ function SignIn(props) {
 
   return (
     <View style={StyleGuide.container}>
+      <View style={StyleGuide.header}>
+        <FontAwesome
+          onPress={() => props.navigation.goBack()}
+          style={{ marginTop: 30, marginLeft: 10 }}
+          name="arrow-left"
+          size={25}
+          color="white"
+        />
+      </View>
       <Logo />
       <Text h3>Connexion</Text>
 

@@ -8,6 +8,8 @@ import SquareButtonBorder from "../components/SquareButtonBorder";
 import FormInput from "../components/FormInput";
 import Logo from "../components/Logo";
 
+import { FontAwesome } from "@expo/vector-icons";
+
 import config from "../config";
 
 function SignUp(props) {
@@ -34,6 +36,15 @@ function SignUp(props) {
 
   return (
     <View style={StyleGuide.container}>
+      <View style={StyleGuide.header}>
+        <FontAwesome
+          onPress={() => props.navigation.goBack()}
+          style={{ marginTop: 30, marginLeft: 10 }}
+          name="arrow-left"
+          size={25}
+          color="white"
+        />
+      </View>
       <Logo />
       <Text h3>Inscription</Text>
 
