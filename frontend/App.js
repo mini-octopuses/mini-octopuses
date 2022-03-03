@@ -13,8 +13,9 @@ import AllConnexion from "./screens/AllConnexion";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
 import Home from "./screens/Home";
-import Categories from "./screens/Categories";
 
+import Categories from "./screens/Categories";
+import TrainingScreen from "./screens/TrainingScreen";
 import ResultScreen from "./screens/ResultScreen";
 
 import Profile from "./screens/Profile";
@@ -51,6 +52,7 @@ export default function App() {
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Categories" component={Categories} />
+          <Stack.Screen name="TrainingScreen" component={TrainingScreen} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="PastBattles" component={PastBattles} />
           <Stack.Screen name="Settings" component={Settings} />
@@ -64,6 +66,7 @@ export default function App() {
 
           {/* Christian's test pages DO NOT TOUCH */}
           {/* <Stack.Screen name="PageThree" component={PageThree} /> */}
+
           <Stack.Screen name="ResultScreen" component={ResultScreen} />
           <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
         </Stack.Navigator>
