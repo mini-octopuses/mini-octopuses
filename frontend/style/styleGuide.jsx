@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 const StyleGuide = {
     container: {
         flex: 1,
-        justfyContent: 'center',
+        justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
         backgroundColor: '#2B2B2B',
@@ -28,16 +28,16 @@ const StyleGuide = {
         color: 'white',
         fontSize: 20,
     },
-    squareButtonBorder: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 3,
-        backgroundColor: "#2B2B2B",
-        borderRadius: 5,
-        width: Dimensions.get('window').width / 1.3 + 6,
-        height: Dimensions.get('window').height / 11 + 6,
-    },
+    // squareButtonBorder: {
+    //     display: 'flex',
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     margin: 3,
+    //     backgroundColor: "#2B2B2B",
+    //     borderRadius: 5,
+    //     width: Dimensions.get('window').width / 1.3 + 6,
+    //     height: Dimensions.get('window').height / 11 + 6,
+    // },
     squareButtonFilled: {
         display: 'flex',
         justifyContent: 'center',

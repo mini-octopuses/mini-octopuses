@@ -79,6 +79,7 @@ function Categories(props) {
 
     return (
         <SafeAreaView style={StyleGuide.container}>
+
             <View style={StyleGuide.header}>
                 <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
                     <Image
@@ -101,26 +102,18 @@ function Categories(props) {
             </Text>
 
             <ScrollView style={{ flex: 1 }}>
+
                 <View>
                     {allTopicList.map((item, i) => {
                         return (
-                            <TouchableOpacity
-                                key={i}
-                                onPress={() => props.navigation.navigate("Categories")}
-                            >
+                            <TouchableOpacity key={i} onPress={() => props.navigation.navigate("Categories")}>
                                 <LinearGradient
                                     start={[0, 0.5]}
                                     end={[1, 0.5]}
                                     colors={["#F81C8F", "#FFA353"]}
                                     style={{ borderRadius: 40, marginBottom: 12 }}
                                 >
-                                    <View
-                                        style={
-                                            fakeUser.topics.includes(item.name)
-                                                ? StyleGuide.roundButtonFilled
-                                                : StyleGuide.roundButtonBorder
-                                        }
-                                    >
+                                    <View style={fakeUser.topics.includes(item.name) ? StyleGuide.roundButtonFilled : StyleGuide.roundButtonBorder} >
                                         <Text style={StyleGuide.buttonTitle}>{item.name}</Text>
                                     </View>
                                 </LinearGradient>
@@ -134,6 +127,7 @@ function Categories(props) {
                         <Text style={{ borderColor: "#2B2B2B" }}></Text>
                     </View>
                 </TouchableOpacity>
+
             </ScrollView>
 
             <View style={StyleGuide.footer}>
@@ -150,25 +144,16 @@ function Categories(props) {
                     <LinearGradient
                         start={[0, 0.5]}
                         end={[1, 0.5]}
-                        colors={
-                            !fakeUser.topics.length
-                                ? ["#757575", "#757575"]
-                                : ["#F81C8F", "#FFA353"]
-                        }
+                        colors={!fakeUser.topics.length ? ["#757575", "#757575"] : ["#F81C8F", "#FFA353"]}
                         style={{ borderRadius: 5 }}
                     >
-                        <View
-                            style={
-                                !fakeUser.topics.length
-                                    ? StyleGuide.squareButtonDisable
-                                    : StyleGuide.squareButtonFilled
-                            }
-                        >
+                        <View style={!fakeUser.topics.length ? StyleGuide.squareButtonDisable : StyleGuide.squareButtonFilled}>
                             <Text style={StyleGuide.buttonTitle}>Valider</Text>
                         </View>
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
+
         </SafeAreaView>
     );
 }

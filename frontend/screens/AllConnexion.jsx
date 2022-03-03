@@ -3,11 +3,11 @@ import {View, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 
 import { FontAwesome } from '@expo/vector-icons';
-import { LinearGradient } from "expo-linear-gradient";
 
 import Logo from "../components/Logo";
 import StyleGuide from "../style/styleGuide";
-
+import SquareButtonBorder from "../components/SquareButtonBorder";
+import SquareButtonFilled from "../components/SquareButtonFilled";
 
 
 export default function AllConnexion(props){
@@ -31,55 +31,10 @@ export default function AllConnexion(props){
                 </TouchableOpacity>
             </View>
 
-            <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("SignUp")} >
-                    <LinearGradient
-                    start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={["#F81C8F", "#FFA353"]}
-                    style={{ borderRadius: 5 }}
-                >
-                        <View style={StyleGuide.buttonGradient}>
-                          <Text style={StyleGuide.buttonTitle}> S'inscrire</Text>
-                        </View>    
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>
+            <SquareButtonBorder onPress={() => props.navigation.navigate("SignUp")} buttonTitle="S'inscrire" />
+            <SquareButtonBorder onPress={() => props.navigation.navigate("SignIn")} buttonTitle="Se connecter" />
+            <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Jouer en tant qu'invité" />
 
-            <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("SignIn")}>
-                    <LinearGradient
-                    start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={["#F81C8F", "#FFA353"]}
-                    style={{ borderRadius: 5 }}
-                >
-                        <View style={StyleGuide.buttonGradient}>
-                          <Text style={StyleGuide.buttonTitle}> Se connecter</Text>
-                        </View>    
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>
-
-            <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity >
-                    <LinearGradient
-                    start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={["#F81C8F", "#FFA353"]}
-                    style={{ borderRadius: 5 }}
-                >
-                        <View style={StyleGuide.buttonGradientFilled}>
-                          <Text style={StyleGuide.buttonTitle}> Jouer en tant qu'invité</Text>
-                        </View>    
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>  
-
-            <View>
-                <Text>pouette</Text>
-                <Text>Chouette</Text>
-            </View>
         </ImageBackground>
     )
 }

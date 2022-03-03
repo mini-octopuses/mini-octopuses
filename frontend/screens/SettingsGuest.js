@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ImageBackground, Image, Switch } from "react-native";
+import { View, Text, ImageBackground, Image, Switch, TouchableOpacity } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 
 import StyleGuide from "../style/styleGuide";
@@ -7,7 +7,7 @@ import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
 
 
-export default function Settings(props) {
+export default function SettingsGuest(props) {
 
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -30,45 +30,51 @@ export default function Settings(props) {
             </View>
 
             <View>
-                <Image style={{ width: 130, height: 130, borderRadius: 50 }} source={require('../assets/Laureline.jpeg')} />
-                <Text style={{ fontSize: 20, marginBottom: 50 }}>#laureloop</Text>
+                <Image style={{ width: 110, height: 130 }} source={require('../assets/octo_blue.png')} />
+                <Text style={{ fontSize: 20, marginBottom: 50 }}>#guest_321</Text>
             </View>
 
 
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="volume-up" size={25} color="white" />
                 <Text>Effets sonores</Text>
                 {swithc}
             </View>
 
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="music" size={25} color="white" />
                 <Text>Musique</Text>
                 {swithc}
             </View>
 
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="car" size={25} color="white" />
                 <Text>Vibration</Text>
                 {swithc}
             </View>
 
-
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="heart" size={25} color="white" />
-                <Text>Notifications</Text>
-                {swithc}
-            </View>
-
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="globe" size={25} color="white" />
                 <Text>Langage</Text>
                 {swithc}
             </View>
 
-            <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Se déconnecter" />
-            <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Supprimer le compte" />
 
+            <TouchableOpacity >
+                <View style={StyleGuide.googleButton}>
+                    <Image source={require('../assets/google.png')} style={StyleGuide.googlePicto} />
+                    <Text style={StyleGuide.titleGoogleButton}> Connexion avec Google</Text>
+                </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={StyleGuide.facebookButton} >
+                <FontAwesome name="facebook" size={24} color="white" />
+                <Text style={StyleGuide.titleFacebookButton}> Connexion avec Facebook</Text>
+            </TouchableOpacity>
+
+            <View style={StyleGuide.footer}>
+                <SquareButtonBorder onPress={() => props.navigation.navigate("PastBattles")} buttonTitle="PastBattles" />
+            </View>
         </ImageBackground>
     );
 }

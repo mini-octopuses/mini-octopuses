@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, ImageBackground, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
-import { LinearGradient } from "expo-linear-gradient";
-import StyleGuide from "../style/styleGuide";
+import { View, Text, ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+
+import StyleGuide from "../style/styleGuide";
+import SquareButtonBorder from "../components/SquareButtonBorder";
+import SquareButtonFilled from "../components/SquareButtonFilled";
+
 import { connect } from 'react-redux';
 
 //* Import icons will be removed later on
@@ -372,59 +374,21 @@ console.log("The word " + word + sentence.includes(word) ? 'is' : 'is not' + "in
             </View>
 
             <View style={StyleGuide.footer}>
-                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
-                    console.log('Pressing replay button')
-                    //* Add code to generate a new game
-                    props.navigation.navigate('TrainingScreen')
-                }}>
-                    <LinearGradient start={[0, 0.5]}
-                        end={[1, 0.5]}
-                        colors={['#F81C8F', '#FFA353']}
-                        style={{ borderRadius: 5 }}>
-                        <View style={StyleGuide.squareButtonFilled}>
-                            <Text style={StyleGuide.buttonTitle}>Rejouer</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
 
+                {/* //* Replay button */}
+                <SquareButtonFilled
+                    onPress={() => {
+                        //* Add code to generate a new game
+                        props.navigation.navigate('TrainingScreen')
+                    }} buttonTitle="Rejouer" />
 
+                {/* //* Needs to generate fake data */}
+                <SquareButtonBorder onPress={() => props.navigation.navigate("HistoryScreen")} buttonTitle="Voir les réponses" />
 
-                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
-                    console.log('Pressing history button')
-                    tempGameGenerator()
-                    props.navigation.navigate('HistoryScreen')
-                }}>
-                    <LinearGradient
-                        start={[0, 0.5]}
-                        end={[1, 0.5]}
-                        colors={["#F81C8F", "#FFA353"]}
-                        style={{ borderRadius: 5 }}
-                    >
-                        <View style={StyleGuide.squareButtonBorder}>
-                            <Text style={StyleGuide.buttonTitle}>Voir les réponses</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
+                {/* //* Needs redirect towards the homePage */}
+                <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Accueil" />
 
-
-                <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
-                    console.log('Pressing homePage button')
-                    props.navigation.navigate('Home')
-                }}>
-                    <LinearGradient
-                        start={[0, 0.5]}
-                        end={[1, 0.5]}
-                        colors={["#F81C8F", "#FFA353"]}
-                        style={{ borderRadius: 5 }}
-                    >
-                        <View style={StyleGuide.squareButtonBorder}>
-                            <Text style={StyleGuide.buttonTitle}>Accueil</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
             </View>
-
-
 
         </ImageBackground>
     )
