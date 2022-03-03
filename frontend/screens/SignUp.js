@@ -4,22 +4,22 @@ import { Text } from 'react-native-elements';
 import { LinearGradient } from "expo-linear-gradient";
 
 import StyleGuide from "../style/styleGuide";
-import FormInput from "../components/formInput";
-import configIp from "../config.js";
+import FormInput from "../components/FormInput";
 import Logo from "../components/Logo";
 
 
 
-export default function SignIn(props){
+export default function SignUp(props){
 
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password,setPassword]= useState("");
 
-    const signIn = async()=>{
-        let user = await fetch(`${configIp.myIp}/sign-in`,{
+    const signUp = async()=>{
+        let user = await fetch('http://192.168.10.156:3000/sign-up',{
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `email=${email}&password=${password}`
+            body: `username=${username}&email=${email}&password=${password}&isGuest=false`
             
         })
         let backResponse = await user.json()
@@ -33,13 +33,15 @@ export default function SignIn(props){
     return(
         <View style={StyleGuide.container}>
            <Logo/>
-            <Text h3>Connexion</Text> 
+            <Text h3>Inscription</Text>
+
+            <FormInput placeholder='Prénom / Pseudo' icon='pseudo'value={username} onChangeText={(val)=> setUsername(val)} />
 
             <FormInput placeholder='Email' icon='email' value={email} onChangeText={(val) => setEmail(val)} />
             <FormInput placeholder='Mot de passe' value={password} onChangeText={(val) =>setPassword(val)} />
 
             <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity onPress={() => signIn() }>
+                <TouchableOpacity onPress={() => signUp() }>
                     <LinearGradient
                     start={[0, 0.5]}
                     end={[1, 0.5]}
@@ -52,7 +54,6 @@ export default function SignIn(props){
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
-
         </View>    
 
     )

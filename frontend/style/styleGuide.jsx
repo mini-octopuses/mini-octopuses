@@ -126,9 +126,6 @@ const StyleGuide = {
         borderRadius: 10,
 
     }
-
-
-
 };
 
 export default StyleGuide;

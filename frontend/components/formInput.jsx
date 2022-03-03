@@ -25,7 +25,6 @@ export default function FormInput(props){
                     placeholder={props.placeholder} 
                     onChangeText={props.onChangeText} 
                     value={props.value} 
-                    placeholder={props.placeholder} 
                     style={{marginLeft:5, color:"lightgrey", fontSize:16}}
                     leftIcon={{ type: 'font-awesome', name: 'envelope-o', color:"lightgrey"}}
                     containerStyle = {{width:Dimensions.get('window').width/1.2, 

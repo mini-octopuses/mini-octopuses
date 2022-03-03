@@ -9,12 +9,16 @@ export default function PageOne(props) {
       source={require("../assets/training_bc.png")}
       style={StyleGuide.container}
     >
-      <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => props.navigation.navigate("Home")}>
+      <TouchableOpacity
+        style={{ marginBottom: 12 }}
+        onPress={() => props.navigation.navigate("SplashScreen")}
+      >
         <LinearGradient
           start={[0, 0.5]}
           end={[1, 0.5]}
           colors={["#F81C8F", "#FFA353"]}
-          style={{ borderRadius: 5 }}>
+          style={{ borderRadius: 5 }}
+        >
           <View style={StyleGuide.squareButtonBorder}>
             <Text style={StyleGuide.buttonTitle}>Button to Home</Text>
           </View>
@@ -26,13 +30,13 @@ export default function PageOne(props) {
           start={[0, 0.5]}
           end={[1, 0.5]}
           colors={["#F81C8F", "#FFA353"]}
-          style={{ borderRadius: 5 }}>
+          style={{ borderRadius: 5 }}
+        >
           <View style={StyleGuide.squareButtonFilled}>
             <Text style={StyleGuide.buttonTitle}>Button to Home</Text>
           </View>
         </LinearGradient>
       </TouchableOpacity>
-
-    </ImageBackground >
+    </ImageBackground>
   );
 }

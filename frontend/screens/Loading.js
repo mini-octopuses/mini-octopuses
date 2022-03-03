@@ -1,20 +1,27 @@
-import React from 'react';
-import { View, ImageBackground,TouchableOpacity} from 'react-native';
+import React,{useState} from 'react';
+import {View,ImageBackground,TouchableOpacity, StyleSheet,ProgressBarAndroid} from 'react-native';
 import { Text } from 'react-native-elements';
 import { LinearGradient } from "expo-linear-gradient";
 
-import Logo from "../components/Logo"
+import Logo from "../components/Logo";
 import StyleGuide from "../style/styleGuide";
 
 
 
-export default function SplashScreen(props){
+export default function Loading(props){
+    const [load, setLoad]=useState(false);
+
+    
    
     return(
         <ImageBackground source={require('../assets/bg.png')} style={StyleGuide.container}>
-           <Logo/>
+            <Logo/>
+            <View style={styles.example}>
+                <Text>Récupération de vos duels</Text>
+                <ProgressBarAndroid />
+            </View>
             <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Loading")}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("AllConnexion")}>
                     <LinearGradient
                         start={[0, 0.5]}
                         end={[1, 0.5]}
@@ -30,3 +37,10 @@ export default function SplashScreen(props){
         </ImageBackground>
     )
 }
+const styles = StyleSheet.create({
+   
+    example: {
+      marginVertical: 24,
+    },
+  });
+  

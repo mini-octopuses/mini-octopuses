@@ -6,6 +6,8 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  StyleSheet,
+  ProgressBarAndroid,
 } from "react-native";
 import StyleGuide from "../style/styleGuide";
 import { LinearGradient } from "expo-linear-gradient";
@@ -14,6 +16,7 @@ import config from "../config";
 
 export default function Categories(props) {
   const [allTopicList, setAllTopicList] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -59,6 +62,13 @@ export default function Categories(props) {
 
   return (
     <SafeAreaView style={StyleGuide.container}>
+      {/* <Overlay isVisible={visible} width="auto" height="auto">
+        <Text>Chargement des questions</Text>
+        <View style={styles.example}>
+          <Text>Récupération de vos duels</Text>
+          <ProgressBarAndroid />
+        </View>
+      </Overlay> */}
       <View style={StyleGuide.header}>
         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
           <Image
@@ -149,3 +159,9 @@ export default function Categories(props) {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  example: {
+    marginVertical: 24,
+  },
+});
