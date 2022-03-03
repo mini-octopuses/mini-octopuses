@@ -12,7 +12,7 @@ export default function Settings(props) {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-    const swithc = <Switch
+    const switchbtn = <Switch
         trackColor={{ false: "#fff", true: "#fff" }}
         thumbColor={isEnabled ? "#FFA353" : "#fff"}
         ios_backgroundColor="#3e3e3e"
@@ -38,32 +38,32 @@ export default function Settings(props) {
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="volume-up" size={25} color="white" />
                 <Text>Effets sonores</Text>
-                {swithc}
+                {switchbtn}
             </View>
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="music" size={25} color="white" />
                 <Text>Musique</Text>
-                {swithc}
+                {switchbtn}
             </View>
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="car" size={25} color="white" />
                 <Text>Vibration</Text>
-                {swithc}
+                {switchbtn}
             </View>
 
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="heart" size={25} color="white" />
                 <Text>Notifications</Text>
-                {swithc}
+                {switchbtn}
             </View>
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10 }} name="globe" size={25} color="white" />
                 <Text>Langage</Text>
-                {swithc}
+                {switchbtn}
             </View>
 
             <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Se déconnecter" />

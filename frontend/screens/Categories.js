@@ -137,7 +137,7 @@ function Categories(props) {
                             //! Fetch to generate a game here with the corresponding topics
                             generateGame();
                             console.log("SHOULD FETCH DATA HERE")
-                            // props.navigation.navigate("ResultScreen");
+                            props.navigation.navigate("TrainingScreen");
                         }
                     }}
                 >

@@ -7,5 +7,12 @@ export default function (game = {}, action) {
         gameCopy.userAnswers = action.answers
         return gameCopy
     }
+    if(action.type === 'saveScore'){
+        console.log('apppel',action.score)
+        return{
+            ...game,
+            score:action.score
+        }
+    }
     return game
 }
