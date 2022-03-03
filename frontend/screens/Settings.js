@@ -66,8 +66,8 @@ export default function Settings(props) {
                 {swithc}
             </View>
 
-            <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Se déconnecter" />
-            <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Supprimer le compte" />
+            <SquareButtonFilled onPress={() => props.navigation.navigate("SplashScreen")} buttonTitle="Se déconnecter" />
+            <SquareButtonBorder onPress={() => props.navigation.navigate("SettingsGuest")} buttonTitle="Supprimer le compte" />
 
         </ImageBackground>
     );

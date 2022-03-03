@@ -59,21 +59,19 @@ export default function SettingsGuest(props) {
                 {swithc}
             </View>
 
+            <View style={StyleGuide.footer}>
 
-            <TouchableOpacity >
                 <View style={StyleGuide.googleButton}>
                     <Image source={require('../assets/google.png')} style={StyleGuide.googlePicto} />
-                    <Text style={StyleGuide.titleGoogleButton}> Connexion avec Google</Text>
+                    <Text style={StyleGuide.titleGoogleButton}> Connexion Google</Text>
                 </View>
-            </TouchableOpacity>
 
-            <TouchableOpacity style={StyleGuide.facebookButton} >
-                <FontAwesome name="facebook" size={24} color="white" />
-                <Text style={StyleGuide.titleFacebookButton}> Connexion avec Facebook</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={StyleGuide.facebookButton} >
+                    <FontAwesome name="facebook" size={27} color="white" />
+                    <Text style={StyleGuide.titleFacebookButton}> Connexion Facebook</Text>
+                </TouchableOpacity>
 
-            <View style={StyleGuide.footer}>
-                <SquareButtonBorder onPress={() => props.navigation.navigate("PastBattles")} buttonTitle="PastBattles" />
+                <SquareButtonBorder onPress={() => props.navigation.navigate("SignUp")} buttonTitle="S'incrire" />
             </View>
         </ImageBackground>
     );

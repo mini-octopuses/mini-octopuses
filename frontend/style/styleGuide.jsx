@@ -45,8 +45,8 @@ const StyleGuide = {
         margin: 3,
         colors: ['#F81C8F', '#FFA353'],
         borderRadius: 5,
-        width: Dimensions.get('window').width / 1.3 + 6,
-        height: Dimensions.get('window').height / 11 + 6,
+        width: Dimensions.get('window').width / 1.4 + 6,
+        height: Dimensions.get('window').height / 13 + 6,
     },
     roundButtonBorder: {
         display: 'flex',
@@ -55,8 +55,8 @@ const StyleGuide = {
         margin: 3,
         backgroundColor: "#2B2B2B",
         borderRadius: 40,
-        width: Dimensions.get('window').width / 1.3 + 6,
-        height: Dimensions.get('window').height / 11 + 6,
+        width: Dimensions.get('window').width / 1.4 + 6,
+        height: Dimensions.get('window').height / 13 + 6,
     },
     roundButtonFilled: {
         display: 'flex',
@@ -65,8 +65,8 @@ const StyleGuide = {
         margin: 3,
         colors: ['#F81C8F', '#FFA353'],
         borderRadius: 40,
-        width: Dimensions.get('window').width / 1.3 + 6,
-        height: Dimensions.get('window').height / 11 + 6,
+        width: Dimensions.get('window').width / 1.4 + 6,
+        height: Dimensions.get('window').height / 13 + 6,
     },
     squareButtonDisable: {
         display: 'flex',
@@ -75,22 +75,24 @@ const StyleGuide = {
         margin: 3,
         backgroundColor: "#757575",
         borderRadius: 5,
-        width: Dimensions.get('window').width / 1.3 + 6,
-        height: Dimensions.get('window').height / 11 + 6,
+        width: Dimensions.get('window').width / 1.4 + 6,
+        height: Dimensions.get('window').height / 13 + 6,
     },
     footer: {
         backgroundColor: '#2B2B2B',
         position: 'absolute',
-        bottom: 0,
+        bottom: 30,
     },
     googleButton: {
+        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 5,
+        marginBottom: 12,
         backgroundColor: '#fff',
-        width: Dimensions.get('window').width / 1.2,
-        height: Dimensions.get('window').height / 11,
+        width: Dimensions.get('window').width / 1.4 + 6,
+        height: Dimensions.get('window').height / 13 + 6,
     },
     titleGoogleButton: {
         color: '#757575',
@@ -100,10 +102,11 @@ const StyleGuide = {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 5,
+        marginBottom: 30,
         backgroundColor: '#4267B2',
-        width: Dimensions.get('window').width / 1.2,
-        height: Dimensions.get('window').height / 11,
+        width: Dimensions.get('window').width / 1.4 + 6,
+        height: Dimensions.get('window').height / 13 + 6,
     },
     titleFacebookButton: {
         color: '#fff',
@@ -126,61 +129,6 @@ const StyleGuide = {
         borderRadius: 10,
 
     }
-
-
-
 };
 
 export default StyleGuide;
-
-
-// colors: {
-//     primary: '#EBC56E',
-//     secondary: '#435E75',
-//     third: '#E6D8C1',
-//     white: '#FFFDFB',
-//     black: '#3C3C3B',
-//   },
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#FFFDFB',
-//     paddingTop: 45,
-//     paddingBottom: 45,
-//     paddingLeft: 25,
-//     paddingRight: 25,
-//   },
-//   typography: {
-//     text1: {
-//       fontSize: 20,
-//       lineHeight: 27,
-//       textTransform: 'uppercase',
-//       fontFamily: 'Manrope_700Bold',
-//     },
-//     text2: {
-//       fontSize: 24,
-//       lineHeight: 33,
-//       fontFamily: 'Manrope_700Bold',
-//     },
-//     text3: {
-//       fontSize: 12,
-//       lineHeight: 16,
-//       fontFamily: 'Manrope_700Bold',
-//     },
-//     text4: {
-//       fontSize: 10,
-//       lineHeight: 14,
-//       fontFamily: 'Manrope_700Bold',
-//     },
-//     textButton: {
-//       fontSize: 12,
-//       lineHeight: 16,
-//       fontFamily: 'Manrope_700Bold',
-//     },
-//   },
-//   borderRadius: 8,
-//   shadowProp: {
-//     shadowColor: 'rgba(0, 0, 0, 0.25)',
-//     shadowOffset: { width: -2, height: 4 },
-//     shadowOpacity: 0.4,
-//     shadowRadius: 3,
-//   },

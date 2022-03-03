@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { Text } from 'react-native-elements';
-import { LinearGradient } from "expo-linear-gradient";
 
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
@@ -34,7 +33,7 @@ export default function SignIn(props) {
     return (
         <View style={StyleGuide.container}>
             <Logo />
-            <Text h3>Connexion</Text>
+            <Text h4>Connexion</Text>
 
             <FormInput placeholder='Email' icon='email' value={email} onChangeText={(val) => setEmail(val)} />
             <FormInput placeholder='Mot de passe' value={password} onChangeText={(val) => setPassword(val)} />

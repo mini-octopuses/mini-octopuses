@@ -35,7 +35,7 @@ export default function Profile(props) {
             </ScrollView>
 
             <View style={StyleGuide.footer}>
-                <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Duels terminés" />
+                <SquareButtonBorder onPress={() => props.navigation.navigate("PastBattles")} buttonTitle="Duels terminés" />
             </View>
 
         </ImageBackground>

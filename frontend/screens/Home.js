@@ -21,12 +21,13 @@ export default function Home(props) {
             </View>
 
             <Logo />
+            
+            <View style={StyleGuide.footer}>
+                <Text style={{ fontSize: 20, marginBottom: 20, }}>Choisis le mode de jeu</Text>
 
-            <Text style={{ fontSize: 20, marginBottom: 20, }}>Choisis le mode de jeu</Text>
-
-            <SquareButtonFilled onPress={() => props.navigation.navigate("Categories")} buttonTitle="Entrainement" />
-            <SquareButtonFilled onPress={() => props.navigation.navigate("SettingsGuest")} buttonTitle="Duel --now to Settings Guest" />
-
+                <SquareButtonFilled onPress={() => props.navigation.navigate("Categories")} buttonTitle="Entrainement" />
+                <SquareButtonFilled onPress={() => props.navigation.navigate("Categories")} buttonTitle="Duel" />
+            </View>
         </SafeAreaView>
     )
 }
