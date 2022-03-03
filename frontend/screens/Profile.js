@@ -9,9 +9,10 @@ import {
   ScrollView,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { FontAwesome } from "@expo/vector-icons";
 
 import StyleGuide from "../style/styleGuide";
-import { FontAwesome } from "@expo/vector-icons";
+import SquareButtonBorder from "../components/SquareButtonBorder";
 
 export default function Profile(props) {
   return (
@@ -54,21 +55,10 @@ export default function Profile(props) {
       <ScrollView style={{ flex: 1 }}></ScrollView>
 
       <View style={StyleGuide.footer}>
-        <TouchableOpacity
-          style={{ marginBottom: 12 }}
+        <SquareButtonBorder
           onPress={() => props.navigation.navigate("Home")}
-        >
-          <LinearGradient
-            start={[0, 0.5]}
-            end={[1, 0.5]}
-            colors={["#F81C8F", "#FFA353"]}
-            style={{ borderRadius: 5 }}
-          >
-            <View style={StyleGuide.squareButtonBorder}>
-              <Text style={StyleGuide.buttonTitle}>Duels terminés</Text>
-            </View>
-          </LinearGradient>
-        </TouchableOpacity>
+          buttonTitle="Duels terminés"
+        />
       </View>
     </ImageBackground>
   );

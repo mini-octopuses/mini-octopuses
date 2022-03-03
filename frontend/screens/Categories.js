@@ -33,7 +33,7 @@ export default function Categories(props) {
     loadData();
   }, []);
 
-  console.log(allTopicList);
+  // console.log(allTopicList);
 
   // const allTopicList = [
   //     { "name": "HTML" },
@@ -69,6 +69,23 @@ export default function Categories(props) {
           <ProgressBarAndroid />
         </View>
       </Overlay> */}
+      <View style={StyleGuide.header}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+          <Image
+            style={StyleGuide.profileImageButton}
+            source={require("../assets/Laureline.jpeg")}
+          />
+          <Text style={{ marginLeft: 10 }}>#laureloop</Text>
+        </TouchableOpacity>
+        <FontAwesome
+          onPress={() => props.navigation.navigate("Settings")}
+          style={{ marginTop: 15, marginRight: 10 }}
+          name="gear"
+          size={35}
+          color="white"
+        />
+      </View>
+
       <View style={StyleGuide.header}>
         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
           <Image
@@ -130,7 +147,7 @@ export default function Categories(props) {
         <TouchableOpacity
           onPress={() => {
             if (fakeUser.topics.length) {
-              props.navigation.navigate("HistoryScreen");
+              props.navigation.navigate("ResultScreen");
             }
           }}
         >
@@ -159,9 +176,3 @@ export default function Categories(props) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  example: {
-    marginVertical: 24,
-  },
-});

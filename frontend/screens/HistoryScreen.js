@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, SafeAreaView, StatusBar, Image, Pressable } from 'react-native';
+import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, Pressable } from 'react-native';
 
+// import { Image } from 'react-native-elements';
 //* Import react native elements
 import { Button } from 'react-native-elements';
 
@@ -18,25 +19,22 @@ import { connect } from 'react-redux';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
-
-
-// * Use a dynamic user instead of a static one
-
-
-//* Remove display of prev and next when at max or at min
+//* Use a dynamic user instead of a static one
+//* Generate a real game instead of a using a fake one
+//* Try to style the result page a little bit
+//* Change question extension from json to js
 
 function HistoryScreen(props) {
 
     //title, score, userAnswers, topic, answers
     const [index, setIndex] = useState(0)
 
+    // console.log(props.user);
     function setButtonStyle(buttonPos) {
         if (props.game.questions[index].answers[buttonPos].isCorrect) return styles.buttonGreen
         if (buttonPos === props.game.userAnswers[index]) return styles.buttonRed
         return styles.buttonBlack
     }
-
     function setPrevButtonStyle() {
         if (index !== 0) return { flexDirection: 'row', alignItems: 'center' }
         return { flexDirection: 'row', alignItems: 'center', display: 'none' }
@@ -45,7 +43,6 @@ function HistoryScreen(props) {
         if (index !== 7) return { flexDirection: 'row', alignItems: 'center' }
         return { flexDirection: 'row', alignItems: 'center', display: 'none' }
     }
-
     function setNextButtonArea() {
         if (index !== 7) {
             return (
@@ -63,39 +60,42 @@ function HistoryScreen(props) {
         )
     }
 
-    console.log(JSON.stringify(props.game.userAnswers))
+    let username = "Hikenou"
+
+    // console.log(JSON.stringify(props.game.userAnswers))
+
+    // console.log(props.user.profilPicture)
+    // let path = props.user.profilPicture
+    // let str = require(`${props.user.profilPicture}`)
+    // let str = require(`${props.user.profilPicture}`)
+    // let str = require(path)
+    // let picPath = require({ path })
+
+
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
             <View style={{ flex: 1, backgroundColor: '#2b2b2b' }}>
                 {/* //* This is the header */}
-                <View style={{ flexDirection: 'row', marginLeft: 10 }}>
+                <View style={{ flexDirection: 'row', marginLeft: 10, marginTop: 10 }}>
                     <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
-                        <Image style={styles.userIcon} source={require('../assets/favicon.png')} />
-                        <Text style={styles.username}>#username</Text>
+                        <Image style={styles.userIcon} source={require('./../assets/favicon.png')} />
+                        {/* <Image style={styles.userIcon} source={str} /> */}
+                        {/* <Image style={styles.userIcon} source={require(props.user.profilPicture)} /> */}
+
+                        {/* <Text style={styles.username}>#{props.user.username}</Text> */}
+                        <Text style={styles.username}>#{username}</Text>
+
                     </View>
                     {/* //* Add code to display a setting button on the right part of the screen opposite to the avatar */}
                 </View>
 
                 {/* //* This is the code block with the questions */}
                 <View style={styles.container}>
-                    <Text style={{ fontSize: 34, color: 'white' }}>{props.game.questions[index].title}</Text>
-                    {/* <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"}>
-                        {`const octopuses = [
-        { name: 'Blip', waterType: 'salty' },
-        { name: 'Blap', waterType: 'fresh' },
-        { name: 'Blop', waterType: 'salty' }]
-      const ocean = []
-      const river = []
-
-      for (const octopus of octopuses) {
-        if (XXX === 'salty') {
-          ocean.push(octopus)
-        } else {
-          river.push(octopus)
-        }
-      }`}
-                    </SyntaxHighlighter> */}
+                    <Text style={{ fontSize: 34, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[index].title}</Text>
+                    <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"}>
+                        {props.game.questions[index].code}
+                    </SyntaxHighlighter>
                 </View>
 
                 {/* //*Container for answers */}
@@ -188,6 +188,6 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-    return { game: state.game }
+    return { game: state.game, user: state.user }
 }
 export default connect(mapStateToProps, null)(HistoryScreen);

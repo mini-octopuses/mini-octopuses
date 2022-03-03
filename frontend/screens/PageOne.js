@@ -1,7 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+
+import { ImageBackground } from "react-native";
+
 import StyleGuide from "../style/styleGuide";
+import SquareButtonBorder from "../components/SquareButtonBorder";
+import SquareButtonFilled from "../components/SquareButtonFilled";
+
 
 export default function PageOne(props) {
   return (
@@ -9,6 +13,7 @@ export default function PageOne(props) {
       source={require("../assets/training_bc.png")}
       style={StyleGuide.container}
     >
+<<<<<<< HEAD
       <TouchableOpacity
         style={{ marginBottom: 12 }}
         onPress={() => props.navigation.navigate("SplashScreen")}
@@ -38,5 +43,12 @@ export default function PageOne(props) {
         </LinearGradient>
       </TouchableOpacity>
     </ImageBackground>
+=======
+
+      <SquareButtonBorder onPress={() => props.navigation.navigate("Categories")} buttonTitle="Go to Categories" />
+      <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Go Home" />
+
+    </ImageBackground >
+>>>>>>> 3b15ad56e79f82e5eea173daf0cfc0857123c201
   );
 }

@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-  Image,
-  Switch,
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, Text, ImageBackground, Image, Switch } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 import StyleGuide from "../style/styleGuide";
-import { FontAwesome } from "@expo/vector-icons";
+import SquareButtonBorder from "../components/SquareButtonBorder";
+import SquareButtonFilled from "../components/SquareButtonFilled";
 
 export default function Settings(props) {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -40,7 +34,7 @@ export default function Settings(props) {
           color="white"
         />
       </View>
-      x
+
       <View>
         <Image
           style={{ width: 130, height: 130, borderRadius: 50 }}
@@ -48,6 +42,7 @@ export default function Settings(props) {
         />
         <Text style={{ fontSize: 20, marginBottom: 50 }}>#laureloop</Text>
       </View>
+
       <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
         <FontAwesome
           style={{ marginTop: 10, marginRight: 10 }}
@@ -58,6 +53,7 @@ export default function Settings(props) {
         <Text>Effets sonores</Text>
         {swithc}
       </View>
+
       <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
         <FontAwesome
           style={{ marginTop: 10, marginRight: 10 }}
@@ -68,6 +64,7 @@ export default function Settings(props) {
         <Text>Musique</Text>
         {swithc}
       </View>
+
       <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
         <FontAwesome
           style={{ marginTop: 10, marginRight: 10 }}
@@ -78,6 +75,7 @@ export default function Settings(props) {
         <Text>Vibration</Text>
         {swithc}
       </View>
+
       <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
         <FontAwesome
           style={{ marginTop: 10, marginRight: 10 }}
@@ -88,6 +86,7 @@ export default function Settings(props) {
         <Text>Notifications</Text>
         {swithc}
       </View>
+
       <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
         <FontAwesome
           style={{ marginTop: 10, marginRight: 10 }}
@@ -98,36 +97,15 @@ export default function Settings(props) {
         <Text>Langage</Text>
         {swithc}
       </View>
-      <TouchableOpacity
-        style={{ marginBottom: 12 }}
+
+      <SquareButtonFilled
         onPress={() => props.navigation.navigate("Home")}
-      >
-        <LinearGradient
-          start={[0, 0.5]}
-          end={[1, 0.5]}
-          colors={["#F81C8F", "#FFA353"]}
-          style={{ borderRadius: 5 }}
-        >
-          <View style={StyleGuide.squareButtonFilled}>
-            <Text style={StyleGuide.buttonTitle}>Se déconnecter</Text>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{ marginBottom: 12 }}
+        buttonTitle="Se déconnecter"
+      />
+      <SquareButtonBorder
         onPress={() => props.navigation.navigate("Home")}
-      >
-        <LinearGradient
-          start={[0, 0.5]}
-          end={[1, 0.5]}
-          colors={["#F81C8F", "#FFA353"]}
-          style={{ borderRadius: 5 }}
-        >
-          <View style={StyleGuide.squareButtonBorder}>
-            <Text style={StyleGuide.buttonTitle}>Supprimer le compte</Text>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
+        buttonTitle="Supprimer le compte"
+      />
     </ImageBackground>
   );
 }

@@ -23,6 +23,8 @@ import Categories from "./screens/Categories";
 import PageThree from "./screens/PageThree";
 import ResultScreen from "./screens/ResultScreen";
 import HistoryScreen from "./screens/HistoryScreen";
+import SettingsGuest from "./screens/SettingsGuest";
+import PastBattles from "./screens/PastBattles";
 
 //* Import of the tools required for redux
 import { Provider } from "react-redux";
@@ -46,13 +48,17 @@ export default function App() {
           <Stack.Screen name="AllConnexion" component={AllConnexion} />
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="PageThree" component={PageThree} />
+
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="SettingsGuest" component={SettingsGuest} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Categories" component={Categories} />
+          <Stack.Screen name="PastBattles" component={PastBattles} />
 
           {/* Christian's test pages DO NOT TOUCH */}
-          <Stack.Screen name="PageThree" component={PageThree} />
+          {/* <Stack.Screen name="PageThree" component={PageThree} /> */}
           <Stack.Screen name="ResultScreen" component={ResultScreen} />
           <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
         </Stack.Navigator>
