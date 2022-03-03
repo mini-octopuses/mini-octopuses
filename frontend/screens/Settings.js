@@ -26,7 +26,7 @@ export default function Settings(props) {
             style={StyleGuide.container}
         >
             <View style={StyleGuide.header}>
-                <FontAwesome onPress={() => props.navigation.navigate('Home')} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+                <FontAwesome onPress={() => props.navigation.goBack()} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
             </View>
 
             <View>
@@ -66,8 +66,8 @@ export default function Settings(props) {
                 {swithc}
             </View>
 
-            <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Se déconnecter" />
-            <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Supprimer le compte" />
+            <SquareButtonFilled onPress={() => props.navigation.navigate("SplashScreen")} buttonTitle="Se déconnecter" />
+            <SquareButtonBorder onPress={() => props.navigation.navigate("SettingsGuest")} buttonTitle="Supprimer le compte" />
 
         </ImageBackground>
     );

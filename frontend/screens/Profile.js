@@ -18,7 +18,7 @@ export default function Profile(props) {
         >
 
             <View style={StyleGuide.header}>
-                <FontAwesome onPress={() => props.navigation.navigate('Home')} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+                <FontAwesome onPress={() => props.navigation.goBack()} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
                 <FontAwesome onPress={() => props.navigation.navigate('Settings')} style={{ marginTop: 30, marginRight: 10 }} name="gear" size={35} color="white" />
             </View>
 
@@ -35,7 +35,7 @@ export default function Profile(props) {
             </ScrollView>
 
             <View style={StyleGuide.footer}>
-                <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Duels terminés" />
+                <SquareButtonBorder onPress={() => props.navigation.navigate("PastBattles")} buttonTitle="Duels terminés" />
             </View>
 
         </ImageBackground>

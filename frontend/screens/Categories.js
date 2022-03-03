@@ -102,9 +102,9 @@ export default function Categories(props) {
                     })}
                 </View>
 
-                <TouchableOpacity>
-                    <View style={{ backgroundColor: "#2B2B2B", height: 80 }}>
-                        <Text style={{ borderColor: "#2B2B2B" }}></Text>
+                <TouchableOpacity style={{ borderColor: "#2B2B2B" }}>
+                    <View style={{ backgroundColor: "#2B2B2B", height: 150 }}>
+                        <Text></Text>
                     </View>
                 </TouchableOpacity>
 

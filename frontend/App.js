@@ -8,23 +8,28 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 //* Import all pages
-import PageOne from "./screens/PageOne";
-import PageTwo from "./screens/PageTwo";
 import SplashScreen from "./screens/SplashScreen";
-import Loading from "./screens/Loading";
 import AllConnexion from "./screens/AllConnexion";
 import SignUp from "./screens/SignUp";
-import Settings from "./screens/Settings";
-import Profile from "./screens/Profile";
-
 import SignIn from "./screens/SignIn";
 import Home from "./screens/Home";
 import Categories from "./screens/Categories";
-import PageThree from "./screens/PageThree";
+
 import ResultScreen from "./screens/ResultScreen";
-import HistoryScreen from "./screens/HistoryScreen";
-import SettingsGuest from "./screens/SettingsGuest";
+
+import Profile from "./screens/Profile";
 import PastBattles from "./screens/PastBattles";
+import HistoryScreen from "./screens/HistoryScreen";
+import Settings from "./screens/Settings";
+import SettingsGuest from "./screens/SettingsGuest";
+
+
+import PageOne from "./screens/PageOne";
+import PageTwo from "./screens/PageTwo";
+import PageThree from "./screens/PageThree";
+
+import Loading from "./screens/Loading";
+
 
 //* Import of the tools required for redux
 import { Provider } from "react-redux";
@@ -39,21 +44,23 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="PageOne" component={PageOne} /> 
-          <Stack.Screen name="PageTwo" component={PageTwo} />
-          <Stack.Screen name="SplashScreen" component={SplashScreen} />
-          <Stack.Screen name="Loading" component={Loading} />
-          <Stack.Screen name="AllConnexion" component={AllConnexion} />
-          <Stack.Screen name="SignIn" component={SignIn} />
-          <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="PageThree" component={PageThree} />
 
+          <Stack.Screen name="SplashScreen" component={SplashScreen} />
+          <Stack.Screen name="AllConnexion" component={AllConnexion} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Categories" component={Categories} />
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="PastBattles" component={PastBattles} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="SettingsGuest" component={SettingsGuest} />
-          <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Categories" component={Categories} />
-          <Stack.Screen name="PastBattles" component={PastBattles} />
+
+          <Stack.Screen name="PageOne" component={PageOne} />
+          <Stack.Screen name="PageTwo" component={PageTwo} />
+          <Stack.Screen name="PageThree" component={PageThree} />
+
+          <Stack.Screen name="Loading" component={Loading} />
 
           {/* Christian's test pages DO NOT TOUCH */}
           {/* <Stack.Screen name="PageThree" component={PageThree} /> */}
