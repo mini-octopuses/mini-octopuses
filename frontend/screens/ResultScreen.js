@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { View, Text, ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -8,9 +8,13 @@ import SquareButtonFilled from "../components/SquareButtonFilled";
 
 import { connect } from 'react-redux';
 import config from '../config';
+import {useSelector} from "react-redux";
+
+//* Import icons will be removed later on
 
 function ResultScreen(props) {
-    let myScore = 0;
+
+
 
     async function generateGame() {
         let rawResponse = await fetch(`${config.myIp}/generate-game`, {
@@ -36,8 +40,7 @@ function ResultScreen(props) {
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 250 }}>
                 <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
                 {/* <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text> */}
-                {/* <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text> */}
-                <Text style={{ fontSize: 70, color: 'white' }}>{props.game.score} / 8</Text>
+                <Text style={{ fontSize: 70, color: 'white' }}> 30/ 8</Text>
             </View>
 
             <View style={StyleGuide.footer}>
@@ -63,7 +66,7 @@ function ResultScreen(props) {
 }
 
 function mapStateToProps(state) {
-    return ({ game: state.game })
+    return ({ game: state.game, score:state.score })
 }
 function mapDispatchToProps(dispatch) {
     return {
