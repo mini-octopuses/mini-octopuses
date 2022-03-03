@@ -23,7 +23,8 @@ function SignUp(props) {
     });
     let backResponse = await user.json();
 
-    console.log(backResponse);
+    console.log(backResponse.result)
+    // console.log(backResponse);
     if (backResponse.result) {
       props.saveUser(backResponse.user);
       props.navigation.navigate("Home");
@@ -55,7 +56,7 @@ function SignUp(props) {
         onChangeText={(val) => setPassword(val)}
       />
 
-      <SquareButtonBorder onPress={() => signUp()} buttonTitle="Confirmer" />
+      <SquareButtonBorder onPress={() => signUp()} buttonTitle="Valider" />
     </View>
   );
 }

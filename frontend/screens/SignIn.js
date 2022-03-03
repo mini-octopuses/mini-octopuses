@@ -20,7 +20,7 @@ function SignIn(props) {
       body: `email=${email}&password=${password}`,
     });
     let backResponse = await user.json();
-
+    console.log(backResponse)
     if (backResponse.result) {
       //   console.log("titi", backResponse);
       props.saveUser(backResponse.user);
