@@ -11,8 +11,11 @@ import StyleGuide from "../style/styleGuide";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
 import config from "../config";
+import { connect } from "react-redux";
+import ResultScreen from "./ResultScreen";
+// import game from "../reducers/game";
 
-export default function Categories(props) {
+function Categories(props) {
     const [allTopicList, setAllTopicList] = useState([]);
 
     useEffect(() => {
@@ -30,7 +33,24 @@ export default function Categories(props) {
         loadData();
     }, []);
 
-    console.log(allTopicList);
+    async function generateGame() {
+        let rawResponse = await fetch(`${config.myIp}/generate-game`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'deviceLang=EN&topics=JavaScript/Regex'
+        });
+        let response = await rawResponse.json()
+        if (response.result) {
+            // console.log(response.game)
+            //* Check backend not responding with the correct schema
+            props.saveGame(response.game)
+            console.log(props.game)
+            // console.log(response.game.questions.length)
+            props.navigation.navigate("TrainingScreen");
+
+        }
+    }
+    // console.log(allTopicList);
 
     // const allTopicList = [
     //     { "name": "HTML" },
@@ -120,7 +140,10 @@ export default function Categories(props) {
                 <TouchableOpacity
                     onPress={() => {
                         if (fakeUser.topics.length) {
-                            props.navigation.navigate("ResultScreen");
+                            //! Fetch to generate a game here with the corresponding topics
+                            generateGame();
+                            console.log("SHOULD FETCH DATA HERE")
+                            // props.navigation.navigate("ResultScreen");
                         }
                     }}
                 >
@@ -149,3 +172,17 @@ export default function Categories(props) {
         </SafeAreaView>
     );
 }
+
+
+function mapStateToProps(state) {
+    return ({ game: state.game })
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        saveGame: function (game) {
+            dispatch({ type: 'saveGame', game })
+        }
+
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

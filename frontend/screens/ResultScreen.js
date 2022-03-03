@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 function ResultScreen(props) {
     let myScore = 0;
 
+    // console.log(props.game.userAnswers)
     const tempGameGenerator = () => {
         // props.saveUser(user)
         // props.saveGame(brutGame);
@@ -366,18 +367,15 @@ console.log("The word " + word + sentence.includes(word) ? 'is' : 'is not' + "in
 
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 250 }}>
                 <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
+                {/* <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text> */}
                 <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text>
             </View>
 
             <View style={StyleGuide.footer}>
-                {/* //* Replay button */}
-                {/* <Button title='Rejouer'
-                    onPress={() => {
-                        console.log('Pressing replay button')
-                    }} /> */}
-
                 <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
                     console.log('Pressing replay button')
+                    //* Add code to generate a new game
+                    props.navigation.navigate('TrainingScreen')
                 }}>
                     <LinearGradient start={[0, 0.5]}
                         end={[1, 0.5]}
@@ -389,13 +387,6 @@ console.log("The word " + word + sentence.includes(word) ? 'is' : 'is not' + "in
                     </LinearGradient>
                 </TouchableOpacity>
 
-
-                {/* //* Needs to generate fake data */}
-                {/* <Button title='Voir les réponses' onPress={() => {
-                    console.log('Pressing history button')
-                    tempGameGenerator()
-                    props.navigation.navigate('HistoryScreen')
-                }} /> */}
 
 
                 <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
@@ -416,17 +407,9 @@ console.log("The word " + word + sentence.includes(word) ? 'is' : 'is not' + "in
                 </TouchableOpacity>
 
 
-
-                {/* //* Needs redirect towards the homePage */}
-                {/* <Button title='Accueil'
-                    onPress={() => {
-                        console.log('Pressing homePage button')
-                    }} /> */}
-
                 <TouchableOpacity style={{ marginBottom: 12 }} onPress={() => {
                     console.log('Pressing homePage button')
                     props.navigation.navigate('Home')
-
                 }}>
                     <LinearGradient
                         start={[0, 0.5]}
@@ -463,6 +446,9 @@ console.log("The word " + word + sentence.includes(word) ? 'is' : 'is not' + "in
 //     }
 // });
 
+function mapStateToProps(state) {
+    return ({ game: state.game })
+}
 function mapDispatchToProps(dispatch) {
     return {
         saveGame: function (game) {
@@ -474,4 +460,4 @@ function mapDispatchToProps(dispatch) {
         // }
     }
 }
-export default connect(null, mapDispatchToProps)(ResultScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultScreen);
