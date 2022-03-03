@@ -138,37 +138,9 @@ const shuffleArray = array => {
     array[j] = temp;
   }
 }
-router.post('/generate-game', async function (req, res, next) {
-  let topics = req.body.topics.split('/')
-  console.log(req.body)
-  let gameQuestions = [];
-  for (const elem of topics) {
-    let data = await QuestionModel.find({ topic: elem })
-    if (data.length !== 0) {
-      shuffleArray(data)
-      for (let i = 0; i < 8; i++) {
-        gameQuestions.push(data[i])
-      }
-    }
-  }
-  if (gameQuestions.length !== 8) {
-    shuffleArray(gameQuestions)
-    gameQuestions = gameQuestions.slice(0, 8);
-  }
 
-  //* Add code to generate a new game (from gameModel)
-  let newGame = new GameModel({
-    score: 0,
-    userAnswers: [],
-    questions: gameQuestions,
-  })
-  let saveStatus = await newGame.save()
-  if (!saveStatus) {
-    return res.json({ result: false })
-  }
-  res.json({ result: true, game: saveStatus })
 
-  
+
 router.get('/generate-game', async function (req, res, next) {
 
   let allQuestions = await QuestionModel.find()
