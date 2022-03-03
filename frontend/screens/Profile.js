@@ -8,13 +8,13 @@ import {
   Switch,
   ScrollView,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { FontAwesome } from "@expo/vector-icons";
+import { connect } from "react-redux";
+import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 
-export default function Profile(props) {
+function Profile(props) {
   return (
     <ImageBackground
       source={require("../assets/Profile.png")}
@@ -43,8 +43,13 @@ export default function Profile(props) {
           source={require("../assets/Laureline.jpeg")}
         />
         <Text style={{ fontSize: 20, marginBottom: 50 }}>
-          {props.saveUser(backResponse.user.username)}
-          <FontAwesome5 name="pen" size={24} color="white" />
+          {props.user.username}
+          <FontAwesome5
+            name="pen"
+            size={24}
+            color="white"
+            onPress={() => props.navigation.navigate("ProfileSetting")}
+          />
         </Text>
       </View>
 
@@ -92,3 +97,10 @@ export default function Profile(props) {
     </ImageBackground>
   );
 }
+
+function mapStatesToProps(state) {
+  console.log(state);
+  return { user: state.user };
+}
+
+export default connect(mapStatesToProps, null)(Profile);

@@ -22,6 +22,7 @@ import Profile from "./screens/Profile";
 import PastBattles from "./screens/PastBattles";
 import HistoryScreen from "./screens/HistoryScreen";
 import Settings from "./screens/Settings";
+import ProfileSetting from "./screens/ProfileSetting";
 import SettingsGuest from "./screens/SettingsGuest";
 
 import PageOne from "./screens/PageOne";
@@ -55,6 +56,7 @@ export default function App() {
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="PastBattles" component={PastBattles} />
           <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="ProfileSetting" component={ProfileSetting} />
           <Stack.Screen name="SettingsGuest" component={SettingsGuest} />
 
           <Stack.Screen name="PageOne" component={PageOne} />

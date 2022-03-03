@@ -88,7 +88,7 @@ router.post("/sign-up", async function (req, res, next) {
         message: "La création de votre compte a rencontré un problème",
       });
     } else {
-      res.json({ result: true, newUser });
+      res.json({ result: true, user: newUserStatus });
     }
   }
 });
@@ -131,8 +131,8 @@ const shuffleArray = (array) => {
   }
 };
 router.post("/generate-game", async function (req, res, next) {
-  let topics = req.body.topics.split("+");
-
+  let topics = req.body.topics.split("/");
+  console.log(req.body);
   let gameQuestions = [];
   for (const elem of topics) {
     let data = await QuestionModel.find({ topic: elem });

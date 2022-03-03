@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 import ResultScreen from "./ResultScreen";
 // import game from "../reducers/game";
 
-export default function Categories(props) {
+function Categories(props) {
   const [allTopicList, setAllTopicList] = useState([]);
   const [visible, setVisible] = useState(false);
 
@@ -36,24 +36,23 @@ export default function Categories(props) {
     loadData();
   }, []);
 
-    async function generateGame() {
-        let rawResponse = await fetch(`${config.myIp}/generate-game`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'deviceLang=EN&topics=JavaScript/Regex'
-        });
-        let response = await rawResponse.json()
-        if (response.result) {
-            // console.log(response.game)
-            //* Check backend not responding with the correct schema
-            props.saveGame(response.game)
-            console.log(props.game)
-            // console.log(response.game.questions.length)
-            props.navigation.navigate("TrainingScreen");
-
-        }
+  async function generateGame() {
+    let rawResponse = await fetch(`${config.myIp}/generate-game`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "deviceLang=EN&topics=JavaScript/Regex",
+    });
+    let response = await rawResponse.json();
+    if (response.result) {
+      // console.log(response.game)
+      //* Check backend not responding with the correct schema
+      props.saveGame(response.game);
+      console.log(props.game);
+      // console.log(response.game.questions.length)
+      props.navigation.navigate("TrainingScreen");
     }
-    // console.log(allTopicList);
+  }
+  // console.log(allTopicList);
 
   // const allTopicList = [
   //     { "name": "HTML" },
@@ -89,22 +88,6 @@ export default function Categories(props) {
           <ProgressBarAndroid />
         </View>
       </Overlay> */}
-      <View style={StyleGuide.header}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
-          <Image
-            style={StyleGuide.profileImageButton}
-            source={require("../assets/Laureline.jpeg")}
-          />
-          <Text style={{ marginLeft: 10 }}>#laureloop</Text>
-        </TouchableOpacity>
-        <FontAwesome
-          onPress={() => props.navigation.navigate("Settings")}
-          style={{ marginTop: 15, marginRight: 10 }}
-          name="gear"
-          size={35}
-          color="white"
-        />
-      </View>
 
       <View style={StyleGuide.header}>
         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
@@ -127,73 +110,87 @@ export default function Categories(props) {
         Sélectionnes tes themes préférés
       </Text>
 
-        <ScrollView style={{ flex: 1 }}>
-
-            <View>
-                {allTopicList.map((item, i) => {
-                    return (
-                        <TouchableOpacity key={i} onPress={() => props.navigation.navigate("Categories")}>
-                            <LinearGradient
-                                start={[0, 0.5]}
-                                end={[1, 0.5]}
-                                colors={["#F81C8F", "#FFA353"]}
-                                style={{ borderRadius: 40, marginBottom: 12 }}
-                            >
-                                <View style={fakeUser.topics.includes(item.name) ? StyleGuide.roundButtonFilled : StyleGuide.roundButtonBorder} >
-                                    <Text style={StyleGuide.buttonTitle}>{item.name}</Text>
-                                </View>
-                            </LinearGradient>
-                        </TouchableOpacity>
-                    );
-                })}
-            </View>
-
-            <TouchableOpacity style={{ borderColor: "#2B2B2B" }}>
-                <View style={{ backgroundColor: "#2B2B2B", height: 150 }}>
-                    <Text></Text>
-                </View>
-            </TouchableOpacity>
-
-        </ScrollView>
-
-        <View style={StyleGuide.footer}>
-            <TouchableOpacity
-                onPress={() => {
-                    if (fakeUser.topics.length) {
-                        //! Fetch to generate a game here with the corresponding topics
-                        generateGame();
-                        console.log("SHOULD FETCH DATA HERE")
-                        // props.navigation.navigate("ResultScreen");
-                    }
-                }}
-            >
-              <View
-                style={
-                  fakeUser.topics.includes(item.name)
-                    ? StyleGuide.roundButtonFilled
-                    : StyleGuide.roundButtonBorder
-                }
+      <ScrollView style={{ flex: 1 }}>
+        <View>
+          {allTopicList.map((item, i) => {
+            return (
+              <TouchableOpacity
+                key={i}
+                onPress={() => props.navigation.navigate("Categories")}
               >
-                <Text style={StyleGuide.buttonTitle}>{item.name}</Text>
-              </View>
-            
-          </TouchableOpacity>
+                <LinearGradient
+                  start={[0, 0.5]}
+                  end={[1, 0.5]}
+                  colors={["#F81C8F", "#FFA353"]}
+                  style={{ borderRadius: 40, marginBottom: 12 }}
+                >
+                  <View
+                    style={
+                      fakeUser.topics.includes(item.name)
+                        ? StyleGuide.roundButtonFilled
+                        : StyleGuide.roundButtonBorder
+                    }
+                  >
+                    <Text style={StyleGuide.buttonTitle}>{item.name}</Text>
+                  </View>
+                </LinearGradient>
+              </TouchableOpacity>
+            );
+          })}
         </View>
+
+        <TouchableOpacity>
+          <View style={{ backgroundColor: "#2B2B2B", height: 80 }}>
+            <Text style={{ borderColor: "#2B2B2B" }}></Text>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
+
+      <View style={StyleGuide.footer}>
+        <TouchableOpacity
+          onPress={() => {
+            if (fakeUser.topics.length) {
+              //! Fetch to generate a game here with the corresponding topics
+              generateGame();
+              console.log("SHOULD FETCH DATA HERE");
+              // props.navigation.navigate("ResultScreen");
+            }
+          }}
+        >
+          <LinearGradient
+            start={[0, 0.5]}
+            end={[1, 0.5]}
+            colors={
+              !fakeUser.topics.length
+                ? ["#757575", "#757575"]
+                : ["#F81C8F", "#FFA353"]
+            }
+            style={{ borderRadius: 5 }}
+          >
+            <View
+              style={
+                !fakeUser.topics.length
+                  ? StyleGuide.squareButtonDisable
+                  : StyleGuide.squareButtonFilled
+              }
+            >
+              <Text style={StyleGuide.buttonTitle}>Valider</Text>
+            </View>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
-
-    );
+  );
 }
-
 
 function mapStateToProps(state) {
-    return ({ game: state.game })
+  return { game: state.game };
 }
 function mapDispatchToProps(dispatch) {
-    return {
-        saveGame: function (game) {
-            dispatch({ type: 'saveGame', game })
-        }
-
-    }
+  return {
+    saveGame: function (game) {
+      dispatch({ type: "saveGame", game });
+    },
+  };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
