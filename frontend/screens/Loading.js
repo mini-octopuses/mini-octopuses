@@ -1,18 +1,22 @@
-import React from 'react';
-import {View,ImageBackground,TouchableOpacity, StyleSheet,ProgressBarAndroid} from 'react-native';
+import React, { useState } from 'react';
+import { View, ImageBackground, TouchableOpacity, StyleSheet, ProgressBarAndroid } from 'react-native';
 import { Text } from 'react-native-elements';
 import { LinearGradient } from "expo-linear-gradient";
 
 import Logo from "../components/Logo";
 import StyleGuide from "../style/styleGuide";
+import SquareButtonBorder from "../components/SquareButtonBorder";
 
 
 
-export default function Loading(props){
-   
-    return(
+export default function Loading(props) {
+    const [load, setLoad] = useState(false);
+
+
+
+    return (
         <ImageBackground source={require('../assets/bg.png')} style={StyleGuide.container}>
-            <Logo/>
+            <Logo />
             <View style={styles.example}>
                 <Text>Récupération de vos duels</Text>
                 <ProgressBarAndroid />
@@ -26,7 +30,7 @@ export default function Loading(props){
                         style={{ borderRadius: 5 }}
                     >
                         <View style={StyleGuide.buttonGradient}>
-                        <Text style={StyleGuide.buttonTitle}>Autre page</Text>
+                            <Text style={StyleGuide.buttonTitle}>Autre page</Text>
                         </View>
                     </LinearGradient>
                 </TouchableOpacity>
@@ -34,10 +38,10 @@ export default function Loading(props){
         </ImageBackground>
     )
 }
+
 const styles = StyleSheet.create({
-   
+
     example: {
-      marginVertical: 24,
+        marginVertical: 24,
     },
-  });
-  
+});

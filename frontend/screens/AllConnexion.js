@@ -15,21 +15,15 @@ export default function AllConnexion(props){
         <ImageBackground source={require('../assets/bg.png')} style={StyleGuide.container}>
             <Logo/>
 
-            <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity >
-                    <View style={StyleGuide.googleButton}>
-                    <Image source={require('../assets/google.png') } style={StyleGuide.googlePicto}  />
-                        <Text style={StyleGuide.titleGoogleButton}> Connexion avec Google</Text>
-                    </View>
+                <View style={StyleGuide.googleButton}>
+                 <Image source={require('../assets/google.png') } style={StyleGuide.googlePicto}  />
+                     <Text style={StyleGuide.titleGoogleButton}> Connexion Google</Text>
+                </View>
+           
+                <TouchableOpacity style={StyleGuide.facebookButton}>
+                   <FontAwesome name="facebook" size={27} color="white" />
+                    <Text style={StyleGuide.titleFacebookButton}> Connexion Facebook</Text>
                 </TouchableOpacity>
-            </View>
-
-            <View style={StyleGuide.buttonStyle}>
-                <TouchableOpacity style={StyleGuide.facebookButton} >
-                   <FontAwesome name="facebook" size={24} color="white" />
-                    <Text style={StyleGuide.titleFacebookButton}> Connexion avec Facebook</Text>
-                </TouchableOpacity>
-            </View>
 
             <SquareButtonBorder onPress={() => props.navigation.navigate("SignUp")} buttonTitle="S'inscrire" />
             <SquareButtonBorder onPress={() => props.navigation.navigate("SignIn")} buttonTitle="Se connecter" />
@@ -38,14 +32,3 @@ export default function AllConnexion(props){
         </ImageBackground>
     )
 }
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent:'center',
-//         position: 'relative',
-        
-//       },
-
-// })
