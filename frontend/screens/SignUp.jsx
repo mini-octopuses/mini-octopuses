@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View } from 'react-native';
 import { Text } from 'react-native-elements';
+import { FontAwesome } from '@expo/vector-icons';
 
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
@@ -33,7 +34,13 @@ export default function SignUp(props) {
     }
 
     return (
+
         <View style={StyleGuide.container}>
+
+            <View style={StyleGuide.header}>
+                <FontAwesome onPress={() => props.navigation.goBack()} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+            </View>
+
             <Logo />
             <Text h4>Inscription</Text>
 

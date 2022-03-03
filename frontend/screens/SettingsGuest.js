@@ -4,8 +4,6 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
-import SquareButtonFilled from "../components/SquareButtonFilled";
-
 
 export default function SettingsGuest(props) {
 
@@ -26,7 +24,7 @@ export default function SettingsGuest(props) {
             style={StyleGuide.container}
         >
             <View style={StyleGuide.header}>
-                <FontAwesome onPress={() => props.navigation.navigate('Home')} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+                <FontAwesome onPress={() => props.navigation.goBack()} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
             </View>
 
             <View>
