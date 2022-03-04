@@ -35,11 +35,9 @@ function Categories(props) {
     let rawResponse = await fetch(`${config.myIp}/generate-game`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      // body: 'deviceLang=EN&topics=JavaScript/Regex'
+      body: 'deviceLang=EN&topics=JavaScript/Regex'
       // body: 'deviceLang=EN&topics=React/ReactNative'
-      body: 'deviceLang=EN&topics=React/ReactNative/JavaScript/Regex'
-
-
+      // body: 'deviceLang=EN&topics=React/ReactNative/JavaScript/Regex'
     });
     let response = await rawResponse.json()
     if (response.result) {
@@ -58,7 +56,7 @@ function Categories(props) {
     token: "qsdf55azert555zerty",
     profilPicture: "",
     isGuest: false,
-    topics: ["MongoDB", "CSS"],
+    topics: ["Javascript"],
     gameList: [],
     progression: []
 
