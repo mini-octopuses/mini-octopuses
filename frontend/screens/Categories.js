@@ -6,20 +6,15 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
-  StyleSheet,
-  ProgressBarAndroid,
 } from "react-native";
 import StyleGuide from "../style/styleGuide";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
 import config from "../config";
 import { connect } from "react-redux";
-import ResultScreen from "./ResultScreen";
-// import game from "../reducers/game";
 
 function Categories(props) {
   const [allTopicList, setAllTopicList] = useState([]);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -55,16 +50,6 @@ function Categories(props) {
       console.log("Error questions not found")
     }
   }
-  // console.log(allTopicList);
-
-  // const allTopicList = [
-  //     { "name": "HTML" },
-  //     { "name": "CSS" },
-  //     { "name": "React" },
-  //     { "name": "React Native" },
-  //     { "name": "MongoDB" },
-  //     { "name": "Express" },
-  //     { "name": "Javascript" }];
 
   const fakeUser = {
     username: "Aija",
@@ -73,24 +58,14 @@ function Categories(props) {
     token: "qsdf55azert555zerty",
     profilPicture: "",
     isGuest: false,
-    topics: ["MongoDB"],
-    // gameList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'games' }],
-    // progression: [{ topic: String, numberCorrect: Number }]
-    // "HTML", "MongoDB"
-  };
+    topics: ["MongoDB", "CSS"],
+    gameList: [],
+    progression: []
 
-  // const selectTopic = async () => {
-  // }
+  };
 
   return (
     <SafeAreaView style={StyleGuide.container}>
-      {/* <Overlay isVisible={visible} width="auto" height="auto">
-        <Text>Chargement des questions</Text>
-        <View style={styles.example}>
-          <Text>Récupération de vos duels</Text>
-          <ProgressBarAndroid />
-        </View>
-      </Overlay> */}
 
       <View style={StyleGuide.header}>
         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
@@ -100,13 +75,7 @@ function Categories(props) {
           />
           <Text style={{ marginLeft: 10, color: 'white' }}>#laureloop</Text>
         </TouchableOpacity>
-        <FontAwesome
-          onPress={() => props.navigation.navigate("Settings")}
-          style={{ marginTop: 15, marginRight: 10 }}
-          name="gear"
-          size={35}
-          color="white"
-        />
+        <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
       </View>
 
       <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>
@@ -146,10 +115,7 @@ function Categories(props) {
         <TouchableOpacity
           onPress={() => {
             if (fakeUser.topics.length) {
-              // ! Fetch to generate a game here with the corresponding topics
               generateGame();
-              console.log("SHOULD FETCH DATA HERE");
-              // props.navigation.navigate("ResultScreen");
             }
           }}
         >

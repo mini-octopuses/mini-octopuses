@@ -54,7 +54,6 @@ function ProfileSettings(props) {
 
 // ATTENTION lorsqu'on veut lire une props redux il faut obligatoirement mettre la fonction et l'exporter
 function mapStatesToProps(state) {
-  console.log(state);
   return { user: state.user };
 }
 

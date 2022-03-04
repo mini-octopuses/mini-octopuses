@@ -25,11 +25,6 @@ import Settings from "./screens/Settings";
 import ProfileSetting from "./screens/ProfileSetting";
 import SettingsGuest from "./screens/SettingsGuest";
 
-import PageOne from "./screens/PageOne";
-import PageTwo from "./screens/PageTwo";
-import PageThree from "./screens/PageThree";
-
-import Loading from "./screens/Loading";
 
 //* Import of the tools required for redux
 import { Provider } from "react-redux";
@@ -58,16 +53,6 @@ export default function App() {
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="ProfileSetting" component={ProfileSetting} />
           <Stack.Screen name="SettingsGuest" component={SettingsGuest} />
-
-          <Stack.Screen name="PageOne" component={PageOne} />
-          <Stack.Screen name="PageTwo" component={PageTwo} />
-          <Stack.Screen name="PageThree" component={PageThree} />
-
-          <Stack.Screen name="Loading" component={Loading} />
-
-          {/* Christian's test pages DO NOT TOUCH */}
-          {/* <Stack.Screen name="PageThree" component={PageThree} /> */}
-
           <Stack.Screen name="ResultScreen" component={ResultScreen} />
           <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
         </Stack.Navigator>

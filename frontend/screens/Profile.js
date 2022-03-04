@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     View,
     Text,
-    TouchableOpacity,
     ImageBackground,
     Image,
-    Switch,
     ScrollView,
 } from "react-native";
 import { connect } from "react-redux";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 
 import StyleGuide from "../style/styleGuide";
-import SquareButtonBorder from "../components/SquareButtonBorder";
 
 function Profile(props) {
     return (
@@ -39,7 +36,6 @@ function Profile(props) {
 }
 
 function mapStatesToProps(state) {
-    console.log(state);
     return { user: state.user };
 }
 

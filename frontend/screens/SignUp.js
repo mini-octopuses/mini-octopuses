@@ -25,13 +25,10 @@ function SignUp(props) {
     });
     let backResponse = await user.json();
 
-    console.log(backResponse.result)
-    // console.log(backResponse);
     if (backResponse.result) {
       props.saveUser(backResponse.user);
       props.navigation.navigate("Home");
     }
-    console.log(backResponse);
   };
 
   return (
@@ -81,7 +78,6 @@ function maDispatchToProps(dispatch) {
 }
 
 function mapStatesToProps(state) {
-  console.log(state);
   return { user: state.user };
 }
 

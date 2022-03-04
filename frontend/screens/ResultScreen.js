@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -8,7 +8,6 @@ import SquareButtonFilled from "../components/SquareButtonFilled";
 
 import { connect } from 'react-redux';
 import config from '../config';
-import {useSelector} from "react-redux";
 
 //* Import icons will be removed later on
 
@@ -24,7 +23,6 @@ function ResultScreen(props) {
         });
         let response = await rawResponse.json()
         if (response.result) {
-            //* Check backend not responding with the correct schema
             props.saveGame(response.game)
             props.navigation.navigate("TrainingScreen");
         }
@@ -39,26 +37,13 @@ function ResultScreen(props) {
 
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 250 }}>
                 <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
-                {/* <Text style={{ fontSize: 70, color: 'white' }}>{myScore} / 8</Text> */}
-                <Text style={{ fontSize: 70, color: 'white' }}> 30/ 8</Text>
+                <Text style={{ fontSize: 70, color: 'white' }}>{props.game.score} / 8</Text>
             </View>
 
             <View style={StyleGuide.footer}>
-
-                {/* //* Replay button */}
-                <SquareButtonFilled
-                    onPress={() => {
-                        //* Add code to generate a new game
-                        generateGame()
-                        // props.navigation.navigate('TrainingScreen')
-                    }} buttonTitle="Rejouer" />
-
-                {/* //* Needs to generate fake data */}
+                <SquareButtonFilled onPress={() => { generateGame() }} buttonTitle="Rejouer" />
                 <SquareButtonBorder onPress={() => props.navigation.navigate("HistoryScreen")} buttonTitle="Voir les réponses" />
-
-                {/* //* Needs redirect towards the homePage */}
                 <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Accueil" />
-
             </View>
 
         </ImageBackground>
@@ -66,7 +51,7 @@ function ResultScreen(props) {
 }
 
 function mapStateToProps(state) {
-    return ({ game: state.game, score:state.score })
+    return ({ game: state.game, score: state.score })
 }
 function mapDispatchToProps(dispatch) {
     return {

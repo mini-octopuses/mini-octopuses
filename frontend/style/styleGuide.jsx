@@ -39,7 +39,6 @@ const StyleGuide = {
     //     height: Dimensions.get('window').height / 11 + 6,
     // },
     squareButtonFilled: {
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 3,
@@ -49,7 +48,6 @@ const StyleGuide = {
         height: Dimensions.get('window').height / 13 + 6,
     },
     roundButtonBorder: {
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 3,
@@ -59,7 +57,6 @@ const StyleGuide = {
         height: Dimensions.get('window').height / 13 + 6,
     },
     roundButtonFilled: {
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 3,
@@ -69,7 +66,6 @@ const StyleGuide = {
         height: Dimensions.get('window').height / 13 + 6,
     },
     squareButtonDisable: {
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 3,
@@ -84,7 +80,6 @@ const StyleGuide = {
         bottom: 30,
     },
     googleButton: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',

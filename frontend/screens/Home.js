@@ -9,7 +9,6 @@ import Logo from '../components/Logo';
 
 export default function Home(props) {
     return (
-
         <SafeAreaView style={StyleGuide.container}>
 
             <View style={StyleGuide.header}>
@@ -21,7 +20,7 @@ export default function Home(props) {
             </View>
 
             <Logo />
-            
+
             <View style={StyleGuide.footer}>
                 <Text style={{ fontSize: 20, marginBottom: 20, }}>Choisis le mode de jeu</Text>
 

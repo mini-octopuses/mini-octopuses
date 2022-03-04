@@ -8,7 +8,7 @@ import SquareButtonBorder from "../components/SquareButtonBorder";
 
 export default function PastBattles(props) {
 
-
+    //Ajouter une scollView pour les past battles
     return (
 
         <View style={StyleGuide.container}>
@@ -18,7 +18,6 @@ export default function PastBattles(props) {
             </View>
 
             <Text style={{ fontSize: 20, marginBottom: 20, }}>Batailles passées</Text>
-
             <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_321" />
             <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_753" />
             <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_159" />

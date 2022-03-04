@@ -26,13 +26,6 @@ router.get("/topics", async function (req, res, next) {
   res.json({ topicFromBack });
 });
 
-//*------------------------------------------------------------------------------------------------//
-//*  /populate-database
-//*  Usage:
-//*       Input: None
-//*       What it does: It populates the database with the questions of the concerned topic in the concerned file
-//*       What you receive: Nothing, everything happens in the database
-//*-------------------------------------------------------------------------------------------------//
 async function pushInDB(data) {
   for (const elem of data.questions) {
     let newQuestion = new QuestionModel({
@@ -54,7 +47,6 @@ router.post('/populate-database', async function (req, res, next) {
   res.json({ result: true })
 })
 
-
 //* Routes for sign-up and sign-in
 // page sign up fonctionnelle mais il faut rajouter les vérification des doublons et des mails (la regex en dessous s'occupe des mail mais il faut rediriger)
 router.post("/sign-up", async function (req, res, next) {
@@ -65,10 +57,8 @@ router.post("/sign-up", async function (req, res, next) {
   //recherche si l'utilisateur existe pour ne pas refaire la manipulation
   let user = await UserModel.findOne({ email: req.body.email });
   let passwordHash = bcrypt.hashSync(req.body.password, 10);
-  if (regexMail.test(req.body.email)) {
-    console.log("GG", user);
-  } else {
-    console.log("Foiré");
+  if (!regexMail.test(req.body.email)) {
+    res.json({ result: false, message: "Invalid email" })
   }
 
   //si le user n'existe pas alors je vais créer un nouveau user
@@ -104,11 +94,9 @@ router.post("/sign-in", async function (req, res, next) {
   let user = await UserModel.findOne({
     email: req.body.email,
   });
-  console.log("toto", user);
 
   if (user) {
     if (bcrypt.compareSync(req.body.password, user.password)) {
-      console.log("toto", user);
       return res.json({ result: true, token: user.token, user });
     } else {
       return res.json({ result: false, message: "Utilisateur non trouvé" });
@@ -118,16 +106,7 @@ router.post("/sign-in", async function (req, res, next) {
   }
 });
 
-//* Routes for games
-//*------------------------------------------------------------------------------------------------//
-//*  /generate-game
-//*  Usage:
-//*       Input: receives a string in the following format:
-//*       "HTML+CSS+JavaScript+Regex" which is stocked inside req.body.topics
-//*       What it does: it splits everything to an array and sends back
-//*       What you receive: a response (result), and 8 questions depending of the types received
-//*       Note: This code supports single and multi topics
-//*-------------------------------------------------------------------------------------------------//
+
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -136,9 +115,6 @@ const shuffleArray = (array) => {
     array[j] = temp;
   }
 }
-
-
-
 router.post('/generate-game', async function (req, res, next) {
   let topics = req.body.topics.split('/')
   let gameQuestions = [];
@@ -171,6 +147,7 @@ router.post('/generate-game', async function (req, res, next) {
   res.json({ result: true, game: saveStatus });
 });
 
+
 router.get("/generate-game", async function (req, res, next) {
   let allQuestions = await QuestionModel.find();
 
@@ -193,24 +170,14 @@ router.get("/generate-game", async function (req, res, next) {
   res.json({ result: true, questions: allQuestions }); // result: true , game: gameQuestions
 });
 
-//*------------------------------------------------------------------------------------------------//
-//*  /save-game
-//*  Usage:
-//*-------------------------------------------------------------------------------------------------//
 router.post("/save-game", function (req, res, next) {
   let user = {};
   res.json({ result: true, user });
 });
-
-//*------------------------------------------------------------------------------------------------//
-//*  /get-user-all-games
-//*  Usage:
-//*-------------------------------------------------------------------------------------------------//
 router.post("/get-user-all-games", function (req, res, next) {
   let gameList = [];
   res.json({ result: true, gameList });
 });
-
 //* Routes for user
 router.put("/update-user/", function (req, res, next) {
   let user = {};
