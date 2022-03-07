@@ -107,16 +107,16 @@ let data = {
             "topic": "ReactNative",
             "answers": [
                 {
-                    "En utilisant '@react-native-community/async-storage' car AsyncStorage de 'react-native' est obsolète.": "2, 0", "isCorrect": false
+                    "answer": `En utilisant '@react-native-community/async-storage' car AsyncStorage de 'react-native' est obsolète`, "isCorrect": false
                 },
                 {
-                    "En utilisant localstorage": "4, 0", "isCorrect": false
+                    "answer": `En utilisant localstorage`, "isCorrect": false
                 },
                 {
-                    "En utilisant globalVariable.": "1, -1", "isCorrect": false
+                    "answer": `En utilisant globalVariable`, "isCorrect": false
                 },
                 {
-                    "En important AsyncStorage à partir de 'react-native'": "4, -1", "isCorrect": true
+                    "answer": `En important AsyncStorage à partir de 'react-native'`, "isCorrect": true
                 }
             ]
         },
@@ -130,10 +130,10 @@ let data = {
                     "answer": "Sélectionner 'Debug JS Remotely' dans le menu développeur ToastAndroid", "isCorrect": true
                 },
                 {
-                    "answer": "Selectionner 'Start Systrace' dans le menu développeur ToastAndroid.", "isCorrect": false
+                    "answer": "Selectionner 'Start Systrace' dans le menu développeur ToastAndroid", "isCorrect": false
                 },
                 {
-                    "answer": "Selectionner 'Show inspector' dans le menu développeur ToastAndroid.", "isCorrect": false
+                    "answer": "Selectionner 'Show inspector' dans le menu développeur ToastAndroid", "isCorrect": false
                 },
                 {
                     "answer": "Selectionner 'Show Perf Monitor' dans le menu développeur ToastAndroid", "isCorrect": false
@@ -141,7 +141,7 @@ let data = {
             ]
         },
         {
-            "title": `Dans React Native, vous pouvez tester le rendu d'un composant puis le comparer à un fichier d'instantané généré lors de la première éxécution du text.Comment procédez - vous ? `,
+            "title": `Dans React Native, vous pouvez tester le rendu d'un composant puis le comparer à un fichier d'instantané généré lors de la première éxécution du text.Comment procédez - vous ?`,
             "code": "",
             "isFrench": true,
             "topic": "ReactNative",
