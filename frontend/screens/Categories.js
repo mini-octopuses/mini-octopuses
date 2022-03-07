@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 
 function Categories(props) {
   const [allTopicList, setAllTopicList] = useState([]);
+  const [selectedTopics, setSelectedTopics] = useState([])
 
   useEffect(() => {
     async function loadData() {
@@ -35,9 +36,7 @@ function Categories(props) {
     let rawResponse = await fetch(`${config.myIp}/generate-game`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: 'deviceLang=EN&topics=JavaScript/Regex'
-      // body: 'deviceLang=EN&topics=React/ReactNative'
-      // body: 'deviceLang=EN&topics=React/ReactNative/JavaScript/Regex'
+      body: `deviceLang=EN&topics=${props.user.topics}`
     });
     let response = await rawResponse.json()
     if (response.result) {
@@ -49,18 +48,33 @@ function Categories(props) {
     }
   }
 
-  const fakeUser = {
-    username: "Aija",
-    password: "test",
-    email: "aija@aija.com",
-    token: "qsdf55azert555zerty",
-    profilPicture: "",
-    isGuest: false,
-    topics: ["Javascript"],
-    gameList: [],
-    progression: []
+  function topicClick(topicName) {
+    let tab = [...selectedTopics]
 
-  };
+    if (tab.includes(topicName)) {
+      tab = tab.filter(elem => elem !== topicName)
+    } else {
+      tab.push(topicName)
+    }
+    setSelectedTopics(tab);
+  }
+
+  async function saveTopicsRemote() {
+    props.saveTopics(selectedTopics)
+
+    let rawResponse = await fetch(`${config.myIp}/update-user-topics`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `deviceLang=EN&topics=${props.user.topics}&token=${props.user.token}`
+    });
+    let response = await rawResponse.json()
+    if (response.result) {
+      generateGame();
+    } else {
+      console.log("Error: Could not update user's topics in Database")
+    }
+  }
+
 
   return (
     <SafeAreaView style={StyleGuide.container}>
@@ -69,9 +83,9 @@ function Categories(props) {
         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
           <Image
             style={StyleGuide.profileImageButton}
-            source={require("../assets/Laureline.jpeg")}
+            source={require("../assets/octo_blue.png")}
           />
-          <Text style={{ marginLeft: 10, color: 'white' }}>#laureloop</Text>
+          <Text style={{ marginLeft: 10, color: 'white' }}>#{props.user.username}</Text>
         </TouchableOpacity>
         <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
       </View>
@@ -85,14 +99,14 @@ function Categories(props) {
         <View>
           {allTopicList.map((item, i) => {
             return (
-              <TouchableOpacity key={i} onPress={() => props.navigation.navigate("Categories")}>
+              <TouchableOpacity key={i} onPress={() => { topicClick(item.name) }}>
                 <LinearGradient
                   start={[0, 0.5]}
                   end={[1, 0.5]}
                   colors={["#F81C8F", "#FFA353"]}
                   style={{ borderRadius: 40, marginBottom: 12 }}
                 >
-                  <View style={fakeUser.topics.includes(item.name) ? StyleGuide.roundButtonFilled : StyleGuide.roundButtonBorder} >
+                  <View style={selectedTopics.includes(item.name) ? StyleGuide.roundButtonFilled : StyleGuide.roundButtonBorder} >
                     <Text style={StyleGuide.buttonTitle}>{item.name}</Text>
                   </View>
                 </LinearGradient>
@@ -112,8 +126,8 @@ function Categories(props) {
       <View style={StyleGuide.footer}>
         <TouchableOpacity
           onPress={() => {
-            if (fakeUser.topics.length) {
-              generateGame();
+            if (selectedTopics.length) {
+              saveTopicsRemote()
             }
           }}
         >
@@ -121,7 +135,7 @@ function Categories(props) {
             start={[0, 0.5]}
             end={[1, 0.5]}
             colors={
-              !fakeUser.topics.length
+              !selectedTopics.length
                 ? ["#757575", "#757575"]
                 : ["#F81C8F", "#FFA353"]
             }
@@ -129,7 +143,7 @@ function Categories(props) {
           >
             <View
               style={
-                !fakeUser.topics.length
+                !selectedTopics.length
                   ? StyleGuide.squareButtonDisable
                   : StyleGuide.squareButtonFilled
               }
@@ -144,13 +158,16 @@ function Categories(props) {
 }
 
 function mapStateToProps(state) {
-  return { game: state.game };
+  return { game: state.game, user: state.user };
 }
 function mapDispatchToProps(dispatch) {
   return {
     saveGame: function (game) {
       dispatch({ type: "saveGame", game });
     },
+    saveTopics: function (topics) {
+      dispatch({ type: "saveTopics", topics })
+    }
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

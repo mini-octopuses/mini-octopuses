@@ -117,7 +117,7 @@ const shuffleArray = (array) => {
   }
 }
 router.post('/generate-game', async function (req, res, next) {
-  let topics = req.body.topics.split('/')
+  let topics = req.body.topics.split(',')
   let gameQuestions = [];
 
   for (const elem of topics) {
@@ -193,6 +193,26 @@ router.get("/get-user", function (req, res, next) {
 router.delete("/delete-user", function (req, res, next) {
   res.json({ result: true });
 });
+
+
+
+router.post('/update-user-topics', async function (req, res, nect) {
+  let user = await UserModel.findOne({ token: req.body.token })
+
+  if (!user) {
+    return res.json({ result: false })
+  }
+  let topics = req.body.topics.split(',')
+  user.topics = topics
+
+  let status = await user.save()
+  if (!status) {
+    return res.json({ result: false })
+  }
+  res.json({ result: true })
+})
+
+
 
 //* OR
 // router.post('/update-user/:param', function (req, res, nect) { //not sure of the synthax
