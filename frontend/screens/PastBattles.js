@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
+import Logo from "../components/Logo";
 
 
 export default function PastBattles(props) {

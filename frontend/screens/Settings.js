@@ -15,8 +15,8 @@ export default function Settings(props) {
     const [vibration, setVibration] = useState(false);
     const [notification, setNotification] = useState(false);
     const [langageFr, setLangageFr] = useState(true);
-    
-    
+
+
     const isLanguage = () => {
         setLangageFr(!langageFr)
     }
@@ -38,37 +38,37 @@ export default function Settings(props) {
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="volume-up" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:130 }}>Effets sonores</Text>
-                <SwitchComponent  isEnabled={effetSonore} toggleSwitch={setEffetSonore} />
+                <Text style={{ color: 'white', fontWeight: "bold", width: 130 }}>Effets sonores</Text>
+                <SwitchComponent isEnabled={effetSonore} toggleSwitch={setEffetSonore} />
             </View>
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="music" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:130 }}>Musique</Text>
+                <Text style={{ color: 'white', fontWeight: "bold", width: 130 }}>Musique</Text>
                 <SwitchComponent isEnabled={musique} toggleSwitch={setMusique} />
             </View>
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <MaterialIcons style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="vibration" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:130 }}>Vibration</Text>
+                <Text style={{ color: 'white', fontWeight: "bold", width: 130 }}>Vibration</Text>
                 <SwitchComponent isEnabled={vibration} toggleSwitch={setVibration} />
             </View>
 
 
-            
+
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-            
+
                 <Ionicons style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="notifications" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:130 }}>Notifications</Text>
+                <Text style={{ color: 'white', fontWeight: "bold", width: 130 }}>Notifications</Text>
                 <SwitchComponent isEnabled={notification} toggleSwitch={setNotification} />
             </View>
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center',marginBottom:20 }}>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="globe" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:160 }}>Langage </Text>
-                <Text onPress={isLanguage} style={{margin:3,color:langageFr ? 'orange' : 'white',fontWeight:'bold'}}> FR </Text>
-                <Text onPress={isLanguage} style={{color:langageFr ? 'white' : 'orange',fontWeight:'bold'}}> EN </Text>
+                <Text style={{ color: 'white', fontWeight: "bold", width: 160 }}>Langage </Text>
+                <Text onPress={isLanguage} style={{ margin: 3, color: langageFr ? 'orange' : 'white', fontWeight: 'bold' }}> FR </Text>
+                <Text onPress={isLanguage} style={{ color: langageFr ? 'white' : 'orange', fontWeight: 'bold' }}> EN </Text>
             </View>
-            
+
 
             <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Se déconnecter" />
             <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Supprimer le compte" />

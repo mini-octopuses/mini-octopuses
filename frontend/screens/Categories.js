@@ -61,15 +61,21 @@ function Categories(props) {
 
   async function saveTopicsRemote() {
     props.saveTopics(selectedTopics)
+    console.log("before topic")
+
 
     let rawResponse = await fetch(`${config.myIp}/update-user-topics`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `deviceLang=EN&topics=${props.user.topics}&token=${props.user.token}`
     });
+    console.log("after topic")
+
     let response = await rawResponse.json()
     if (response.result) {
+      console.log("before game")
       generateGame();
+      console.log("after game")
     } else {
       console.log("Error: Could not update user's topics in Database")
     }
