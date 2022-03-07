@@ -1,16 +1,23 @@
-import React from 'react';
-import { ImageBackground } from 'react-native';
+import React, { useEffect } from "react";
+import { ImageBackground } from "react-native";
 
-import Logo from "../components/Logo"
+import Logo from "../components/Logo";
 import StyleGuide from "../style/styleGuide";
-import SquareButtonBorder from "../components/SquareButtonBorder";
 
 export default function SplashScreen(props) {
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("This will run after 1 second!");
+      props.navigation.navigate("AllConnexion");
+    }, 2500);
+  }, []);
 
   return (
-    <ImageBackground source={require('../assets/bg.png')} style={StyleGuide.container}>
+    <ImageBackground
+      source={require("../assets/bg.png")}
+      style={StyleGuide.container}
+    >
       <Logo />
-      <SquareButtonBorder onPress={() => props.navigation.navigate("AllConnexion")} buttonTitle="From Splash to Connection" />
     </ImageBackground>
-  )
+  );
 }
