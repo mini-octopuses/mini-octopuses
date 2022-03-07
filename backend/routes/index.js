@@ -50,16 +50,17 @@ router.post('/populate-database', async function (req, res, next) {
 //* Routes for sign-up and sign-in
 // page sign up fonctionnelle mais il faut rajouter les vérification des doublons et des mails (la regex en dessous s'occupe des mail mais il faut rediriger)
 router.post("/sign-up", async function (req, res, next) {
-  const regexMail = new RegExp(
-    /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
-  );
+  // const regexMail = new RegExp(
+  //   /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+  // );
 
   //recherche si l'utilisateur existe pour ne pas refaire la manipulation
   let user = await UserModel.findOne({ email: req.body.email });
   let passwordHash = bcrypt.hashSync(req.body.password, 10);
-  if (!regexMail.test(req.body.email)) {
-    res.json({ result: false, message: "Invalid email" })
-  }
+
+  // if (!regexMail.test(req.body.email)) {
+  //   return res.json({ result: false, message: "Invalid email" })
+  // }
 
   //si le user n'existe pas alors je vais créer un nouveau user
   if (!user) {
@@ -84,7 +85,7 @@ router.post("/sign-up", async function (req, res, next) {
         message: "La création de votre compte a rencontré un problème",
       });
     } else {
-      res.json({ result: true, user: newUserStatus });
+      return res.json({ result: true, user: newUserStatus });
     }
   }
 });
