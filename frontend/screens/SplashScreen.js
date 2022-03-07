@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ImageBackground } from "react-native";
+import { ImageBackground, Dimensions } from "react-native";
 
 import Logo from "../components/Logo";
 import StyleGuide from "../style/styleGuide";
