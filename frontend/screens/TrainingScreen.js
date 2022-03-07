@@ -7,6 +7,7 @@ import SyntaxHighlighter from 'react-native-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/styles/prism';
 import { connect } from 'react-redux';
 import StyleGuide from "../style/styleGuide";
+import config from '../config';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -37,7 +38,20 @@ function TrainingScreen(props) {
             getFinalScore(tab);
             setIndex(0);
             setUserAnswers([]);
-            props.navigation.navigate('ResultScreen')
+
+            let game = JSON.stringify(props.game)
+            console.log(game)
+            let rawResponse = await fetch(`${config.myIp}/save-game`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `deviceLang=EN&token=${props.user.token}&game=${game}`
+            });
+            let response = await rawResponse.json()
+            if (response.result) {
+                props.navigation.navigate('ResultScreen')
+            } else {
+                console.log("Error: Saving of the game in DB failed")
+            }
         }
     }
 
@@ -60,9 +74,9 @@ function TrainingScreen(props) {
                         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
                             <Image
                                 style={StyleGuide.profileImageButton}
-                                source={require("../assets/Laureline.jpeg")}
+                                source={require("../assets/octo_blue.png")}
                             />
-                            <Text style={{ marginLeft: 10, color: 'white' }}>#laureloop</Text>
+                            <Text style={{ marginLeft: 10, color: 'white' }}>#{props.user.username}</Text>
                         </TouchableOpacity>
                         <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
                     </View>
@@ -155,6 +169,9 @@ function mapDispatchToProps(dispatch) {
         },
         saveScore: function (score) {
             dispatch({ type: 'saveScore', score })
+        },
+        saveGameInUser: function (game) {
+            dispatch({ type: "saveGameInUser", game })
         }
     }
 }

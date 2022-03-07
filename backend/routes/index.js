@@ -172,9 +172,20 @@ router.get("/generate-game", async function (req, res, next) {
   res.json({ result: true, questions: allQuestions }); // result: true , game: gameQuestions
 });
 
-router.post("/save-game", function (req, res, next) {
-  let user = {};
-  res.json({ result: true, user });
+router.post("/save-game", async function (req, res, next) {
+  // console.log(req.body.token);
+  let game = JSON.parse(req.body.game)
+  // console.log(game)
+  let user = await UserModel.findOne({ token: req.body.token })
+  if (!user) {
+    res.json({ result: false, message: "user not found" })
+  }
+  user.gameList.push(game)
+  let status = await user.save()
+  if (!status) {
+    res.json({ result: false, message: "game save failed" })
+  }
+  res.json({ result: true });
 });
 router.post("/get-user-all-games", function (req, res, next) {
   let gameList = [];
@@ -186,8 +197,11 @@ router.put("/update-user/", function (req, res, next) {
   res.json({ result: true, user });
 });
 
-router.get("/get-user", function (req, res, next) {
-  let user = {};
+router.get("/get-user", async function (req, res, next) {
+  let user = await UserModel.findOne({ token: req.query.token })
+  if (!user) {
+    return res.json({ result: false, message: "Error user not found" })
+  }
   res.json({ result: true, user });
 });
 
