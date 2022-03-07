@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity, Dimensions } from "react-native";
 import { Text } from "react-native-elements";
 import { connect } from "react-redux";
 
@@ -20,7 +20,7 @@ function SignUp(props) {
   const signUp = async () => {
     let user = await fetch(`${config.myIp}/sign-up`, {
       method: "POST",
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `username=${username}&email=${email}&password=${password}&isGuest=false`,
     });
     let backResponse = await user.json();

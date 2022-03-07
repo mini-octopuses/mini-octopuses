@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
+import FormInput from "../components/FormInput";
 
 function ProfileSettings(props) {
   return (
@@ -29,9 +30,30 @@ function ProfileSettings(props) {
           source={require("../assets/Laureline.jpeg")}
         />
         <Text style={{ fontSize: 20, marginBottom: 50 }}>
-          test #{props.user.username}
+          #{props.user.username}
         </Text>
       </View>
+
+      <FormInput
+        placeholder="Prénom / Pseudo"
+        icon="pseudo"
+        value={username}
+        onChangeText={(val) => setUsername(val)}
+      />
+
+      <FormInput
+        placeholder="Email"
+        icon="email"
+        value={email}
+        onChangeText={(val) => setEmail(val)}
+      />
+      <FormInput
+        placeholder="Mot de passe"
+        value={password}
+        onChangeText={(val) => setPassword(val)}
+      />
+
+      <SquareButtonBorder onPress={() => signUp()} buttonTitle="Valider" />
       <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
         <FontAwesome
           style={{ marginTop: 10, marginRight: 10 }}
