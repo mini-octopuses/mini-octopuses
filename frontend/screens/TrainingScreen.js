@@ -27,6 +27,7 @@ function TrainingScreen(props) {
             }
         }
         props.saveScore(score)
+        return score;
     }
 
     async function increaseIndex(posClicked) {
@@ -34,13 +35,15 @@ function TrainingScreen(props) {
         if (index < 7) setIndex(index + 1);
         if (index === 7) {
             let tab = [...userAnswers, posClicked]
+            let temp = props.game
+            temp.userAnswers = [...tab]
+            temp.score = getFinalScore(tab)
             props.saveAnswers(tab)
             getFinalScore(tab);
             setIndex(0);
             setUserAnswers([]);
-
-            let game = JSON.stringify(props.game)
-            console.log(game)
+            // console.log(props.game)
+            let game = JSON.stringify(temp)
             let rawResponse = await fetch(`${config.myIp}/save-game`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

@@ -15,26 +15,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function AllConnexion(props) {
-  // const [token, setToken] = useState("")
   useEffect(() => {
     async function loadToken() {
       AsyncStorage.getItem('token', async function (error, data) {
-        console.log("Token found: ", data)
         let rawResponse = await fetch(`${config.myIp}/get-user?token=${data}`);
         let response = await rawResponse.json()
-
         if (response.result) {
           props.saveUser(response.user)
           props.navigation.navigate("Home");
         }
-        console.log(response)
-        // setToken(token)
       })
     }
     loadToken();
   }, []);
 
-  // if(token)
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
