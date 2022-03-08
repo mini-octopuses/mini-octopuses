@@ -8,7 +8,7 @@ export default function SplashScreen(props) {
   useEffect(() => {
     setTimeout(() => {
       props.navigation.navigate("AllConnexion");
-    }, 2500);
+    }, 2000);
   }, []);
 
   return (
