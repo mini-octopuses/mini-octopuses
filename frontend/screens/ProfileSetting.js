@@ -79,4 +79,12 @@ function mapStatesToProps(state) {
   return { user: state.user };
 }
 
-export default connect(mapStatesToProps, null)(ProfileSettings);
+function maDispatchToProps(dispatch) {
+  return {
+    saveUser: function (gameUser) {
+      dispatch({ type: "saveUser", gameUser });
+    },
+  };
+}
+
+export default connect(mapStatesToProps, maDispatchToProps)(ProfileSettings);
