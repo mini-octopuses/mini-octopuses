@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ImageBackground, Image } from "react-native";
+import { View, Text, ImageBackground, Image, Dimensions } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { connect } from "react-redux";
 
@@ -17,59 +17,59 @@ function ProfileSettings(props) {
       <View style={StyleGuide.header}>
         <FontAwesome
           onPress={() => props.navigation.navigate("Profile")}
-          style={{ marginTop: 30, marginLeft: 10 }}
+          style={{
+            marginTop: 30,
+            marginLeft: 10,
+          }}
           name="arrow-left"
           size={25}
           color="white"
         />
       </View>
 
-      <View>
+      <View
+        style={{
+          position: "absolute",
+          top: Dimensions.get("window").height / 12,
+        }}
+      >
         <Image
-          style={{ width: 130, height: 130, borderRadius: 50 }}
+          style={{ width: 130, height: 130, borderRadius: 200 }}
           source={require("../assets/Laureline.jpeg")}
         />
-        <Text style={{ fontSize: 20, marginBottom: 50 }}>
+        <Text style={{ fontSize: 18, marginBottom: 50 }}>
           #{props.user.username}
         </Text>
       </View>
 
-      <FormInput
-        placeholder="Prénom / Pseudo"
-        icon="pseudo"
-        value={username}
-        onChangeText={(val) => setUsername(val)}
-      />
-
-      <FormInput
-        placeholder="Email"
-        icon="email"
-        value={email}
-        onChangeText={(val) => setEmail(val)}
-      />
-      <FormInput
-        placeholder="Mot de passe"
-        value={password}
-        onChangeText={(val) => setPassword(val)}
-      />
-
-      <SquareButtonBorder onPress={() => signUp()} buttonTitle="Valider" />
-      <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-        <FontAwesome
-          style={{ marginTop: 10, marginRight: 10 }}
-          name="volume-up"
-          size={25}
-          color="white"
+      <View style={{ marginTop: Dimensions.get("window").height / 3 }}>
+        <FormInput
+          placeholder="Prénom / Pseudo"
+          icon="pseudo"
+          value={props.user.username}
+          onChangeText={(val) => setUsername(val)}
         />
       </View>
-      <SquareButtonFilled
-        onPress={() => props.navigation.navigate("Home")}
-        buttonTitle="Enregistrer les modifications"
-      />
-      <SquareButtonBorder
-        onPress={() => props.navigation.navigate("SplashScreen")}
-        buttonTitle="Supprimer le compte"
-      />
+
+      <View style={{ marginBottom: Dimensions.get("window").height / 10 }}>
+        <FormInput
+          placeholder="Email"
+          icon="email"
+          value={props.user.email}
+          onChangeText={(val) => setEmail(val)}
+        />
+      </View>
+
+      <View style={{ justifyContent: "flex-end" }}>
+        <SquareButtonFilled
+          onPress={() => props.navigation.navigate("Home")}
+          buttonTitle="Enregistrer les modifications"
+        />
+        <SquareButtonBorder
+          onPress={() => props.navigation.navigate("SplashScreen")}
+          buttonTitle="Supprimer le compte"
+        />
+      </View>
     </ImageBackground>
   );
 }

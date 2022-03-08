@@ -33,6 +33,7 @@ export default function FormInput(props){
                     height:Dimensions.get('window').height/12,backgroundColor:'#fff', borderRadius:10,marginTop:20, fontStyle:'italic', color:'lightgrey'}}
                     inputContainerStyle = {{borderBottomWidth:0, 
                     height:Dimensions.get('window').height/12,backgroundColor:'#fff', borderRadius:10, fontStyle:'italic', color:'lightgrey'}}>
+                        
                 </Input>
             )
             default :

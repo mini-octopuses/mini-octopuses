@@ -89,7 +89,7 @@ const StyleGuide = {
         justifyContent: 'space-evenly',
         alignItems: 'center',
         borderRadius: 5,
-        marginBottom: 11,
+        marginBottom: Dimensions.get('window').height / 10,
         backgroundColor: '#4267B2',
         width: Dimensions.get('window').width / 1.3 + 6,
         height: Dimensions.get('window').height / 15 + 6,

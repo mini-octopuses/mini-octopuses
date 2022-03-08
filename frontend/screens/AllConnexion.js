@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { View, Image, ImageBackground, TouchableOpacity } from "react-native";
+import {
+  View,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import { Text } from "react-native-elements";
 
 import { FontAwesome } from "@expo/vector-icons";
@@ -17,13 +23,13 @@ export default function AllConnexion(props) {
     >
       <Logo />
 
-      <View style={StyleGuide.googleButton}>
+      {/* <View style={StyleGuide.googleButton}>
         <Image
           source={require("../assets/google.png")}
           style={StyleGuide.googlePicto}
         />
         <Text style={StyleGuide.titleGoogleButton}> Connexion Google</Text>
-      </View>
+      </View> */}
 
       <TouchableOpacity
         style={StyleGuide.facebookButton}

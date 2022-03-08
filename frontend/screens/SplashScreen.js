@@ -17,7 +17,7 @@ export default function SplashScreen(props) {
       source={require("../assets/bg.png")}
       style={StyleGuide.container}
     >
-      <Logo />
+      <Logo style={{ marginTop: 100 }} />
     </ImageBackground>
   );
 }
