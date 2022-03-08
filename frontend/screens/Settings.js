@@ -6,8 +6,11 @@ import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
 import SwitchComponent from "../components/SwitchComponent";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { connect } from "react-redux";
 
-export default function Settings(props) {
+
+function Settings(props) {
 
 
     const [effetSonore, setEffetSonore] = useState(false);
@@ -15,8 +18,8 @@ export default function Settings(props) {
     const [vibration, setVibration] = useState(false);
     const [notification, setNotification] = useState(false);
     const [langageFr, setLangageFr] = useState(true);
-    
-    
+
+
     const isLanguage = () => {
         setLangageFr(!langageFr)
     }
@@ -31,48 +34,57 @@ export default function Settings(props) {
             </View>
 
             <View>
-                <Image style={{ width: 130, height: 130, borderRadius: 100 }} source={require('../assets/Laureline.jpeg')} />
-                <Text style={{ fontSize: 20, marginBottom: 50, color: 'white', fontWeight: 'bold', textAlign: 'center' }}>#laureloop</Text>
+                <Image style={{ width: 130, height: 130, borderRadius: 100 }} source={require('../assets/octo_blue.png')} />
+                <Text style={{ fontSize: 20, marginBottom: 50, color: 'white', fontWeight: 'bold', textAlign: 'center' }}>#{props.user.username}</Text>
             </View>
 
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="volume-up" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:130 }}>Effets sonores</Text>
-                <SwitchComponent  isEnabled={effetSonore} toggleSwitch={setEffetSonore} />
+                <Text style={{ color: 'white', fontWeight: "bold", width: 130 }}>Effets sonores</Text>
+                <SwitchComponent isEnabled={effetSonore} toggleSwitch={setEffetSonore} />
             </View>
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="music" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:130 }}>Musique</Text>
+                <Text style={{ color: 'white', fontWeight: "bold", width: 130 }}>Musique</Text>
                 <SwitchComponent isEnabled={musique} toggleSwitch={setMusique} />
             </View>
 
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <MaterialIcons style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="vibration" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:130 }}>Vibration</Text>
+                <Text style={{ color: 'white', fontWeight: "bold", width: 130 }}>Vibration</Text>
                 <SwitchComponent isEnabled={vibration} toggleSwitch={setVibration} />
             </View>
 
 
-            
+
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-            
+
                 <Ionicons style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="notifications" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:130 }}>Notifications</Text>
+                <Text style={{ color: 'white', fontWeight: "bold", width: 130 }}>Notifications</Text>
                 <SwitchComponent isEnabled={notification} toggleSwitch={setNotification} />
             </View>
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center',marginBottom:20 }}>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
                 <FontAwesome style={{ marginTop: 10, marginRight: 10, paddingBottom: 10 }} name="globe" size={25} color="white" />
-                <Text style={{ color: 'white', fontWeight: "bold",width:160 }}>Langage </Text>
-                <Text onPress={isLanguage} style={{margin:3,color:langageFr ? 'orange' : 'white',fontWeight:'bold'}}> FR </Text>
-                <Text onPress={isLanguage} style={{color:langageFr ? 'white' : 'orange',fontWeight:'bold'}}> EN </Text>
+                <Text style={{ color: 'white', fontWeight: "bold", width: 160 }}>Langage </Text>
+                <Text onPress={isLanguage} style={{ margin: 3, color: langageFr ? 'orange' : 'white', fontWeight: 'bold' }}> FR </Text>
+                <Text onPress={isLanguage} style={{ color: langageFr ? 'white' : 'orange', fontWeight: 'bold' }}> EN </Text>
             </View>
-            
 
-            <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Se déconnecter" />
+
+            <SquareButtonFilled onPress={() => {
+                AsyncStorage.removeItem("token")
+                AsyncStorage.clear()
+                props.navigation.navigate("AllConnexion")
+            }} buttonTitle="Se déconnecter" />
             <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Supprimer le compte" />
 
         </ImageBackground>
     );
 }
+
+function mapStateToProps(state) {
+    return { user: state.user }
+}
+export default connect(mapStateToProps, null)(Settings)

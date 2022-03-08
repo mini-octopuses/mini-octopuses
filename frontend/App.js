@@ -30,11 +30,10 @@ import SettingsGuest from "./screens/SettingsGuest";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 
-import useless from "./reducers/useless";
 import game from "./reducers/game";
 import user from "./reducers/user";
 
-const store = createStore(combineReducers({ useless, game, user }));
+const store = createStore(combineReducers({ game, user }));
 
 export default function App() {
   return (

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, ImageBackground, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
+import SquareButtonBorder from "../components/SquareButtonBorder";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 
 import StyleGuide from "../style/styleGuide";
@@ -48,6 +49,12 @@ function Profile(props) {
         Voici ta progression
       </Text>
       <ScrollView style={{ flex: 1 }}></ScrollView>
+      <View style={StyleGuide.footer}>
+        <SquareButtonBorder
+          onPress={() => props.navigation.navigate("PastBattles")}
+          buttonTitle="Batailles Passées"
+        />
+      </View>
     </ImageBackground>
   );
 }

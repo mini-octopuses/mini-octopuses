@@ -66,9 +66,9 @@ function HistoryScreen(props) {
                         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
                             <Image
                                 style={StyleGuide.profileImageButton}
-                                source={require("../assets/Laureline.jpeg")}
+                                source={require("../assets/octo_blue.png")}
                             />
-                            <Text style={{ marginLeft: 10, color: 'white' }}>#laureloop</Text>
+                            <Text style={{ marginLeft: 10, color: 'white' }}>#{props.user.username}</Text>
                         </TouchableOpacity>
                         <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
                     </View>

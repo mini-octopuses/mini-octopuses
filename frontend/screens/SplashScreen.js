@@ -7,7 +7,6 @@ import StyleGuide from "../style/styleGuide";
 export default function SplashScreen(props) {
   useEffect(() => {
     setTimeout(() => {
-      console.log("This will run after 1 second!");
       props.navigation.navigate("AllConnexion");
     }, 2500);
   }, []);

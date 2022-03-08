@@ -70,7 +70,8 @@ router.post("/sign-up", async function (req, res, next) {
       email: req.body.email,
       token: uid2(32),
       profilPicture: "temporaire String picture",
-      isGuest: false,
+      isGuest: req.body.isGuest === 'false' ? false : true,
+      // isGuest: false,
       topics: [],
       gameList: [],
       progression: [],
@@ -171,22 +172,57 @@ router.get("/generate-game", async function (req, res, next) {
   res.json({ result: true, questions: allQuestions }); // result: true , game: gameQuestions
 });
 
-router.post("/save-game", function (req, res, next) {
-  let user = {};
-  res.json({ result: true, user });
+router.post("/save-game", async function (req, res, next) {
+  let parsedGame = JSON.parse(req.body.game)
+  await GameModel.updateOne({ _id: parsedGame._id }, { score: parsedGame.score, userAnswers: parsedGame.userAnswers })
+
+  let game = await GameModel.findOne({ _id: parsedGame._id })
+  if (!game) {
+    res.json({ result: false, message: "Error: Game update failed" })
+  }
+  let user = await UserModel.findOne({ token: req.body.token })
+  if (!user) {
+    res.json({ result: false, message: "Error: User not found" })
+  }
+  user.gameList.push(game)
+  let status = await user.save()
+  if (!status) {
+    res.json({ result: false, message: "Error: Game save failed" })
+  }
+  res.json({ result: true });
 });
-router.post("/get-user-all-games", function (req, res, next) {
-  let gameList = [];
-  res.json({ result: true, gameList });
+
+router.get("/get-user-all-games", async function (req, res, next) {
+  let user = await UserModel.findOne({ token: req.query.token })
+    .populate('gameList')
+    .populate({ path: "gameList", populate: { path: "questions", model: "question" } })
+    .exec();
+  if (!user) {
+    req.json({ result: false, message: "Error: User not found" })
+  }
+  res.json({ result: true, gameList: user.gameList });
 });
+
+router.get("/get-game", async function (req, res, next) {
+  let game = await GameModel.findOne({ _id: req.query.id }).populate("questions").exec()
+  if (!game) {
+    req.json({ result: false, message: "Error: game not found" })
+  }
+  console.log(game)
+  res.json({ result: true, game });
+})
+
 //* Routes for user
 router.put("/update-user/", function (req, res, next) {
   let user = {};
   res.json({ result: true, user });
 });
 
-router.get("/get-user", function (req, res, next) {
-  let user = {};
+router.get("/get-user", async function (req, res, next) {
+  let user = await UserModel.findOne({ token: req.query.token })
+  if (!user) {
+    return res.json({ result: false, message: "Error user not found" })
+  }
   res.json({ result: true, user });
 });
 
