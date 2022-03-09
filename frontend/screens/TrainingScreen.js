@@ -16,10 +16,11 @@ const windowHeight = Dimensions.get('window').height;
 function TrainingScreen(props) {
     const [index, setIndex] = useState(0)
     const [userAnswers, setUserAnswers] = useState([])
-    const [seconds,setSeconds] = useState(0)
+    const [indexSecondes, setIndexSecondes] = useState(0)
 
     function getFinalScore(answers) {
         let score = 0;
+        setIndexSecondes(0)
         for (let i = 0; i < props.game.questions.length; i++) {
             for (let j = 0; j < props.game.questions[i].answers.length; j++) {
                 if (props.game.questions[i].answers[j].isCorrect && answers[i] === j) {
@@ -31,13 +32,11 @@ function TrainingScreen(props) {
         return score;
     }
 
-    const [indexSecondes, setIndexSecondes] = useState(0)
-
     React.useEffect(() => {
         const interval = setInterval(() => {
             setIndexSecondes((indexSecondes + 1) % (60 + 1));
             if(indexSecondes == 60){
-                setIndex(index + 1)
+                increaseIndex(0)
             }
         }, 1000)
 
@@ -48,8 +47,11 @@ function TrainingScreen(props) {
   
     
     async function increaseIndex(posClicked) {
+        setIndexSecondes(0)
         setUserAnswers([...userAnswers, posClicked])
-        if (index < 7) setIndex(index + 1);
+        if (index < 7) {
+            setIndex(index + 1)
+        };
         if (index === 7) {
             let tab = [...userAnswers, posClicked]
             let temp = props.game

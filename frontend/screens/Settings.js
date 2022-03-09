@@ -30,7 +30,7 @@ function Settings(props) {
             style={StyleGuide.container}
         >
             <View style={StyleGuide.header}>
-                <FontAwesome onPress={() => props.navigation.navigate('Home')} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+                <FontAwesome onPress={() => props.navigation.goBack(null)} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
             </View>
 
             <View>
@@ -78,7 +78,11 @@ function Settings(props) {
                 AsyncStorage.clear()
                 props.navigation.navigate("AllConnexion")
             }} buttonTitle="Se déconnecter" />
-            <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Supprimer le compte" />
+            <SquareButtonBorder onPress={() => {
+                AsyncStorage.removeItem("token")
+                AsyncStorage.clear()
+                props.navigation.navigate("AllConnexion")
+            }} buttonTitle="Supprimer le compte" />
 
         </ImageBackground>
     );
