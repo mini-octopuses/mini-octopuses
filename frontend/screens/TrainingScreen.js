@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, ImageBackground, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, ImageBackground, TouchableOpacity, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
@@ -12,9 +11,7 @@ import config from '../config';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
 function TrainingScreen(props) {
-    const [index, setIndex] = useState(0)
     const [userAnswers, setUserAnswers] = useState([])
 
     function getFinalScore(answers) {
@@ -30,19 +27,32 @@ function TrainingScreen(props) {
         return score;
     }
 
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            props.setTime((props.time + 1) % (60 + 1))
+            if (props.time === 60) {
+                increaseIndex(0)
+            }
+        }, 1000)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [props.time])
+
     async function increaseIndex(posClicked) {
+        props.setTimeZero()
         setUserAnswers([...userAnswers, posClicked])
-        if (index < 7) setIndex(index + 1);
-        if (index === 7) {
+        if (props.pos < 7) {
+            props.increasePos(props.pos + 1)
+        }
+        if (props.pos === 7) {
             let tab = [...userAnswers, posClicked]
             let temp = props.game
             temp.userAnswers = [...tab]
             temp.score = getFinalScore(tab)
             props.saveAnswers(tab)
             getFinalScore(tab);
-            setIndex(0);
             setUserAnswers([]);
-            // console.log(props.game)
             let game = JSON.stringify(temp)
             let rawResponse = await fetch(`${config.myIp}/save-game`, {
                 method: 'POST',
@@ -60,10 +70,10 @@ function TrainingScreen(props) {
 
     let code = (
         <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"} >
-            {props.game.questions[index].code}
-        </SyntaxHighlighter >
+            {props.game.questions[props.pos].code}
+        </SyntaxHighlighter>
     )
-    if (props.game.questions[index].code.length === 0) {
+    if (props.game.questions[props.pos].code.length === 0) {
         code = <View></View>
     }
 
@@ -86,7 +96,7 @@ function TrainingScreen(props) {
 
                     {/* //* This is the code block with the questions */}
                     <View style={styles.container}>
-                        <Text style={{ fontSize: 34, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[index].title}</Text>
+                        <Text style={{ fontSize: 34, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[props.pos].title}</Text>
                         {code}
                     </View>
 
@@ -94,19 +104,80 @@ function TrainingScreen(props) {
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         {/* //*Display of the answers */}
                         <View style={{ flexDirection: 'row' }}>
-                            <Button title={props.game.questions[index].answers[0].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(0)} />
-                            <Button title={props.game.questions[index].answers[1].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(1)} />
+                            <Button title={props.game.questions[props.pos].answers[0].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(0)} />
+                            <Button title={props.game.questions[props.pos].answers[1].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(1)} />
                         </View>
                         <View style={{ flexDirection: 'row' }}>
-                            <Button title={props.game.questions[index].answers[2].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(2)} />
-                            <Button title={props.game.questions[index].answers[3].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(3)} />
+                            <Button title={props.game.questions[props.pos].answers[2].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(2)} />
+                            <Button title={props.game.questions[props.pos].answers[3].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(3)} />
                         </View>
                     </View>
+                    <View style={{ marginBottom: 20 }}>
+                        <Progress step={props.time} steps={60} height={25} />
+                    </View>
                 </View>
+
             </ImageBackground>
-        </SafeAreaView >
+
+        </SafeAreaView>
     )
 }
+
+
+
+const Progress = ({ step, steps, height }) => {
+
+    const [width, setWidth] = useState(0)
+    const animatedValue = React.useRef(new Animated.Value(1000)).current;
+    const reactive = React.useRef(new Animated.Value(1000)).current;
+
+    React.useEffect(() => {
+        Animated.timing(animatedValue, {
+            toValue: reactive,
+            duration: 300,
+            useNativeDriver: true
+        }).start()
+    })
+
+    React.useEffect(() => {
+        reactive.setValue(-width + width * step / steps)
+    }, [step, width])
+
+    return (
+        <>
+            <View
+                onLayout={e => {
+                    const newWidth = e.nativeEvent.layout.width;
+                    setWidth(newWidth)
+                }}
+                style={{
+                    height,
+                    backgroundColor: 'rgba(254, 146, 90,0.4)',
+                    borderRadius: height,
+                    overflow: 'hidden'
+                }}>
+                <Text style={{ textAlign: 'center', color: 'white', zIndex: 2, marginTop: 2 }}>{step} sec</Text>
+                <Animated.View style={{
+                    height,
+                    width: '100%',
+                    backgroundColor: '#F92C8C',
+                    borderRadius: height,
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    transform: [
+                        {
+                            translateX: animatedValue,
+                        },
+                    ],
+                }}
+                />
+            </View>
+        </>
+    )
+}
+
+
 
 const styles = StyleSheet.create({
     userIcon: {
@@ -159,7 +230,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-    return { game: state.game, user: state.user }
+    return { game: state.game, user: state.user, time: state.time, pos: state.pos }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -175,6 +246,15 @@ function mapDispatchToProps(dispatch) {
         },
         saveGameInUser: function (game) {
             dispatch({ type: "saveGameInUser", game })
+        },
+        setTime: function (time) {
+            dispatch({ type: "setTime", time })
+        },
+        setTimeZero: function () {
+            dispatch({ type: "setTimeZero" })
+        },
+        increasePos: function (pos) {
+            dispatch({ type: "increasePos", pos })
         }
     }
 }

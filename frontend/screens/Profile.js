@@ -3,6 +3,7 @@ import { View, Text, ImageBackground, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+
 import StyleGuide from "../style/styleGuide";
 
 function Profile(props) {
@@ -13,7 +14,7 @@ function Profile(props) {
     >
       <View style={StyleGuide.header}>
         <FontAwesome
-          onPress={() => props.navigation.goBack(null)}
+          onPress={() => props.navigation.navigate("Home")}
           style={{ marginTop: 30, marginLeft: 10 }}
           name="arrow-left"
           size={25}
@@ -31,10 +32,10 @@ function Profile(props) {
       <View>
         <Image
           style={{ width: 130, height: 130, borderRadius: 50 }}
-          source={require("../assets/octo_blue.png")}
+          source={require("../assets/Laureline.jpeg")}
         />
-        <Text style={{ fontSize: 20, marginBottom: 50, color: 'white' }}>
-          #{props.user.username}
+        <Text style={{ fontSize: 20, marginBottom: 50 }}>
+          #Laureloop
           <FontAwesome5
             name="pen"
             size={24}
@@ -44,7 +45,7 @@ function Profile(props) {
         </Text>
       </View>
 
-      <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>
+      <Text style={{ fontSize: 20, marginBottom: 20 }}>
         Voici ta progression
       </Text>
       <ScrollView style={{ flex: 1 }}></ScrollView>

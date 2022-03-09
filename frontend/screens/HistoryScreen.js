@@ -103,7 +103,7 @@ function HistoryScreen(props) {
                             </Pressable>
 
                             <Pressable onPress={() => {
-                                index < 7 ? setIndex(index + 1) : props.navigation.navigate('ResultScreen')
+                                index < 7 ? setIndex(index + 1) : props.route.params.from === "PastBattles" ? props.navigation.navigate('PastBattles') : props.navigation.navigate('ResultScreen')
                             }}>
                                 {setNextButtonArea()}
                             </Pressable>
