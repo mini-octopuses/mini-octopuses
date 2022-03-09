@@ -115,6 +115,7 @@ const shuffleArray = (array) => {
     array[j] = temp;
   }
 };
+
 router.post("/generate-game", async function (req, res, next) {
   let topics = req.body.topics.split(",");
   let gameQuestions = [];
@@ -225,6 +226,7 @@ router.get("/get-game", async function (req, res, next) {
 
 //* Routes for user
 router.put("/update-user/", async function (req, res, next) {
+  console.log("coucou");
   let user = await UserModel.findOne({ token: req.body.token });
   if (!user) {
     return res.json({ result: false, message: "Error: User not found" });
@@ -235,6 +237,7 @@ router.put("/update-user/", async function (req, res, next) {
   );
   let updatedUser = await UserModel.findOne({ token: req.body.token });
   if (!updatedUser) {
+    console.log("toto", updatedUser);
     return res.json({
       result: false,
       message: "Error: Updated user not found",
