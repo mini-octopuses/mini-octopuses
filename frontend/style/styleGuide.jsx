@@ -13,7 +13,8 @@ const StyleGuide = {
         justifyContent: 'space-between',
         alignItems: 'center',
         width: Dimensions.get('window').width / 1,
-        marginBottom: 20
+        height: Dimensions.get('window').height/14,
+        // marginBottom: 20
     },
     profileImageButton: {
         width: 50,
