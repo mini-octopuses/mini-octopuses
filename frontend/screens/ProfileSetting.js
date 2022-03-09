@@ -14,7 +14,6 @@ import configIp from "../config";
 function ProfileSettings(props) {
   const [username, setUsername] = useState(props.user.username);
   const [email, setEmail] = useState(props.user.email);
-  // const [message, setMessage] = useState(null);
 
   async function updateUser() {
     console.log("tutu");
@@ -68,8 +67,7 @@ function ProfileSettings(props) {
         <View style={StyleGuide.header}>
           <FontAwesome
             onPress={() => {
-              props.navigation.navigate("Profile");
-              setMessage("");
+              props.navigation.goBack(null);
             }}
             style={{
               marginTop: 30,
