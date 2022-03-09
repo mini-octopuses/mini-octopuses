@@ -16,6 +16,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isFocus,setIsFocus] = useState(false);
+
 
   const signIn = async () => {
     let user = await fetch(`${configIp.myIp}/sign-in`, {
@@ -42,7 +44,7 @@ function SignIn(props) {
           color="white"
         />
       </View>
-      <Logo />
+      {isFocus ? <Text></Text> : <Logo />}
       <Text h3>Connexion</Text>
 
       <FormInput
@@ -50,8 +52,12 @@ function SignIn(props) {
         icon="email"
         value={email}
         onChangeText={(val) => setEmail(val)}
+        focus={() => setIsFocus(true)}
+        isDefocus={() => setIsFocus(false)}
       />
       <FormInput
+        focus={() => setIsFocus(true)}
+        isDefocus={() => setIsFocus(false)}
         placeholder="Mot de passe"
         value={password}
         onChangeText={(val) => setPassword(val)}
