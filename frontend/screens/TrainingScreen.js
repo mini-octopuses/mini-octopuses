@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import StyleGuide from "../style/styleGuide";
 import config from '../config';
 
-import { useIsFocused } from '@react-navigation/native';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -17,7 +16,6 @@ const windowHeight = Dimensions.get('window').height;
 
 function TrainingScreen(props) {
     const [userAnswers, setUserAnswers] = useState([])
-    const isFocused = useIsFocused();
 
     function getFinalScore(answers) {
         let score = 0;

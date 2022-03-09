@@ -4,7 +4,6 @@ import {
   Text,
   ImageBackground,
   Image,
-  ScrollView,
   Dimensions
 } from "react-native";
 import { connect } from "react-redux";
@@ -102,8 +101,8 @@ function Profile(props) {
         </View>
 
         <SquareButtonBorder
-          buttonTitle="Duel"
           onPress={() => props.navigation.navigate("PastBattles")}
+          buttonTitle="Batailles Passées"
         />
       </View>
 

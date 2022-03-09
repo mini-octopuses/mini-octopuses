@@ -1,6 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons';
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import config from "../config";
@@ -45,7 +45,9 @@ function PastBattles(props) {
             </View>
 
             <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>Batailles passées</Text>
-            {tab}
+            <ScrollView>
+                {tab}
+            </ScrollView>
         </View>
     );
 }
