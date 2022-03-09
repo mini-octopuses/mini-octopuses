@@ -114,6 +114,10 @@ const StyleGuide = {
         backgroundColor: "#fff",
         borderRadius: 10,
 
+    },
+    titleProfile:{
+        alignItem:'center',
+        flex:1
     }
 };
 
