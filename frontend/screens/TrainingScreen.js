@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, ImageBackground, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, ImageBackground, TouchableOpacity, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
@@ -9,6 +8,7 @@ import { connect } from 'react-redux';
 import StyleGuide from "../style/styleGuide";
 import config from '../config';
 
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -16,6 +16,7 @@ const windowHeight = Dimensions.get('window').height;
 function TrainingScreen(props) {
     const [index, setIndex] = useState(0)
     const [userAnswers, setUserAnswers] = useState([])
+    const [seconds,setSeconds] = useState(0)
 
     function getFinalScore(answers) {
         let score = 0;
@@ -30,6 +31,22 @@ function TrainingScreen(props) {
         return score;
     }
 
+    const [indexSecondes, setIndexSecondes] = useState(0)
+
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            setIndexSecondes((indexSecondes + 1) % (60 + 1));
+            if(indexSecondes == 60){
+                setIndex(index + 1)
+            }
+        }, 1000)
+
+        return () => {
+            clearInterval(interval)
+        }
+    }, [indexSecondes])
+  
+    
     async function increaseIndex(posClicked) {
         setUserAnswers([...userAnswers, posClicked])
         if (index < 7) setIndex(index + 1);
@@ -61,7 +78,7 @@ function TrainingScreen(props) {
     let code = (
         <SyntaxHighlighter language='javascript' style={darcula} highlighter={"prism" || "hljs"} >
             {props.game.questions[index].code}
-        </SyntaxHighlighter >
+        </SyntaxHighlighter>
     )
     if (props.game.questions[index].code.length === 0) {
         code = <View></View>
@@ -101,12 +118,77 @@ function TrainingScreen(props) {
                             <Button title={props.game.questions[index].answers[2].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(2)} />
                             <Button title={props.game.questions[index].answers[3].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(3)} />
                         </View>
+                    </View> 
+                    <View style={{marginBottom:20}}>
+                        <Progress step={indexSecondes} steps={60} height={25}/>
                     </View>
                 </View>
+                
             </ImageBackground>
-        </SafeAreaView >
+           
+        </SafeAreaView>
     )
 }
+
+
+
+// PROGRESS BAR 
+
+const Progress = ({ step, steps, height }) => {
+
+    const [width, setWidth] = useState(0)
+    const animatedValue = React.useRef(new Animated.Value(1000)).current;
+    const reactive = React.useRef(new Animated.Value(1000)).current;
+
+    React.useEffect(() => {
+        Animated.timing(animatedValue, {
+            toValue: reactive,
+            duration: 300,
+            useNativeDriver: true
+        }).start()
+    })
+
+    React.useEffect(() => {
+        reactive.setValue(-width + width * step / steps)
+    }, [step, width])
+
+    return (
+        <>
+           
+            <View
+                onLayout={e => {
+                    const newWidth = e.nativeEvent.layout.width;
+                    setWidth(newWidth)
+                }}
+                style={{
+                    height,
+                    backgroundColor: 'rgba(254, 146, 90,0.4)',
+                    borderRadius: height,
+                    overflow: 'hidden'
+                }}>
+                <Text style={{ textAlign: 'center', color: 'white', zIndex: 2, marginTop: 2 }}>{step} sec</Text>
+                <Animated.View style={{
+                   
+                    height,
+                    width: '100%',
+                    backgroundColor: '#F92C8C',
+                    borderRadius: height,
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    transform: [
+                        {
+                            translateX: animatedValue,
+                        },
+                    ],
+                }}
+                />
+            </View>
+        </>
+    )
+}
+
+
 
 const styles = StyleSheet.create({
     userIcon: {
