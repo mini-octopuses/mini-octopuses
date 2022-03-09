@@ -4,6 +4,7 @@ import { Text } from "react-native-elements";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import { Root, Popup } from "react-native-popup-confirm-toast";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
@@ -14,7 +15,6 @@ import configIp from "../config";
 function ProfileSettings(props) {
   const [username, setUsername] = useState(props.user.username);
   const [email, setEmail] = useState(props.user.email);
-  // const [message, setMessage] = useState(null);
 
   async function updateUser() {
     console.log("tutu");
@@ -59,6 +59,22 @@ function ProfileSettings(props) {
     }
   }
 
+  async function deleteUser() {
+    let rawResponse = await fetch(`${configIp.myIp}/delete-user`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `token=${props.user.token}`,
+    });
+    let response = await rawResponse.json();
+    if (response.result) {
+      AsyncStorage.removeItem("token");
+      AsyncStorage.clear();
+      props.navigation.navigate("AllConnexion");
+    } else {
+      console.log("Error: User deletion failed");
+    }
+  }
+
   return (
     <Root>
       <ImageBackground
@@ -68,8 +84,7 @@ function ProfileSettings(props) {
         <View style={StyleGuide.header}>
           <FontAwesome
             onPress={() => {
-              props.navigation.navigate("Profile");
-              // setMessage("");
+              props.navigation.goBack(null);
             }}
             style={{
               marginTop: 30,
@@ -124,7 +139,22 @@ function ProfileSettings(props) {
           />
 
           <SquareButtonBorder
-            onPress={() => props.navigation.navigate("AllConnexion")}
+            onPress={() =>
+              Popup.show({
+                type: "confirm",
+                title: "Attention!",
+                textBody: "Etes vous sûre de vouloir supprimer votre compte ?.",
+                buttonText: "Confirmer",
+                confirmText: "Annuler",
+                callback: () => {
+                  deleteUser();
+                  Popup.hide();
+                },
+                cancelCallback: () => {
+                  Popup.hide();
+                },
+              })
+            }
             buttonTitle="Supprimer le compte"
           />
         </View>

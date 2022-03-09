@@ -252,14 +252,11 @@ router.put("/update-user/", async function (req, res, next) {
 });
 
 router.delete("/delete-user", async function (req, res, next) {
-  console.log("toto");
-  let user = await UserModel.findOne({ token: req.body.token });
-  console.log("tutu", user);
-  if (!user) {
-    return res.json({ result: false, message: "Error: User not found" });
+  let status = await UserModel.deleteOne({ token: req.body.token });
+  if (status.deletedCount !== 0) {
+    return res.json({ result: true });
   }
-  await UserModel.deleteOne({ token: req.body.token });
-  res.json({ result: true });
+  res.json({ result: false });
 });
 
 router.get("/get-user", async function (req, res, next) {

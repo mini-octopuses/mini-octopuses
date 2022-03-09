@@ -14,7 +14,7 @@ function Profile(props) {
     >
       <View style={StyleGuide.header}>
         <FontAwesome
-          onPress={() => props.navigation.navigate("Home")}
+          onPress={() => props.navigation.goBack(null)}
           style={{ marginTop: 30, marginLeft: 10 }}
           name="arrow-left"
           size={25}
@@ -32,10 +32,10 @@ function Profile(props) {
       <View>
         <Image
           style={{ width: 130, height: 130, borderRadius: 50 }}
-          source={require("../assets/Laureline.jpeg")}
+          source={require("../assets/octo_blue.png")}
         />
-        <Text style={{ fontSize: 20, marginBottom: 50 }}>
-          #Laureloop
+        <Text style={{ fontSize: 20, marginBottom: 50, color: 'white' }}>
+          #{props.user.username}
           <FontAwesome5
             name="pen"
             size={24}
@@ -45,7 +45,7 @@ function Profile(props) {
         </Text>
       </View>
 
-      <Text style={{ fontSize: 20, marginBottom: 20 }}>
+      <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>
         Voici ta progression
       </Text>
       <ScrollView style={{ flex: 1 }}></ScrollView>
