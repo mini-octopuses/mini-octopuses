@@ -42,12 +42,12 @@ function Profile(props) {
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Image
             style={{ width: 130, height: 130, position: 'relative', bottom: 30, borderRadius: 100 }}
-            source={require("../assets/Laureline.jpeg")}
+            source={require("../assets/octo_blue.png")}
           />
         </View>
         <View style={{ flexDirection: 'row', position: 'relative', bottom: 15, }}>
           <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center', marginLeft: 10 }}>
-            #Laureloop
+            #{props.user.username}
           </Text>
           <FontAwesome5
             style={{ marginLeft: 10, position: 'relative', bottom: 3 }}

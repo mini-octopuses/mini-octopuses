@@ -25,7 +25,7 @@ function PastBattles(props) {
 
     async function getGame(id, game) {
         props.saveGame(game)
-        props.navigation.navigate("HistoryScreen")
+        props.navigation.navigate("HistoryScreen", { from: 'PastBattles' })
     }
 
     let tab = gameList.map((elem, i) => {

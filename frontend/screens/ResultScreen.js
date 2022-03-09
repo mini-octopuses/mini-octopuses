@@ -46,7 +46,7 @@ function ResultScreen(props) {
             <View style={StyleGuide.footer}>
                 <SquareButtonFilled onPress={() => { generateGame() }} buttonTitle="Rejouer" />
                 <SquareButtonBorder onPress={() => {
-                    props.navigation.navigate("HistoryScreen")
+                    props.navigation.navigate("HistoryScreen", { from: 'ResultScreen' })
                     props.setTimeZero()
                     props.resetPos()
                 }} buttonTitle="Voir les réponses" />
