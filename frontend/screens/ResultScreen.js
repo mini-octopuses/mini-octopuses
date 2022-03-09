@@ -19,7 +19,7 @@ function ResultScreen(props) {
         let rawResponse = await fetch(`${config.myIp}/generate-game`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'deviceLang=EN&topics=JavaScript/Regex'
+            body: `deviceLang=EN&topics=${props.user.topics}`
         });
         let response = await rawResponse.json()
         if (response.result) {
@@ -51,7 +51,7 @@ function ResultScreen(props) {
 }
 
 function mapStateToProps(state) {
-    return ({ game: state.game, score: state.score })
+    return ({ game: state.game, score: state.score, user: state.user })
 }
 function mapDispatchToProps(dispatch) {
     return {

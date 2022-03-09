@@ -6,8 +6,11 @@ import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
 import SwitchComponent from "../components/SwitchComponent";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { connect } from "react-redux";
 
-export default function Settings(props) {
+
+function Settings(props) {
 
 
     const [effetSonore, setEffetSonore] = useState(false);
@@ -31,8 +34,8 @@ export default function Settings(props) {
             </View>
 
             <View>
-                <Image style={{ width: 130, height: 130, borderRadius: 100 }} source={require('../assets/Laureline.jpeg')} />
-                <Text style={{ fontSize: 20, marginBottom: 50, color: 'white', fontWeight: 'bold', textAlign: 'center' }}>#laureloop</Text>
+                <Image style={{ width: 130, height: 130, borderRadius: 100 }} source={require('../assets/octo_blue.png')} />
+                <Text style={{ fontSize: 20, marginBottom: 50, color: 'white', fontWeight: 'bold', textAlign: 'center' }}>#{props.user.username}</Text>
             </View>
 
 
@@ -70,9 +73,18 @@ export default function Settings(props) {
             </View>
 
 
-            <SquareButtonFilled onPress={() => props.navigation.navigate("Home")} buttonTitle="Se déconnecter" />
+            <SquareButtonFilled onPress={() => {
+                AsyncStorage.removeItem("token")
+                AsyncStorage.clear()
+                props.navigation.navigate("AllConnexion")
+            }} buttonTitle="Se déconnecter" />
             <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Supprimer le compte" />
 
         </ImageBackground>
     );
 }
+
+function mapStateToProps(state) {
+    return { user: state.user }
+}
+export default connect(mapStateToProps, null)(Settings)

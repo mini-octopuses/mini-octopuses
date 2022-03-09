@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         margin: 3,
         backgroundColor: ['#F81C8F', '#FFA353'],
         borderRadius: 5,
-        width: Dimensions.get('window').width / 1.4 + 6,
-        height: Dimensions.get('window').height / 13 + 6,
+        width: Dimensions.get('window').width / 1.3 + 6,
+        height: Dimensions.get('window').height / 15 + 6,
     }
 });

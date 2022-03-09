@@ -9,6 +9,8 @@ import configIp from "../config.js";
 import Logo from "../components/Logo";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import { FontAwesome } from "@expo/vector-icons";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 function SignIn(props) {
@@ -24,6 +26,7 @@ function SignIn(props) {
     let backResponse = await user.json();
     if (backResponse.result) {
       props.saveUser(backResponse.user);
+      AsyncStorage.setItem('token', backResponse.user.token);
       props.navigation.navigate("Home");
     }
   };

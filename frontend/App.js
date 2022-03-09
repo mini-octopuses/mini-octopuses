@@ -10,6 +10,7 @@ const Stack = createStackNavigator();
 //* Import all pages
 import SplashScreen from "./screens/SplashScreen";
 import AllConnexion from "./screens/AllConnexion";
+import FacebookPage from "./screens/FacebookPage";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
 import Home from "./screens/Home";
@@ -25,16 +26,14 @@ import Settings from "./screens/Settings";
 import ProfileSetting from "./screens/ProfileSetting";
 import SettingsGuest from "./screens/SettingsGuest";
 
-
 //* Import of the tools required for redux
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 
-import useless from "./reducers/useless";
 import game from "./reducers/game";
 import user from "./reducers/user";
 
-const store = createStore(combineReducers({ useless, game, user }));
+const store = createStore(combineReducers({ game, user }));
 
 export default function App() {
   return (
@@ -45,6 +44,7 @@ export default function App() {
           <Stack.Screen name="AllConnexion" component={AllConnexion} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="FacebookPage" component={FacebookPage} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Categories" component={Categories} />
           <Stack.Screen name="TrainingScreen" component={TrainingScreen} />

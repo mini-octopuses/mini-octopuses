@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Image,StyleSheet, Dimensions } from 'react-native';
 import { Text } from 'react-native-elements';
 
-export default function Logo(){
+export default function Logo({style}){
     return(
-        <View style={styles.container}>
+        <View style={[styles.container,style]}>
             <Image source={require('../assets/Logo.png') } style ={styles.logo} />
             <View style = {styles.titleContainer}>
                 <Image source={require('../assets/LogoText.png') }/>

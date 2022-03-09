@@ -60,26 +60,7 @@ let data = {
                 }
             ]
         },
-        {
-            "title": "Quel opérateur peut être utilisé pour restituer conditionnellement un composant React ?",
-            "code": "",
-            "isFrench": true,
-            "topic": "React",
-            "answers": [
-                {
-                    "answer": "&&", "isCorrect": true
-                },
-                {
-                    "answer": "||", "isCorrect": false
-                },
-                {
-                    "answer": "::", "isCorrect": false
-                },
-                {
-                    "answer": ":?", "isCorrect": false
-                }
-            ]
-        },
+
         {
             "title": "Quel outil React utilise-t-il pour compiler JSX ? ",
             "code": "",
