@@ -69,7 +69,7 @@ function ProfileSettings(props) {
           <FontAwesome
             onPress={() => {
               props.navigation.navigate("Profile");
-              setMessage("");
+              // setMessage("");
             }}
             style={{
               marginTop: 30,

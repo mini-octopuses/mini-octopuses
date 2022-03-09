@@ -56,14 +56,6 @@ function AllConnexion(props) {
     >
       <Logo />
 
-      {/* <View style={StyleGuide.googleButton}>
-        <Image
-          source={require("../assets/google.png")}
-          style={StyleGuide.googlePicto}
-        />
-        <Text style={StyleGuide.titleGoogleButton}> Connexion Google</Text>
-      </View> */}
-
       <TouchableOpacity
         style={StyleGuide.facebookButton}
         onPress={() => props.navigation.navigate("FacebookPage")}

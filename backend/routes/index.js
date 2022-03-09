@@ -251,16 +251,23 @@ router.put("/update-user/", async function (req, res, next) {
   });
 });
 
+router.delete("/delete-user", async function (req, res, next) {
+  console.log("toto");
+  let user = await UserModel.findOne({ token: req.body.token });
+  console.log("tutu", user);
+  if (!user) {
+    return res.json({ result: false, message: "Error: User not found" });
+  }
+  await UserModel.deleteOne({ token: req.body.token });
+  res.json({ result: true });
+});
+
 router.get("/get-user", async function (req, res, next) {
   let user = await UserModel.findOne({ token: req.query.token });
   if (!user) {
     return res.json({ result: false, message: "Error user not found" });
   }
   res.json({ result: true, user });
-});
-
-router.delete("/delete-user", function (req, res, next) {
-  res.json({ result: true });
 });
 
 router.post("/update-user-topics", async function (req, res, nect) {
