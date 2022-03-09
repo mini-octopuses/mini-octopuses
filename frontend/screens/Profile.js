@@ -3,8 +3,6 @@ import { View, Text, ImageBackground, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
-
-import SquareButtonBorder from "../components/SquareButtonBorder";
 import StyleGuide from "../style/styleGuide";
 
 function Profile(props) {
