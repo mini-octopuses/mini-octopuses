@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, ImageBackground, Image, Switch } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
-
-import StyleGuide from "../style/styleGuide";
-import SquareButtonBorder from "../components/SquareButtonBorder";
+import React, { useEffect, useState } from "react";
+import { Text, View } from "react-native";
 import { connect } from "react-redux";
+import SquareButtonBorder from "../components/SquareButtonBorder";
 import config from "../config";
+import StyleGuide from "../style/styleGuide";
+
 
 function PastBattles(props) {
     const [gameList, setGameList] = useState([]);
@@ -29,16 +29,15 @@ function PastBattles(props) {
     }
 
     let tab = gameList.map((elem, i) => {
+        let title = "Bataille " + i
         return (
             <SquareButtonBorder key={i} onPress={() => {
                 getGame(elem._id, elem)
-            }} buttonTitle="Bataille_321" />
+            }} buttonTitle={title} />
         )
     })
 
-    //Ajouter une scollView pour les past battles
     return (
-
         <View style={StyleGuide.container}>
 
             <View style={StyleGuide.header}>
@@ -47,11 +46,6 @@ function PastBattles(props) {
 
             <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>Batailles passées</Text>
             {tab}
-            {/* <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_321" /> */}
-            {/* <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_753" /> */}
-            {/* <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_159" /> */}
-            {/* <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Bataille_852" /> */}
-
         </View>
     );
 }

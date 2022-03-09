@@ -38,23 +38,23 @@ function SplashScreen(props) {
       source={require("../assets/bg.png")}
       style={StyleGuide.container}
     >
- 
+
       <Logo style={{ marginTop: 100 }} />
 
-      <LottieView 
+      <LottieView
         style={styles.loading}
         source={require("../assets/lottie/loading.json")}
         autoPlay
-       />
+      />
     </ImageBackground>
   );
 }
 
 
 const styles = StyleSheet.create({
-  loading:{
-    paddingTop:50,
-    height:400,
+  loading: {
+    paddingTop: 50,
+    height: 400,
   }
 })
 function maDispatchToProps(dispatch) {

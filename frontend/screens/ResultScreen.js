@@ -12,8 +12,9 @@ import config from '../config';
 //* Import icons will be removed later on
 
 function ResultScreen(props) {
-
-
+    useEffect(() => {
+        props.setTimeZero()
+    }, [props.time])
 
     async function generateGame() {
         let rawResponse = await fetch(`${config.myIp}/generate-game`, {
@@ -24,6 +25,8 @@ function ResultScreen(props) {
         let response = await rawResponse.json()
         if (response.result) {
             props.saveGame(response.game)
+            props.setTimeZero()
+            props.resetPos()
             props.navigation.navigate("TrainingScreen");
         }
     }
@@ -42,21 +45,39 @@ function ResultScreen(props) {
 
             <View style={StyleGuide.footer}>
                 <SquareButtonFilled onPress={() => { generateGame() }} buttonTitle="Rejouer" />
-                <SquareButtonBorder onPress={() => props.navigation.navigate("HistoryScreen")} buttonTitle="Voir les réponses" />
-                <SquareButtonBorder onPress={() => props.navigation.navigate("Home")} buttonTitle="Accueil" />
+                <SquareButtonBorder onPress={() => {
+                    props.navigation.navigate("HistoryScreen")
+                    props.setTimeZero()
+                    props.resetPos()
+                }} buttonTitle="Voir les réponses" />
+                <SquareButtonBorder onPress={() => {
+                    props.setTimeZero()
+                    props.resetPos()
+                    props.navigation.navigate("Home")
+                }} buttonTitle="Accueil" />
             </View>
-
         </ImageBackground>
     )
 }
 
 function mapStateToProps(state) {
-    return ({ game: state.game, score: state.score, user: state.user })
+    return ({
+        game: state.game,
+        score: state.score,
+        user: state.user,
+        time: state.time
+    })
 }
 function mapDispatchToProps(dispatch) {
     return {
         saveGame: function (game) {
             dispatch({ type: 'saveGame', game })
+        },
+        setTimeZero: function () {
+            dispatch({ type: 'setTimeZero' })
+        },
+        resetPos: function () {
+            dispatch({ type: 'resetPos' })
         }
     }
 }

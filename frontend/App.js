@@ -32,8 +32,10 @@ import { createStore, combineReducers } from "redux";
 
 import game from "./reducers/game";
 import user from "./reducers/user";
+import time from "./reducers/time";
+import pos from "./reducers/pos";
 
-const store = createStore(combineReducers({ game, user }));
+const store = createStore(combineReducers({ game, user, time, pos }));
 
 export default function App() {
   return (
