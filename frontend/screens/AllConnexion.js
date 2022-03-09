@@ -10,23 +10,12 @@ import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
 import config from "../config";
 import { connect } from "react-redux";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
+
 function AllConnexion(props) {
-  useEffect(() => {
-    async function loadToken() {
-      AsyncStorage.getItem("token", async function (error, data) {
-        let rawResponse = await fetch(`${config.myIp}/get-user?token=${data}`);
-        let response = await rawResponse.json();
-        if (response.result) {
-          props.saveUser(response.user);
-          props.navigation.navigate("Home");
-        }
-      });
-    }
-    loadToken();
-  }, []);
+
 
   function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -55,14 +44,6 @@ function AllConnexion(props) {
       style={StyleGuide.container}
     >
       <Logo />
-
-      {/* <View style={StyleGuide.googleButton}>
-        <Image
-          source={require("../assets/google.png")}
-          style={StyleGuide.googlePicto}
-        />
-        <Text style={StyleGuide.titleGoogleButton}> Connexion Google</Text>
-      </View> */}
 
       <TouchableOpacity
         style={StyleGuide.facebookButton}
