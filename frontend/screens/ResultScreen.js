@@ -36,14 +36,14 @@ function ResultScreen(props) {
             source={require("../assets/Profile.png")}
             style={StyleGuide.container}
         >
-            <FontAwesome style={{ marginTop: 70, color: '#FFCB53' }} name="trophy" size={170} color="white" />
+            <FontAwesome style={{ position: 'absolute', color: '#FFCB53', top: 50 }} name="trophy" size={170} color="white" />
 
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 250 }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 70, marginTop: 250 }}>
                 <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
                 <Text style={{ fontSize: 70, color: 'white' }}>{props.game.score} / 8</Text>
             </View>
 
-            <View style={StyleGuide.footer}>
+            <View >
                 <SquareButtonFilled onPress={() => { generateGame() }} buttonTitle="Rejouer" />
                 <SquareButtonBorder onPress={() => {
                     props.navigation.navigate("HistoryScreen", { from: 'ResultScreen' })

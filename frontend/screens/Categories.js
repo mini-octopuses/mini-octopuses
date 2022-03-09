@@ -6,6 +6,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  Dimensions
 } from "react-native";
 import StyleGuide from "../style/styleGuide";
 import { LinearGradient } from "expo-linear-gradient";
@@ -86,7 +87,7 @@ function Categories(props) {
     <SafeAreaView style={StyleGuide.container}>
 
       <View style={StyleGuide.header}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Image
             style={StyleGuide.profileImageButton}
             source={require("../assets/octo_blue.png")}
@@ -97,7 +98,7 @@ function Categories(props) {
       </View>
 
       <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>
-        Sélectionnes tes themes préférés
+        Sélectionnes tes thèmes préférés
       </Text>
 
       <ScrollView style={{ flex: 1 }}>
@@ -145,7 +146,7 @@ function Categories(props) {
                 ? ["#757575", "#757575"]
                 : ["#F81C8F", "#FFA353"]
             }
-            style={{ borderRadius: 5 }}
+            style={{ borderRadius: 5, width: Dimensions.get('window').width / 1.3 + 6, marginLeft: Dimensions.get('window').width / 10, justifyContent: "center", alignItems: 'center', marginTop: 30 }}
           >
             <View
               style={

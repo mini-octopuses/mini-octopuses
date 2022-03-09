@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, TouchableOpacity } from "react-native";
+import { ImageBackground, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-elements";
 
 import { FontAwesome } from "@expo/vector-icons";
@@ -53,18 +53,20 @@ function AllConnexion(props) {
         <Text style={StyleGuide.titleFacebookButton}> Connexion Facebook</Text>
       </TouchableOpacity>
 
-      <SquareButtonBorder
-        onPress={() => props.navigation.navigate("SignUp")}
-        buttonTitle="S'inscrire"
-      />
-      <SquareButtonBorder
-        onPress={() => props.navigation.navigate("SignIn")}
-        buttonTitle="Se connecter"
-      />
-      <SquareButtonFilled
-        onPress={() => guestSignUp()}
-        buttonTitle="Jouer en tant qu'invité"
-      />
+      <View style={{ marginBottom: 20 }}>
+        <SquareButtonBorder
+          onPress={() => props.navigation.navigate("SignUp")}
+          buttonTitle="S'inscrire"
+        />
+        <SquareButtonBorder
+          onPress={() => props.navigation.navigate("SignIn")}
+          buttonTitle="Se connecter"
+        />
+        <SquareButtonFilled
+          onPress={() => guestSignUp()}
+          buttonTitle="Jouer en tant qu'invité"
+        />
+      </View>
     </ImageBackground>
   );
 }

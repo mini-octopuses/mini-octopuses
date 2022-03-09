@@ -10,7 +10,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function SquareButtonBorder(props) {
     return (
-        <TouchableOpacity onPress={props.onPress} style={{ marginBottom: 12 }} >
+        <TouchableOpacity onPress={props.onPress} style={{ marginBottom: 20 }} >
             <LinearGradient
                 start={[0, 0.5]}
                 end={[1, 0.5]}

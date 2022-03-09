@@ -14,14 +14,16 @@ const StyleGuide = {
         alignItems: 'center',
         width: Dimensions.get('window').width / 1,
         marginBottom: 20,
-        marginTop: 10,
+        marginTop: 20,
+        paddingLeft: 10,
+        paddingRight: 10
     },
     profileImageButton: {
         width: 50,
         height: 50,
         borderRadius: 50,
         marginTop: 30,
-        marginLeft: 10
+        marginLeft: 10,
     },
     buttonTitle: {
         textAlign: "center",
@@ -29,7 +31,15 @@ const StyleGuide = {
         color: 'white',
         fontSize: 20,
     },
-    
+    squareButtonBorder: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 3,
+        backgroundColor: "#2B2B2B",
+        borderRadius: 5,
+        width: Dimensions.get('window').width / 1.3 + 6,
+        height: Dimensions.get('window').height / 15 + 6,
+    },
     squareButtonFilled: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -67,30 +77,18 @@ const StyleGuide = {
         height: Dimensions.get('window').height / 15 + 6,
     },
     footer: {
+        width: Dimensions.get('window').width / 1,
+        height: Dimensions.get('window').height / 6,
         backgroundColor: '#2B2B2B',
         position: 'absolute',
-        bottom: 30,
-    },
-    googleButton: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        borderRadius: 5,
-        marginBottom: 12,
-        backgroundColor: '#fff',
-        width: Dimensions.get('window').width / 1.3 + 6,
-        height: Dimensions.get('window').height / 15 + 6,
-    },
-    titleGoogleButton: {
-        color: '#757575',
-        fontSize: 20,
+        bottom: 0,
     },
     facebookButton: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
         borderRadius: 5,
-        marginBottom: Dimensions.get('window').height / 10,
+        marginBottom: Dimensions.get('window').height / 13,
         backgroundColor: '#4267B2',
         width: Dimensions.get('window').width / 1.3 + 6,
         height: Dimensions.get('window').height / 15 + 6,
@@ -98,10 +96,6 @@ const StyleGuide = {
     titleFacebookButton: {
         color: '#fff',
         fontSize: 20,
-    },
-    googlePicto: {
-        aspectRatio: 2.5,
-        resizeMode: 'contain',
     },
     logo: {
         width: Dimensions.get('window').width / 1.5,
@@ -116,9 +110,9 @@ const StyleGuide = {
         borderRadius: 10,
 
     },
-    titleProfile:{
-        alignItem:'center',
-        flex:1
+    titleProfile: {
+        alignItem: 'center',
+        flex: 1
     }
 };
 

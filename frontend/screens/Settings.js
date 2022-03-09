@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ImageBackground, Image } from "react-native";
+import { View, Text, ImageBackground, Image, Dimensions } from "react-native";
 import { FontAwesome, Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 import StyleGuide from "../style/styleGuide";
@@ -33,9 +33,16 @@ function Settings(props) {
                 <FontAwesome onPress={() => props.navigation.goBack(null)} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
             </View>
 
-            <View>
-                <Image style={{ width: 130, height: 130, borderRadius: 100 }} source={require('../assets/octo_blue.png')} />
-                <Text style={{ fontSize: 20, marginBottom: 50, color: 'white', fontWeight: 'bold', textAlign: 'center' }}>#{props.user.username}</Text>
+            <View style={{ justifyContent: 'center', alignItems: 'center', position: "relative", top: -40 }}>
+                <Image
+                    style={{ width: Dimensions.get('window').width / 3.5, height: Dimensions.get('window').height / 5.5, borderRadius: 100 }}
+                    source={require("../assets/octo_blue.png")}
+                />
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center', marginLeft: 10 }}>
+                        #{props.user.username}
+                    </Text>
+                </View>
             </View>
 
 
@@ -72,18 +79,13 @@ function Settings(props) {
                 <Text onPress={isLanguage} style={{ color: langageFr ? 'white' : 'orange', fontWeight: 'bold' }}> EN </Text>
             </View>
 
-
-            <SquareButtonFilled onPress={() => {
-                AsyncStorage.removeItem("token")
-                AsyncStorage.clear()
-                props.navigation.navigate("AllConnexion")
-            }} buttonTitle="Se déconnecter" />
-            <SquareButtonBorder onPress={() => {
-                AsyncStorage.removeItem("token")
-                AsyncStorage.clear()
-                props.navigation.navigate("AllConnexion")
-            }} buttonTitle="Supprimer le compte" />
-
+            <View style={{ marginBottom: 30 }}>
+                <SquareButtonFilled onPress={() => {
+                    AsyncStorage.removeItem("token")
+                    AsyncStorage.clear()
+                    props.navigation.navigate("AllConnexion")
+                }} buttonTitle="Se déconnecter" />
+            </View>
         </ImageBackground>
     );
 }

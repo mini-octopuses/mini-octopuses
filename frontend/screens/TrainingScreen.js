@@ -84,7 +84,7 @@ function TrainingScreen(props) {
                 <View style={{ flex: 1 }}>
                     {/* //* This is the header */}
                     <View style={StyleGuide.header}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Image
                                 style={StyleGuide.profileImageButton}
                                 source={require("../assets/octo_blue.png")}
@@ -96,7 +96,7 @@ function TrainingScreen(props) {
 
                     {/* //* This is the code block with the questions */}
                     <View style={styles.container}>
-                        <Text style={{ fontSize: 34, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[props.pos].title}</Text>
+                        <Text style={{ fontSize: 22, color: 'white', textAlign: 'center' }}>{props.game.questions[props.pos].title}</Text>
                         {code}
                     </View>
 

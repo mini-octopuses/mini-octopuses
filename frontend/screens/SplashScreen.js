@@ -53,7 +53,7 @@ function SplashScreen(props) {
 
 const styles = StyleSheet.create({
   loading: {
-    paddingTop: 50,
+    // paddingTop: 50,
     height: 400,
   }
 })
