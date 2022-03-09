@@ -14,6 +14,9 @@ let data_JS_practical = require("../dist/js_practical");
 let data_REGEX_theoretical = require("../dist/regex_theoretical");
 let data_react = require("../dist/react");
 let data_reactNative = require("../dist/react_native");
+let data_html = require("../dist/html")
+let data_mongo = require('../dist/mongo')
+let data_express = require('../dist/express')
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -43,6 +46,9 @@ router.post("/populate-database", async function (req, res, next) {
   pushInDB(data_REGEX_theoretical);
   pushInDB(data_react);
   pushInDB(data_reactNative);
+  pushInDB(data_html)
+  pushInDB(data_mongo)
+  pushInDB(data_express)
   res.json({ result: true });
 });
 
@@ -154,34 +160,9 @@ router.post("/generate-game", async function (req, res, next) {
   res.json({ result: true, game: saveStatus });
 });
 
-router.get("/generate-game", async function (req, res, next) {
-  let allQuestions = await QuestionModel.find();
-
-  //let topics = req.body.topics.split('+')
-  //  let topics = req.body
-  //  let gameQuestions = [];
-  //  for (const elem of topics) {
-  //    let data = await QuestionModel.find({ topic: elem })
-  //    if (data.length !== 0) {
-  //      shuffleArray(data)
-  //      for (let i = 0; i < 8; i++) {
-  //        gameQuestions.push(data[i])
-  //      }
-  //    }
-  //  }
-  //  if (gameQuestions.length !== 8) {
-  //    shuffleArray(gameQuestions)
-  //    gameQuestions = gameQuestions.slice(0, 8);
-  //  }
-  res.json({ result: true, questions: allQuestions }); // result: true , game: gameQuestions
-});
-
 router.post("/save-game", async function (req, res, next) {
   let parsedGame = JSON.parse(req.body.game);
-  await GameModel.updateOne(
-    { _id: parsedGame._id },
-    { score: parsedGame.score, userAnswers: parsedGame.userAnswers }
-  );
+  await GameModel.updateOne({ _id: parsedGame._id }, { score: parsedGame.score, userAnswers: parsedGame.userAnswers });
 
   let game = await GameModel.findOne({ _id: parsedGame._id });
   if (!game) {
@@ -214,41 +195,24 @@ router.get("/get-user-all-games", async function (req, res, next) {
 });
 
 router.get("/get-game", async function (req, res, next) {
-  let game = await GameModel.findOne({ _id: req.query.id })
-    .populate("questions")
-    .exec();
+  let game = await GameModel.findOne({ _id: req.query.id }).populate("questions").exec();
   if (!game) {
     req.json({ result: false, message: "Error: game not found" });
   }
-  console.log(game);
   res.json({ result: true, game });
 });
 
-//* Routes for user
 router.put("/update-user/", async function (req, res, next) {
-  console.log("coucou");
   let user = await UserModel.findOne({ token: req.body.token });
   if (!user) {
     return res.json({ result: false, message: "Error: User not found" });
   }
-  await UserModel.updateOne(
-    { token: req.body.token },
-    { username: req.body.username, email: req.body.email }
-  );
+  await UserModel.updateOne({ token: req.body.token }, { username: req.body.username, email: req.body.email });
   let updatedUser = await UserModel.findOne({ token: req.body.token });
   if (!updatedUser) {
-    console.log("toto", updatedUser);
-    return res.json({
-      result: false,
-      message: "Error: Updated user not found",
-    });
+    return res.json({ result: false, message: "Error: Updated user not found" });
   }
-
-  res.json({
-    result: true,
-    updatedUser,
-    message: "Vos modifications ont bien été enregistrées.",
-  });
+  res.json({ result: true, updatedUser, message: "Vos modifications ont bien été enregistrées." });
 });
 
 router.delete("/delete-user", async function (req, res, next) {
@@ -282,30 +246,5 @@ router.post("/update-user-topics", async function (req, res, nect) {
   }
   res.json({ result: true });
 });
-
-//* OR
-// router.post('/update-user/:param', function (req, res, nect) { //not sure of the synthax
-//   res.json({ result: true, user });
-// })
-
-//* OR
-// router.post('/update-user-topics', function (req, res, nect) {
-//   res.json({ result: true, user });
-// })
-// router.post('/update-user-played-game', function (req, res, nect) {
-//   res.json({ result: true, user });
-// })
-// router.post('/update-user-picture', function (req, res, nect) {
-//   res.json({ result: true, user });
-// })
-// router.post('/update-user-username', function (req, res, nect) {
-//   res.json({ result: true, user });
-// })
-// router.post('/update-user-password', function (req, res, nect) {
-//   res.json({ result: true, user });
-// })
-// router.post('/update-user-settings', function (req, res, nect) {
-//   res.json({ result: true, user });
-// })
 
 module.exports = router;
