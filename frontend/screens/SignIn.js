@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
 import { Text } from "react-native-elements";
 import { connect } from "react-redux";
 
@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isFocus,setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
 
   const signIn = async () => {
@@ -44,8 +44,14 @@ function SignIn(props) {
           color="white"
         />
       </View>
-      {isFocus ? <Text></Text> : <Logo />}
-      <Text h3>Connexion</Text>
+
+      {isFocus ? <Text></Text> : <View style={{
+        width: Dimensions.get("window").width / 1.2,
+        height: Dimensions.get("window").height / 2.3,
+        marginTop: -50,
+        marginBottom: 30,
+      }}><Logo /></View>}
+      <Text style={{ color: "white", fontSize: 22 }}>Connexion</Text>
 
       <FormInput
         placeholder="Email"

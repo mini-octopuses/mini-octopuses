@@ -6,6 +6,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  Dimensions
 } from "react-native";
 import StyleGuide from "../style/styleGuide";
 import { LinearGradient } from "expo-linear-gradient";
@@ -61,15 +62,21 @@ function Categories(props) {
 
   async function saveTopicsRemote() {
     props.saveTopics(selectedTopics)
+    console.log("before topic")
+
 
     let rawResponse = await fetch(`${config.myIp}/update-user-topics`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `deviceLang=EN&topics=${props.user.topics}&token=${props.user.token}`
     });
+    console.log("after topic")
+
     let response = await rawResponse.json()
     if (response.result) {
+      console.log("before game")
       generateGame();
+      console.log("after game")
     } else {
       console.log("Error: Could not update user's topics in Database")
     }
@@ -80,7 +87,7 @@ function Categories(props) {
     <SafeAreaView style={StyleGuide.container}>
 
       <View style={StyleGuide.header}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Image
             style={StyleGuide.profileImageButton}
             source={require("../assets/octo_blue.png")}
@@ -91,7 +98,7 @@ function Categories(props) {
       </View>
 
       <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>
-        Sélectionnes tes themes préférés
+        Sélectionnes tes thèmes préférés
       </Text>
 
       <ScrollView style={{ flex: 1 }}>
@@ -139,7 +146,7 @@ function Categories(props) {
                 ? ["#757575", "#757575"]
                 : ["#F81C8F", "#FFA353"]
             }
-            style={{ borderRadius: 5 }}
+            style={{ borderRadius: 5, width: Dimensions.get('window').width / 1.3 + 6, marginLeft: Dimensions.get('window').width / 10, justifyContent: "center", alignItems: 'center', marginTop: 30 }}
           >
             <View
               style={

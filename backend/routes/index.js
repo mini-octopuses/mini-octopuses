@@ -126,8 +126,10 @@ router.post("/generate-game", async function (req, res, next) {
   let topics = req.body.topics.split(",");
   let gameQuestions = [];
 
+
   for (const elem of topics) {
     let data = await QuestionModel.find({ topic: elem });
+
     if (data.length !== 0) {
       shuffleArray(data);
       for (let i = 0; i < 8; i++) {
