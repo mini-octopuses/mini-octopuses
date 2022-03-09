@@ -16,7 +16,7 @@ function SignUp(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [isFocus,setIsFocus] = useState(false);
   const signUp = async () => {
     let user = await fetch(`${config.myIp}/sign-up`, {
       method: "POST",
@@ -42,10 +42,12 @@ function SignUp(props) {
           color="white"
         />
       </View>
-      <Logo />
+      {isFocus ? <Text></Text> : <Logo />}
       <Text h3>Inscription</Text>
 
       <FormInput
+        focus={() => setIsFocus(true)}
+        isDefocus={() => setIsFocus(false)}
         placeholder="Prénom / Pseudo"
         icon="pseudo"
         value={username}
@@ -53,12 +55,16 @@ function SignUp(props) {
       />
 
       <FormInput
+        focus={() => setIsFocus(true)}
+        isDefocus={() => setIsFocus(false)}
         placeholder="Email"
         icon="email"
         value={email}
         onChangeText={(val) => setEmail(val)}
       />
       <FormInput
+        focus={() => setIsFocus(true)}
+        isDefocus={() => setIsFocus(false)}
         placeholder="Mot de passe"
         value={password}
         onChangeText={(val) => setPassword(val)}
