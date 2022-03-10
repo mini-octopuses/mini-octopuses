@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
-import LottieView from 'lottie-react-native'
+import LottieView from "lottie-react-native";
 
 import Logo from "../components/Logo";
 import StyleGuide from "../style/styleGuide";
@@ -38,7 +38,6 @@ function SplashScreen(props) {
       source={require("../assets/bg.png")}
       style={StyleGuide.container}
     >
-
       <Logo style={{ marginTop: 100 }} />
 
       <LottieView
@@ -50,13 +49,12 @@ function SplashScreen(props) {
   );
 }
 
-
 const styles = StyleSheet.create({
   loading: {
     // paddingTop: 50,
-    height: 400,
-  }
-})
+    height: 350,
+  },
+});
 function maDispatchToProps(dispatch) {
   return {
     saveUser: function (gameUser) {

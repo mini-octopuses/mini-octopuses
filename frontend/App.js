@@ -24,7 +24,7 @@ import PastBattles from "./screens/PastBattles";
 import HistoryScreen from "./screens/HistoryScreen";
 import Settings from "./screens/Settings";
 import ProfileSetting from "./screens/ProfileSetting";
-import SettingsGuest from "./screens/SettingsGuest";
+import SettingsGuestOk from "./screens/SettingsGuestOk";
 
 //* Import of the tools required for redux
 import { Provider } from "react-redux";
@@ -54,7 +54,7 @@ export default function App() {
           <Stack.Screen name="PastBattles" component={PastBattles} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="ProfileSetting" component={ProfileSetting} />
-          <Stack.Screen name="SettingsGuest" component={SettingsGuest} />
+          <Stack.Screen name="SettingsGuestOk" component={SettingsGuestOk} />
           <Stack.Screen name="ResultScreen" component={ResultScreen} />
           <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
         </Stack.Navigator>

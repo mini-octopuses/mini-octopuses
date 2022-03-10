@@ -18,12 +18,20 @@ const StyleGuide = {
         paddingLeft: 10,
         paddingRight: 10
     },
+    titleProfile: {
+        alignItem: 'center',
+        flex: 1
+    },
     profileImageButton: {
         width: 50,
         height: 50,
         borderRadius: 50,
         marginTop: 30,
         marginLeft: 10,
+    },
+    logo: {
+        width: Dimensions.get('window').width / 1.5,
+        resizeMode: 'contain',
     },
     buttonTitle: {
         textAlign: "center",
@@ -76,12 +84,9 @@ const StyleGuide = {
         width: Dimensions.get('window').width / 1.3 + 6,
         height: Dimensions.get('window').height / 15 + 6,
     },
-    footer: {
-        width: Dimensions.get('window').width / 1,
-        height: Dimensions.get('window').height / 6,
-        backgroundColor: '#2B2B2B',
-        position: 'absolute',
-        bottom: 0,
+    titleFacebookButton: {
+        color: '#fff',
+        fontSize: 20,
     },
     facebookButton: {
         flexDirection: 'row',
@@ -93,14 +98,6 @@ const StyleGuide = {
         width: Dimensions.get('window').width / 1.3 + 6,
         height: Dimensions.get('window').height / 15 + 6,
     },
-    titleFacebookButton: {
-        color: '#fff',
-        fontSize: 20,
-    },
-    logo: {
-        width: Dimensions.get('window').width / 1.5,
-        resizeMode: 'contain',
-    },
     input: {
         flex: 1,
         justfyContent: "center",
@@ -108,12 +105,14 @@ const StyleGuide = {
         height: Dimensions.get('window').height / 15,
         backgroundColor: "#fff",
         borderRadius: 10,
-
     },
-    titleProfile: {
-        alignItem: 'center',
-        flex: 1
-    }
+    footer: {
+        width: Dimensions.get('window').width / 1,
+        height: Dimensions.get('window').height / 6,
+        backgroundColor: '#2B2B2B',
+        position: 'absolute',
+        bottom: 0,
+    },
 };
 
 export default StyleGuide;
