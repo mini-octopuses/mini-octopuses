@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ImageBackground, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-elements";
 
@@ -15,8 +15,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 function AllConnexion(props) {
-
-
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);

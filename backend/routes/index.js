@@ -9,10 +9,6 @@ const GameModel = require("../models/game");
 const QuestionModel = require("../models/question");
 const TopicModel = require("../models/topic");
 
-// let data_JS_theoretical = require("../dist/js_theoretical");
-// let data_JS_practical = require("../dist/js_practical");
-// let data_REGEX_theoretical = require("../dist/regex_theoretical");
-
 let data_react = require("../dist/react");
 let data_reactNative = require("../dist/react_native");
 let data_html = require("../dist/html")
@@ -22,7 +18,6 @@ let data_css = require('../dist/css')
 let data_javaScript = require('../dist/javaScript')
 let data_regex = require('../dist/regex')
 
-/* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
@@ -45,9 +40,6 @@ async function pushInDB(data) {
   }
 }
 router.post("/populate-database", async function (req, res, next) {
-  // pushInDB(data_JS_theoretical);
-  // pushInDB(data_JS_practical);
-  // pushInDB(data_REGEX_theoretical);
   pushInDB(data_react);
   pushInDB(data_reactNative);
   pushInDB(data_html)
@@ -59,43 +51,27 @@ router.post("/populate-database", async function (req, res, next) {
   res.json({ result: true });
 });
 
-//* Routes for sign-up and sign-in
-// page sign up fonctionnelle mais il faut rajouter les vérification des doublons et des mails (la regex en dessous s'occupe des mail mais il faut rediriger)
 router.post("/sign-up", async function (req, res, next) {
-  // const regexMail = new RegExp(
-  //   /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
-  // );
-
-  //recherche si l'utilisateur existe pour ne pas refaire la manipulation
   let user = await UserModel.findOne({ email: req.body.email });
-  let passwordHash = bcrypt.hashSync(req.body.password, 10);
 
-  // if (!regexMail.test(req.body.email)) {
-  //   return res.json({ result: false, message: "Invalid email" })
-  // }
-
-  //si le user n'existe pas alors je vais créer un nouveau user
   if (!user) {
     let newUser = new UserModel({
       username: req.body.username,
-      password: passwordHash,
+      password: bcrypt.hashSync(req.body.password, 10),
       email: req.body.email,
       token: uid2(32),
       profilPicture: "temporaire String picture",
       isGuest: req.body.isGuest === "false" ? false : true,
-      // isGuest: false,
       topics: [],
       gameList: [],
       progression: [],
     });
 
-    //Sauvegarde du nouveau user en BDD
     let newUserStatus = await newUser.save();
-    // renvoie un état en fonction du résultat de la création
     if (!newUserStatus) {
       return res.json({
         result: false,
-        message: "La création de votre compte a rencontré un problème",
+        message: "Erreur: La création de votre compte a rencontré un problème",
       });
     } else {
       return res.json({ result: true, user: newUserStatus });

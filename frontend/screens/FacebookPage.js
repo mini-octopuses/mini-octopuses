@@ -5,9 +5,6 @@ import { connect } from "react-redux";
 import config from "../config";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-import StyleGuide from "../style/styleGuide";
-
 function FacebookPage(props) {
 
   function getRandomInt(min, max) {
@@ -53,11 +50,7 @@ function FacebookPage(props) {
             borderRadius: 10,
             backgroundColor: "#4267B2",
           }}
-          onPress={() => {
-            facebookSignUp()
-            // props.navigation.navigate("Home")
-          }
-          }
+          onPress={() => { facebookSignUp() }}
           title="Se connecter en tant que Hiken"
         ></Button>
         <Button

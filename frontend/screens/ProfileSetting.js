@@ -17,7 +17,6 @@ function ProfileSettings(props) {
   const [email, setEmail] = useState(props.user.email);
 
   async function updateUser() {
-    console.log("tutu");
     let rawResponse = await fetch(`${configIp.myIp}/update-user`, {
       method: "PUT",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -26,7 +25,6 @@ function ProfileSettings(props) {
     let response = await rawResponse.json();
     if (response.result) {
       props.saveUser(response.updatedUser);
-      // setMessage(response.message);
       Popup.show({
         icon: require("../assets/user.png"),
         type: "success",
@@ -114,7 +112,6 @@ function ProfileSettings(props) {
         </View>
 
         <View style={{ marginTop: Dimensions.get("window").height / 3 }}>
-          {/* <Text style={{ textAlign: "center", color: "#fff" }}>{message}</Text> */}
           <FormInput
             placeholder="Prénom / Pseudo"
             icon="updatePseudo"
@@ -163,7 +160,6 @@ function ProfileSettings(props) {
   );
 }
 
-// ATTENTION lorsqu'on veut lire une props redux il faut obligatoirement mettre la fonction et l'exporter
 function mapStatesToProps(state) {
   return { user: state.user };
 }

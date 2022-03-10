@@ -3,7 +3,6 @@ import { View, Text, ImageBackground, Image, Dimensions } from "react-native";
 import { FontAwesome, Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 import StyleGuide from "../style/styleGuide";
-import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
 import SwitchComponent from "../components/SwitchComponent";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -11,14 +10,11 @@ import { connect } from "react-redux";
 
 
 function Settings(props) {
-
-
     const [effetSonore, setEffetSonore] = useState(false);
     const [musique, setMusique] = useState(false);
     const [vibration, setVibration] = useState(false);
     const [notification, setNotification] = useState(false);
     const [langageFr, setLangageFr] = useState(true);
-
 
     const isLanguage = () => {
         setLangageFr(!langageFr)

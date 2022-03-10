@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, Pressable, ImageBackground, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
@@ -61,7 +60,6 @@ function HistoryScreen(props) {
                 style={StyleGuide.container}
             >
                 <View style={{ flex: 1 }}>
-                    {/* //* This is the header */}
                     <View style={StyleGuide.header}>
                         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Image
@@ -73,15 +71,12 @@ function HistoryScreen(props) {
                         <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
                     </View>
 
-                    {/* //* This is the code block with the questions */}
                     <View style={styles.container}>
                         <Text style={{ fontSize: 22, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[index].title}</Text>
                         {code}
                     </View>
 
-                    {/* //*Container for answers */}
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        {/* //*Display of the answers */}
                         <View style={{ flexDirection: 'row' }}>
                             <Button title={props.game.questions[index].answers[0].answer} buttonStyle={setButtonStyle(0)} />
                             <Button title={props.game.questions[index].answers[1].answer} buttonStyle={setButtonStyle(1)} />
@@ -91,7 +86,6 @@ function HistoryScreen(props) {
                             <Button title={props.game.questions[index].answers[3].answer} buttonStyle={setButtonStyle(3)} />
                         </View>
 
-                        {/* //*Display of prev and next */}
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', width: windowWidth / 1.1, padding: 10 }}>
                             <Pressable onPress={() => {
                                 index > 0 ? setIndex(index - 1) : setIndex(0)

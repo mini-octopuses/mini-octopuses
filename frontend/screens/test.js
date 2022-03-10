@@ -17,7 +17,6 @@ function TestPage() {
       <View>
         <TouchableOpacity
           onPress={() => {
-            console.log("toto");
             Toast.show({
               title: "Dikkat!",
               text: "Mutlak özgürlük, kendi başına hiçbir anlam ifade etmez.",
