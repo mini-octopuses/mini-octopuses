@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function SquareButtonFilled(props) {
+export default function SquareButtonFilled(props, style) {
     return (
-        <TouchableOpacity onPress={props.onPress} style={{ marginBottom: 12 }}>
+        <TouchableOpacity onPress={props.onPress} style={[{ marginBottom: 20 }, style]}>
             <LinearGradient
                 start={[0, 0.5]}
                 end={[1, 0.5]}

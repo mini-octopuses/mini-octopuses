@@ -18,7 +18,7 @@ function Home(props) {
   return (
     <SafeAreaView style={StyleGuide.container}>
       <View style={StyleGuide.header}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Image
             style={StyleGuide.profileImageButton}
             source={require("../assets/octo_blue.png")}
@@ -36,9 +36,9 @@ function Home(props) {
         />
       </View>
 
-      <Logo />
+      <Logo style={{ marginTop: -40 }} />
 
-      <View style={(StyleGuide.footer, { alignItems: "center" })}>
+      {/* <View style={(StyleGuide.footer)}>
         <Text
           style={{
             fontSize: 20,
@@ -47,16 +47,16 @@ function Home(props) {
           }}
         >
           Choisis le mode de jeu
-        </Text>
-        <SquareButtonFilled
-          onPress={() => props.navigation.navigate("Categories")}
-          buttonTitle="Entrainement"
-        />
-        <SquareButtonFilled
-          onPress={() => props.navigation.navigate("Categories")}
-          buttonTitle="Duel"
-        />
-      </View>
+        </Text> */}
+      <SquareButtonFilled
+        onPress={() => props.navigation.navigate("Categories")}
+        buttonTitle="Entrainement"
+      />
+      <SquareButtonFilled
+        onPress={() => props.navigation.navigate("Categories")}
+        buttonTitle="Duel"
+      />
+      {/* </View> */}
     </SafeAreaView>
   );
 }

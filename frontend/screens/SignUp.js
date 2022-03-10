@@ -11,12 +11,13 @@ import Logo from "../components/Logo";
 import { FontAwesome } from "@expo/vector-icons";
 
 import config from "../config";
+import { ScrollView } from "react-native-gesture-handler";
 
 function SignUp(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isFocus,setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
   const signUp = async () => {
     let user = await fetch(`${config.myIp}/sign-up`, {
       method: "POST",
@@ -42,8 +43,14 @@ function SignUp(props) {
           color="white"
         />
       </View>
-      {isFocus ? <Text></Text> : <Logo />}
-      <Text h3>Inscription</Text>
+
+      {isFocus ? <Text></Text> : <View style={{
+        width: Dimensions.get("window").width / 1.2,
+        height: Dimensions.get("window").height / 2.3,
+        marginTop: -50,
+        marginBottom: 30,
+      }}><Logo /></View>}
+      <Text style={{ color: "white", fontSize: 22 }}>Inscription</Text>
 
       <FormInput
         focus={() => setIsFocus(true)}
@@ -69,6 +76,7 @@ function SignUp(props) {
         value={password}
         onChangeText={(val) => setPassword(val)}
       />
+
 
       <SquareButtonBorder onPress={() => signUp()} buttonTitle="Valider" />
     </View>
