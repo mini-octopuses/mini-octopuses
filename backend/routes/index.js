@@ -17,6 +17,7 @@ let data_reactNative = require("../dist/react_native");
 let data_html = require("../dist/html")
 let data_mongo = require('../dist/mongo')
 let data_express = require('../dist/express')
+let data_css = require('../dist/css')
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -49,6 +50,7 @@ router.post("/populate-database", async function (req, res, next) {
   pushInDB(data_html)
   pushInDB(data_mongo)
   pushInDB(data_express)
+  pushInDB(data_css)
   res.json({ result: true });
 });
 
