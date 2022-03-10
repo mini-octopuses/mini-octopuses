@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, ImageBackground, TouchableOpacity, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';

@@ -38,16 +38,6 @@ function Home(props) {
 
       <Logo style={{ marginTop: -40 }} />
 
-      {/* <View style={(StyleGuide.footer)}>
-        <Text
-          style={{
-            fontSize: 20,
-            marginBottom: 20,
-            color: "white",
-          }}
-        >
-          Choisis le mode de jeu
-        </Text> */}
       <SquareButtonFilled
         onPress={() => props.navigation.navigate("Categories")}
         buttonTitle="Entrainement"
@@ -56,7 +46,6 @@ function Home(props) {
         onPress={() => props.navigation.navigate("Categories")}
         buttonTitle="Duel"
       />
-      {/* </View> */}
     </SafeAreaView>
   );
 }

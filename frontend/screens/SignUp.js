@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image, TouchableOpacity, Dimensions } from "react-native";
+import { View, Dimensions } from "react-native";
 import { Text } from "react-native-elements";
 import { connect } from "react-redux";
 
@@ -11,7 +11,6 @@ import Logo from "../components/Logo";
 import { FontAwesome } from "@expo/vector-icons";
 
 import config from "../config";
-import { ScrollView } from "react-native-gesture-handler";
 
 function SignUp(props) {
   const [username, setUsername] = useState("");

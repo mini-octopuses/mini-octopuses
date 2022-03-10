@@ -88,16 +88,16 @@ let data = {
             "topic": "React",
             "answers": [
                 {
-                    "answer": `import [Component] from 'react'": "2, 0`, "isCorrect": false
+                    "answer": `import [Component] from 'react'`, "isCorrect": false
                 },
                 {
-                    "answer": `import { Component } from 'react'": "4, 0`, "isCorrect": false
+                    "answer": `import { Component } from react`, "isCorrect": false
                 },
                 {
-                    "answer": `import Component from 'react": "1, -1`, "isCorrect": false
+                    "answer": `import Component from '../react'`, "isCorrect": false
                 },
                 {
-                    "answer": `import React.Component from 'react": "4, -1`, "isCorrect": true
+                    "answer": `import React.Component from 'react'`, "isCorrect": true
                 }
             ]
         },
@@ -151,7 +151,7 @@ let data = {
                     "answer": "Google", "isCorrect": false
                 },
                 {
-                    "answer": "Facebook", "isCorrect": true
+                    "answer": "Meta", "isCorrect": true
                 },
                 {
                     "answer": "Apple", "isCorrect": false
@@ -177,7 +177,7 @@ let data = {
                     "answer": "React Router", "isCorrect": false
                 },
                 {
-                    "answer": "TexReact ContexttInput ", "isCorrect": true
+                    "answer": "Text React Context-Input ", "isCorrect": true
                 }
             ]
         }

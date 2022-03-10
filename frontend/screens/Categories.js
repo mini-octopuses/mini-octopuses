@@ -41,8 +41,9 @@ function Categories(props) {
     });
     let response = await rawResponse.json()
     if (response.result) {
-      //* Check backend not responding with the correct schema
       props.saveGame(response.game)
+      props.setTimeZero()
+      props.resetPos()
       props.navigation.navigate("TrainingScreen");
     } else {
       console.log("Error questions not found")
@@ -62,21 +63,14 @@ function Categories(props) {
 
   async function saveTopicsRemote() {
     props.saveTopics(selectedTopics)
-    console.log("before topic")
-
-
     let rawResponse = await fetch(`${config.myIp}/update-user-topics`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `deviceLang=EN&topics=${props.user.topics}&token=${props.user.token}`
     });
-    console.log("after topic")
-
     let response = await rawResponse.json()
     if (response.result) {
-      console.log("before game")
       generateGame();
-      console.log("after game")
     } else {
       console.log("Error: Could not update user's topics in Database")
     }
@@ -167,14 +161,24 @@ function Categories(props) {
 function mapStateToProps(state) {
   return { game: state.game, user: state.user };
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     saveGame: function (game) {
       dispatch({ type: "saveGame", game });
+    },
+    setTimeZero: function () {
+      dispatch({ type: 'setTimeZero' })
+    },
+    resetPos: function () {
+      dispatch({ type: 'resetPos' })
     },
     saveTopics: function (topics) {
       dispatch({ type: "saveTopics", topics })
     }
   };
 }
+
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
