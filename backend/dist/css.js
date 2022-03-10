@@ -216,10 +216,6 @@ let data = {
                 },
             ],
         },
-
-
-
-
         {
             "title": "Quelle déclaration de Flexbox n'existe pas ?",
             "code": "",
@@ -280,7 +276,7 @@ let data = {
                 },
                 {
                     "answer": "grid",
-                    "isCorrect": false,
+                    "isCorrect": true,
                 },
                 {
                     "answer": "bootstrap",
@@ -288,7 +284,7 @@ let data = {
                 },
                 {
                     "answer": "display",
-                    "isCorrect": true,
+                    "isCorrect": false,
                 },
             ],
         },

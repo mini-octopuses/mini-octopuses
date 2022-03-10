@@ -1,7 +1,7 @@
 let data = {
     "questions": [
         {
-            "title": "What is the value of sum at the of the loop ?",
+            "title": "Quelle est la somme de cette boucle?",
             "code": "let sum = 0;\n\nfor (let i = 0; i <= 3; i++) {\n\tsum += i;\n}",
             "isFrench": false,
             "topic": "JavaScript",
@@ -21,7 +21,7 @@ let data = {
             ]
         },
         {
-            "title": "What will be displayed by console.log() ?",
+            "title": "Que s'affichera dans via le console.log() ?",
             "code": "let sum;\n\nconsole.log(sum)",
             "isFrench": false,
             "topic": "JavaScript",
@@ -33,15 +33,15 @@ let data = {
                     "answer": "undefined", "isCorrect": true
                 },
                 {
-                    "answer": "this code doesn't work", "isCorrect": false
+                    "answer": "ce code ne fonctionne pas", "isCorrect": false
                 },
                 {
-                    "answer": "nothing", "isCorrect": false
+                    "answer": "rien", "isCorrect": false
                 }
             ]
         },
         {
-            "title": "What is the output of the following code ?",
+            "title": "Quelle est la sortie du code suivant ?",
             "code": `let str='hello';\nlet num=12;\n\nconsole.log(hello+num)`,
             "isFrench": false,
             "topic": "JavaScript",
@@ -56,32 +56,32 @@ let data = {
                     "answer": "hello 12", "isCorrect": false
                 },
                 {
-                    "answer": "It gives an error", "isCorrect": false
+                    "answer": "Cela produit une erreure", "isCorrect": false
                 }
             ]
         },
         {
-            "title": "What does the following code do ?",
+            "title": "Que fait le code suivant ?",
             "code": "let str;\n\nstr.charAt(0).toUpperCase() + str.slice(1);",
             "isFrench": false,
             "topic": "JavaScript",
             "answers": [
                 {
-                    "answer": "It changes the whole string to uppercase", "isCorrect": false
+                    "answer": "Cela change toute la string en majuscule", "isCorrect": false
                 },
                 {
-                    "answer": "It changes the first letter to uppercase", "isCorrect": false
+                    "answer": "Cela change la premiere lettre en majuscule", "isCorrect": false
                 },
                 {
-                    "answer": "It changes the string to and array of characters", "isCorrect": false
+                    "answer": "Cela change la string en chaine de caractère", "isCorrect": false
                 },
                 {
-                    "answer": "It doesn't work", "isCorrect": true
+                    "answer": "Cela ne fonctionne pas", "isCorrect": true
                 }
             ]
         },
         {
-            "title": "What is the output of the following code ?",
+            "title": "Quelle est la sortie du code suivant ?",
             "code": "const array = ['hello', 'my', 'name', 'is', 'John'];\n\nconst result = array.filter(e => e.length >= 4)\n\n;console.log(result);",
             "isFrench": false,
             "topic": "JavaScript",
@@ -101,7 +101,7 @@ let data = {
             ]
         },
         {
-            "title": "What will the output of the following code be ?",
+            "title": "Quelle est la sortie du code suivant ?",
             "code": "const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];\n\nconsole.log(beasts.indexOf('bison', 2));\nconsole.log(beasts.indexOf('giraffe'));",
             "isFrench": false,
             "topic": "JavaScript",
@@ -121,7 +121,7 @@ let data = {
             ]
         },
         {
-            "title": "What is missing to display the weight in kg ?",
+            "title": "Que manque t-il pour afficher le poids en kg ?",
             "code": "var obj = {fn: 'Martin', ln: 'Harper', age: 26, weight: 48};\n\nvar {fn, ,ln, age, weight} = obj;\n\nvar newObj = {fn, ln, age, weight: /*MISSING CODE*/};",
             "isFrench": false,
             "topic": "JavaScript",
@@ -141,7 +141,7 @@ let data = {
             ]
         },
         {
-            "title": "What is the output of the following code ?",
+            "title": "Quelle est la sortie du code suivant ?",
             "code": "const sentence = 'The quick brown fox jumps over the lazy dog.';\nconst word = 'fox';\n\nconsole.log(`The word '${word}' ${sentence.includes(word) ? 'is' : 'is not'} in the sentence`);",
             "isFrench": false,
             "topic": "JavaScript",
@@ -161,7 +161,7 @@ let data = {
             ]
         },
         {
-            "title": "What is the output of the following code ?",
+            "title": "Quelle est la sortie du code suivant ?",
             "code": "const array1 = [1, 2, 3];\n\nconsole.log(array1.includes(2));",
             "isFrench": false,
             "topic": "JavaScript",
@@ -181,27 +181,27 @@ let data = {
             ]
         },
         {
-            "title": "What happens to the first array ?",
+            "title": "Qu'arrive t-il au premier tableau ?",
             "code": "let tab1 = ['Hello'];\nlet tab2 = tab1;\n\ntab2.push('World')",
             "isFrench": false,
             "topic": "JavaScript",
             "answers": [
                 {
-                    "answer": "Nothing", "isCorrect": false
+                    "answer": "Rien on change tab2", "isCorrect": false
                 },
                 {
-                    "answer": "Value is never read", "isCorrect": false
+                    "answer": "Sa valeur n'est jamais lu", "isCorrect": false
                 },
                 {
-                    "answer": "It is ignored since we are changing tab1", "isCorrect": false
+                    "answer": "Elle est copiée dans tab2", "isCorrect": false
                 },
                 {
-                    "answer": "It gets changed along with tab2", "isCorrect": true
+                    "answer": "Il change en même temps que tab2", "isCorrect": true
                 }
             ]
         },
         {
-            "title": "What are JavaScript datatypes ?",
+            "title": "Quelles sont les types de variables en JavaScript ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
@@ -221,7 +221,7 @@ let data = {
             ]
         },
         {
-            "title": "How do you declare an unchangeable variable ?",
+            "title": "Comment déclarer une variable non modifiable?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
@@ -241,7 +241,7 @@ let data = {
             ]
         },
         {
-            "title": "How do you extract a specific key's value from an object ?",
+            "title": "Comment extraire la valeur d'une clé spécifique depuis un objet ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
@@ -261,7 +261,7 @@ let data = {
             ]
         },
         {
-            "title": "How do you declare an arrow function ?",
+            "title": "Comment déclarer une fonction fléchée ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
@@ -281,27 +281,29 @@ let data = {
             ]
         },
         {
-            "title": "What is an Object in JavaScript ?",
+            "title": "Qu'est ce qu'un Object en JavaScript ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
             "answers": [
                 {
-                    "answer": "It doesn't exist in JavaScript", "isCorrect": false
+                    "answer": "Cela n'existe pas en JavaScript", "isCorrect": false
                 },
                 {
-                    "answer": "It is the same as an array", "isCorrect": false
+                    "answer": "C'est la même chose qu'un tableau", "isCorrect": false
                 },
                 {
-                    "answer": "It is a two dimentional array", "isCorrect": false
+                    "answer": "C'est un tableau en deux dimensions", "isCorrect": false
                 },
                 {
-                    "answer": "It stores various keyed collections entities", "isCorrect": true
+                    "answer": "Il contient des collections rangés dans des clés", "isCorrect": true
                 }
             ]
         },
+
+
         {
-            "title": "Which type of scope doesn't exist in JavaScript ?",
+            "title": "Quelle type de scope n'existe pas en JavaScript ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
@@ -321,47 +323,47 @@ let data = {
             ]
         },
         {
-            "title": "What is the difference between Static typing and Dynamic typing ?",
+            "title": "Quelle est la différence entre un typage statique et un typage dynamique ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
             "answers": [
                 {
-                    "answer": "There is no difference", "isCorrect": false
+                    "answer": "Il n'y a pas de différence", "isCorrect": false
                 },
                 {
-                    "answer": "The the former's type can be changed", "isCorrect": false
+                    "answer": "Le premier typage peut être changé", "isCorrect": false
                 },
                 {
-                    "answer": "The latter's type can be changed", "isCorrect": true
+                    "answer": "Le second typage peut être changé", "isCorrect": true
                 },
                 {
-                    "answer": "Both don't exist", "isCorrect": false
+                    "answer": "Aucun de ces typages n'existe", "isCorrect": false
                 }
             ]
         },
         {
-            "title": "How do you call an function taking another function as argument ?",
+            "title": "Comment appelle-t-on une fonction prenant une autre fonction en argument ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
             "answers": [
                 {
-                    "answer": "A regular function", "isCorrect": false
+                    "answer": "Une fonction régulière", "isCorrect": false
                 },
                 {
-                    "answer": "An arrow function", "isCorrect": false
+                    "answer": "Une fonction fléchée", "isCorrect": false
                 },
                 {
-                    "answer": "A higher order function", "isCorrect": true
+                    "answer": "Une fonction d'ordre supérieur", "isCorrect": true
                 },
                 {
-                    "answer": "A parent function", "isCorrect": false
+                    "answer": "Une fonction parent", "isCorrect": false
                 }
             ]
         },
         {
-            "title": "Which of the following isn't a JavaScript prototype ?",
+            "title": "Parmis les réponses suivantes laquelle n'est pas un prototype JavaScript ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",
@@ -381,7 +383,7 @@ let data = {
             ]
         },
         {
-            "title": "How yo make a real array's copy in JavaScript ?",
+            "title": "Comment crée-t-on une véritable copie d'un tableau en JavaScript ?",
             "code": "",
             "isFrench": false,
             "topic": "JavaScript",

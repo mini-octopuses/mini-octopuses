@@ -9,15 +9,18 @@ const GameModel = require("../models/game");
 const QuestionModel = require("../models/question");
 const TopicModel = require("../models/topic");
 
-let data_JS_theoretical = require("../dist/js_theoretical");
-let data_JS_practical = require("../dist/js_practical");
-let data_REGEX_theoretical = require("../dist/regex_theoretical");
+// let data_JS_theoretical = require("../dist/js_theoretical");
+// let data_JS_practical = require("../dist/js_practical");
+// let data_REGEX_theoretical = require("../dist/regex_theoretical");
+
 let data_react = require("../dist/react");
 let data_reactNative = require("../dist/react_native");
 let data_html = require("../dist/html")
 let data_mongo = require('../dist/mongo')
 let data_express = require('../dist/express')
 let data_css = require('../dist/css')
+let data_javaScript = require('../dist/javaScript')
+let data_regex = require('../dist/regex')
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -42,15 +45,17 @@ async function pushInDB(data) {
   }
 }
 router.post("/populate-database", async function (req, res, next) {
-  pushInDB(data_JS_theoretical);
-  pushInDB(data_JS_practical);
-  pushInDB(data_REGEX_theoretical);
+  // pushInDB(data_JS_theoretical);
+  // pushInDB(data_JS_practical);
+  // pushInDB(data_REGEX_theoretical);
   pushInDB(data_react);
   pushInDB(data_reactNative);
   pushInDB(data_html)
   pushInDB(data_mongo)
   pushInDB(data_express)
   pushInDB(data_css)
+  pushInDB(data_javaScript)
+  pushInDB(data_regex)
   res.json({ result: true });
 });
 
