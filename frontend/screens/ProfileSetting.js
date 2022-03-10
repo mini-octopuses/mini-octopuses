@@ -141,11 +141,22 @@ function ProfileSettings(props) {
           <SquareButtonBorder
             onPress={() =>
               Popup.show({
+                icon: require("../assets/deleteUser.png"),
                 type: "confirm",
                 title: "Attention!",
-                textBody: "Etes vous sûre de vouloir supprimer votre compte ?.",
+                textBody: "Etes vous sûre de vouloir supprimer votre compte ?",
+                descTextStyle: {
+                  marginTop: 5,
+                  fontSize: 16,
+                  color: "#222163",
+                  fontWeight: "normal",
+                  textAlign: "center",
+                },
                 buttonText: "Confirmer",
+                okButtonStyle: { backgroundColor: "#F81C8F" },
+                confirmButtonStyle: { backgroundColor: "#F81C8F" },
                 confirmText: "Annuler",
+                confirmButtonTextStyle: { color: "#fff" },
                 callback: () => {
                   deleteUser();
                   Popup.hide();

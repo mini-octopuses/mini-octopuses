@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, ImageBackground, Image, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  ImageBackground,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import { FontAwesome, Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 import StyleGuide from "../style/styleGuide";
@@ -9,7 +16,7 @@ import SwitchComponent from "../components/SwitchComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
-function Settings(props) {
+function SettingsGuestOk(props) {
   const [effetSonore, setEffetSonore] = useState(false);
   const [musique, setMusique] = useState(false);
   const [vibration, setVibration] = useState(false);
@@ -61,7 +68,7 @@ function Settings(props) {
               marginLeft: 10,
             }}
           >
-            #{props.user.username}
+            #guest_321
           </Text>
         </View>
       </View>
@@ -160,14 +167,21 @@ function Settings(props) {
         </Text>
       </View>
 
-      <View style={{ marginBottom: 30 }}>
-        <SquareButtonFilled
-          onPress={() => {
-            AsyncStorage.removeItem("token");
-            AsyncStorage.clear();
-            props.navigation.navigate("AllConnexion");
-          }}
-          buttonTitle="Se déconnecter"
+      <TouchableOpacity
+        style={[
+          StyleGuide.facebookButton,
+          { marginBottom: Dimensions.get("window").height / 40 },
+        ]}
+        onPress={() => props.navigation.navigate("FacebookPage")}
+      >
+        <FontAwesome name="facebook" size={27} color="white" />
+        <Text style={StyleGuide.titleFacebookButton}> Connexion Facebook</Text>
+      </TouchableOpacity>
+
+      <View style={{ marginBottom: 20 }}>
+        <SquareButtonBorder
+          onPress={() => props.navigation.navigate("SignUp")}
+          buttonTitle="S'inscrire"
         />
       </View>
     </ImageBackground>
@@ -177,4 +191,4 @@ function Settings(props) {
 function mapStateToProps(state) {
   return { user: state.user };
 }
-export default connect(mapStateToProps, null)(Settings);
+export default connect(mapStateToProps, null)(SettingsGuestOk);
