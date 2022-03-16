@@ -1,5 +1,5 @@
 const config = {
-  myIp: "http://192.168.1.69:3000",
+  myIp: "http://192.168.1.17:3000",
 };
 
 export default config;
