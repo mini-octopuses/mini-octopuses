@@ -1,24 +1,19 @@
-import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-
-import StyleGuide from "../style/styleGuide";
-import SquareButtonFilled from "../components/SquareButtonFilled";
-import Logo from "../components/Logo";
-
+import React from "react";
+import { Image, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
+import Logo from "../components/Logo";
+import SquareButtonFilled from "../components/SquareButtonFilled";
+import StyleGuide from "../style/styleGuide";
 
 function Home(props) {
   return (
     <SafeAreaView style={StyleGuide.container}>
       <View style={StyleGuide.header}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("Profile")}
+          style={{ justifyContent: 'center', alignItems: 'center' }}
+        >
           <Image
             style={StyleGuide.profileImageButton}
             source={require("../assets/octo_blue.png")}
@@ -31,13 +26,10 @@ function Home(props) {
           onPress={() => props.navigation.navigate("Settings")}
           style={{ marginTop: 15, marginRight: 10 }}
           name="gear"
-          size={35}
-          color="white"
+          size={35} color="white"
         />
       </View>
-
       <Logo style={{ marginTop: -40 }} />
-
       <SquareButtonFilled
         onPress={() => props.navigation.navigate("Categories")}
         buttonTitle="Entrainement"
@@ -53,5 +45,4 @@ function Home(props) {
 function mapStateToProps(state) {
   return { user: state.user };
 }
-
 export default connect(mapStateToProps, null)(Home);

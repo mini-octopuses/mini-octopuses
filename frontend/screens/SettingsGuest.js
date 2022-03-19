@@ -1,16 +1,9 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  Switch,
-  TouchableOpacity,
-} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-
-import StyleGuide from "../style/styleGuide";
+import React, { useState } from "react";
+import { Image, ImageBackground, Switch, Text, TouchableOpacity, View } from "react-native";
 import SquareButtonBorder from "../components/SquareButtonBorder";
+import StyleGuide from "../style/styleGuide";
+
 
 export default function SettingsGuest(props) {
   const [isEnabled, setIsEnabled] = useState(false);

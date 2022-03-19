@@ -1,20 +1,10 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
 import { FontAwesome, Ionicons, MaterialIcons } from "@expo/vector-icons";
-
-import StyleGuide from "../style/styleGuide";
-import SquareButtonBorder from "../components/SquareButtonBorder";
-import SquareButtonFilled from "../components/SquareButtonFilled";
-import SwitchComponent from "../components/SwitchComponent";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState } from "react";
+import { Dimensions, Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
+import SquareButtonBorder from "../components/SquareButtonBorder";
+import SwitchComponent from "../components/SwitchComponent";
+import StyleGuide from "../style/styleGuide";
 
 function SettingsGuestOk(props) {
   const [effetSonore, setEffetSonore] = useState(false);

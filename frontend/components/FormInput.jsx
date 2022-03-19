@@ -2,7 +2,6 @@ import React from "react";
 import {Dimensions } from 'react-native';
 import {  Input } from 'react-native-elements';
 
-
 export default function FormInput(props){
     switch(props.icon) {
         case 'updatePseudo':
@@ -94,5 +93,4 @@ export default function FormInput(props){
                 </Input>
             )
     }
-
 }

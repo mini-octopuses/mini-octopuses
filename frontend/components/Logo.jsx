@@ -8,8 +8,7 @@ export default function Logo({ style }) {
             <Image source={require('../assets/Logo.png')} style={styles.logo} />
             <View style={styles.titleContainer}>
                 <Image source={require('../assets/LogoText.png')} />
-                <Text style={styles.subTitle}>Dev Quizz Battle
-                </Text>
+                <Text style={styles.subTitle}>Dev Quizz Battle</Text>
             </View>
         </View>
     )
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
 
     titleContainer: {
         position: 'absolute',
-        // height:Dimensions.get('window').height/2.3,
         top: Dimensions.get('window').height / 2.3 - 60,
     },
     subTitle: {
@@ -43,5 +41,4 @@ const styles = StyleSheet.create({
         color: '#fff',
 
     }
-
 })

@@ -5,7 +5,10 @@ var options = {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }
-mongoose.connect('mongodb+srv://minioctopuses:19pL8gLxZtir4dwP@mini-octopuses.mhhws.mongodb.net/Mini_Octopus_DB?retryWrites=true&w=majority',
+
+const mongoLink = 'mongodb+srv://minioctopuses:19pL8gLxZtir4dwP@mini-octopuses.mhhws.mongodb.net/Mini_Octopus_DB?retryWrites=true&w=majority'
+
+mongoose.connect(mongoLink,
     options,
     function (err) {
         if (err) {

@@ -1,18 +1,14 @@
+import { FontAwesome } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { ImageBackground, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-elements";
-
-import { FontAwesome } from "@expo/vector-icons";
-
+import { connect } from "react-redux";
 import Logo from "../components/Logo";
-import StyleGuide from "../style/styleGuide";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
 import config from "../config";
-import { connect } from "react-redux";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-
+import StyleGuide from "../style/styleGuide";
 
 function AllConnexion(props) {
   function getRandomInt(min, max) {
@@ -37,33 +33,16 @@ function AllConnexion(props) {
   };
 
   return (
-    <ImageBackground
-      source={require("../assets/bg.png")}
-      style={StyleGuide.container}
-    >
+    <ImageBackground source={require("../assets/bg.png")} style={StyleGuide.container}>
       <Logo />
-
-      <TouchableOpacity
-        style={StyleGuide.facebookButton}
-        onPress={() => props.navigation.navigate("FacebookPage")}
-      >
+      <TouchableOpacity style={StyleGuide.facebookButton} onPress={() => props.navigation.navigate("FacebookPage")} >
         <FontAwesome name="facebook" size={27} color="white" />
         <Text style={StyleGuide.titleFacebookButton}> Connexion Facebook</Text>
       </TouchableOpacity>
-
       <View style={{ marginBottom: 20 }}>
-        <SquareButtonBorder
-          onPress={() => props.navigation.navigate("SignUp")}
-          buttonTitle="S'inscrire"
-        />
-        <SquareButtonBorder
-          onPress={() => props.navigation.navigate("SignIn")}
-          buttonTitle="Se connecter"
-        />
-        <SquareButtonFilled
-          onPress={() => guestSignUp()}
-          buttonTitle="Jouer en tant qu'invité"
-        />
+        <SquareButtonBorder onPress={() => props.navigation.navigate("SignUp")} buttonTitle="S'inscrire" />
+        <SquareButtonBorder onPress={() => props.navigation.navigate("SignIn")} buttonTitle="Se connecter" />
+        <SquareButtonFilled onPress={() => guestSignUp()} buttonTitle="Jouer en tant qu'invité" />
       </View>
     </ImageBackground>
   );
@@ -73,8 +52,7 @@ function maDispatchToProps(dispatch) {
   return {
     saveUser: function (gameUser) {
       dispatch({ type: "saveUser", gameUser });
-    },
+    }
   };
 }
-
 export default connect(null, maDispatchToProps)(AllConnexion);

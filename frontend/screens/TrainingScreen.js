@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, ImageBackground, TouchableOpacity, Animated } from 'react-native';
-import { Button } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { Animated, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
-import { darcula } from 'react-syntax-highlighter/styles/prism';
 import { connect } from 'react-redux';
-import StyleGuide from "../style/styleGuide";
+import { darcula } from 'react-syntax-highlighter/styles/prism';
 import config from '../config';
+import StyleGuide from "../style/styleGuide";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -55,7 +55,7 @@ function TrainingScreen(props) {
             setUserAnswers([]);
             let game = JSON.stringify(temp)
             let rawResponse = await fetch(`${config.myIp}/save-game`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `deviceLang=EN&token=${props.user.token}&game=${game}`
             });
@@ -79,51 +79,69 @@ function TrainingScreen(props) {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#2b2b2b' }}>
-            <ImageBackground source={require("../assets/training_bc.png")} style={StyleGuide.container}>
-
+            <ImageBackground
+                source={require("../assets/training_bc.png")}
+                style={StyleGuide.container}
+            >
                 <View style={{ flex: 1 }}>
-                    {/* //* This is the header */}
                     <View style={StyleGuide.header}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <TouchableOpacity
+                            onPress={() => props.navigation.navigate("Profile")}
+                            style={{ justifyContent: 'center', alignItems: 'center' }}
+                        >
                             <Image
                                 style={StyleGuide.profileImageButton}
                                 source={require("../assets/octo_blue.png")}
                             />
                             <Text style={{ marginLeft: 10, color: 'white' }}>#{props.user.username}</Text>
                         </TouchableOpacity>
-                        <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
+                        <FontAwesome
+                            onPress={() => props.navigation.navigate("Settings")}
+                            style={{ marginTop: 15, marginRight: 10 }}
+                            name="gear"
+                            size={35}
+                            color="white"
+                        />
                     </View>
-
-                    {/* //* This is the code block with the questions */}
                     <View style={styles.container}>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center' }}>{props.game.questions[props.pos].title}</Text>
                         {code}
                     </View>
 
-                    {/* //*Container for answers */}
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        {/* //*Display of the answers */}
                         <View style={{ flexDirection: 'row' }}>
-                            <Button title={props.game.questions[props.pos].answers[0].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(0)} />
-                            <Button title={props.game.questions[props.pos].answers[1].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(1)} />
+                            <Button
+                                title={props.game.questions[props.pos].answers[0].answer}
+                                buttonStyle={styles.buttonBlack}
+                                onPress={() => increaseIndex(0)}
+                            />
+                            <Button
+                                title={props.game.questions[props.pos].answers[1].answer}
+                                buttonStyle={styles.buttonBlack}
+                                onPress={() => increaseIndex(1)}
+                            />
                         </View>
                         <View style={{ flexDirection: 'row' }}>
-                            <Button title={props.game.questions[props.pos].answers[2].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(2)} />
-                            <Button title={props.game.questions[props.pos].answers[3].answer} buttonStyle={styles.buttonBlack} onPress={() => increaseIndex(3)} />
+                            <Button
+                                title={props.game.questions[props.pos].answers[2].answer}
+                                buttonStyle={styles.buttonBlack}
+                                onPress={() => increaseIndex(2)}
+                            />
+                            <Button
+                                title={props.game.questions[props.pos].answers[3].answer}
+                                buttonStyle={styles.buttonBlack}
+                                onPress={() => increaseIndex(3)}
+                            />
                         </View>
                     </View>
                     <View style={{ marginBottom: 20 }}>
                         <Progress step={props.time} steps={60} height={25} />
                     </View>
                 </View>
-
             </ImageBackground>
-
         </SafeAreaView>
     )
 }
-
-
 
 const Progress = ({ step, steps, height }) => {
 
@@ -191,7 +209,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        // backgroundColor: '#2b2b2b'
     },
     username: {
         color: 'white',

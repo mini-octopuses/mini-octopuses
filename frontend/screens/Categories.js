@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-  ScrollView,
-  Dimensions
-} from "react-native";
-import StyleGuide from "../style/styleGuide";
-import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
-import config from "../config";
+import { LinearGradient } from "expo-linear-gradient";
+import React, { useEffect, useState } from "react";
+import { Dimensions, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
+import config from "../config";
+import StyleGuide from "../style/styleGuide";
 
 function Categories(props) {
   const [allTopicList, setAllTopicList] = useState([]);
@@ -21,10 +13,8 @@ function Categories(props) {
   useEffect(() => {
     async function loadData() {
       let topicFromBack = await fetch(`${config.myIp}/topics`);
-
       const body = await topicFromBack.json();
       let setAllTopicListCopy = [...allTopicList];
-
       body.topicFromBack.map((item) => {
         setAllTopicListCopy.push(item);
       });
@@ -50,21 +40,10 @@ function Categories(props) {
     }
   }
 
-  function topicClick(topicName) {
-    let tab = [...selectedTopics]
-
-    if (tab.includes(topicName)) {
-      tab = tab.filter(elem => elem !== topicName)
-    } else {
-      tab.push(topicName)
-    }
-    setSelectedTopics(tab);
-  }
-
   async function saveTopicsRemote() {
     props.saveTopics(selectedTopics)
     let rawResponse = await fetch(`${config.myIp}/update-user-topics`, {
-      method: 'POST',
+      method: 'PUT',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `deviceLang=EN&topics=${props.user.topics}&token=${props.user.token}`
     });
@@ -76,27 +55,43 @@ function Categories(props) {
     }
   }
 
+  function topicClick(topicName) {
+    let tab = [...selectedTopics]
+
+    if (tab.includes(topicName)) {
+      tab = tab.filter(elem => elem !== topicName)
+    } else {
+      tab.push(topicName)
+    }
+    setSelectedTopics(tab);
+  }
 
   return (
     <SafeAreaView style={StyleGuide.container}>
 
       <View style={StyleGuide.header}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("Profile")}
+          style={{ justifyContent: 'center', alignItems: 'center' }}
+        >
           <Image
             style={StyleGuide.profileImageButton}
             source={require("../assets/octo_blue.png")}
           />
           <Text style={{ marginLeft: 10, color: 'white' }}>#{props.user.username}</Text>
         </TouchableOpacity>
-        <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
+        <FontAwesome
+          onPress={() => props.navigation.navigate("Settings")}
+          style={{ marginTop: 15, marginRight: 10 }}
+          name="gear"
+          size={35}
+          color="white"
+        />
       </View>
 
-      <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>
-        Sélectionnes tes thèmes préférés
-      </Text>
+      <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>Sélectionnes tes thèmes préférés</Text>
 
       <ScrollView style={{ flex: 1 }}>
-
         <View>
           {allTopicList.map((item, i) => {
             return (
@@ -125,30 +120,19 @@ function Categories(props) {
       </ScrollView>
 
       <View style={StyleGuide.footer}>
-        <TouchableOpacity
-          onPress={() => {
-            if (selectedTopics.length) {
-              saveTopicsRemote()
-            }
-          }}
+        <TouchableOpacity onPress={() => {
+          if (selectedTopics.length) {
+            saveTopicsRemote()
+          }
+        }}
         >
           <LinearGradient
             start={[0, 0.5]}
             end={[1, 0.5]}
-            colors={
-              !selectedTopics.length
-                ? ["#757575", "#757575"]
-                : ["#F81C8F", "#FFA353"]
-            }
+            colors={!selectedTopics.length ? ["#757575", "#757575"] : ["#F81C8F", "#FFA353"]}
             style={{ borderRadius: 5, width: Dimensions.get('window').width / 1.3 + 6, marginLeft: Dimensions.get('window').width / 10, justifyContent: "center", alignItems: 'center', marginTop: 30 }}
           >
-            <View
-              style={
-                !selectedTopics.length
-                  ? StyleGuide.squareButtonDisable
-                  : StyleGuide.squareButtonFilled
-              }
-            >
+            <View style={!selectedTopics.length ? StyleGuide.squareButtonDisable : StyleGuide.squareButtonFilled}>
               <Text style={StyleGuide.buttonTitle}>Valider</Text>
             </View>
           </LinearGradient>
@@ -178,7 +162,5 @@ function mapDispatchToProps(dispatch) {
     }
   };
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

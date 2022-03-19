@@ -1,22 +1,20 @@
+import { FontAwesome } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Dimensions } from "react-native";
+import { Dimensions, View } from "react-native";
 import { Text } from "react-native-elements";
 import { connect } from "react-redux";
-
-import StyleGuide from "../style/styleGuide";
-import SquareButtonBorder from "../components/SquareButtonBorder";
 import FormInput from "../components/FormInput";
 import Logo from "../components/Logo";
-
-import { FontAwesome } from "@expo/vector-icons";
-
+import SquareButtonBorder from "../components/SquareButtonBorder";
 import config from "../config";
+import StyleGuide from "../style/styleGuide";
 
 function SignUp(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFocus, setIsFocus] = useState(false);
+
   const signUp = async () => {
     let user = await fetch(`${config.myIp}/sign-up`, {
       method: "POST",
@@ -24,7 +22,6 @@ function SignUp(props) {
       body: `username=${username}&email=${email}&password=${password}&isGuest=false`,
     });
     let backResponse = await user.json();
-
     if (backResponse.result) {
       props.saveUser(backResponse.user);
       props.navigation.navigate("Home");
@@ -43,14 +40,16 @@ function SignUp(props) {
         />
       </View>
 
-      {isFocus ? <Text></Text> : <View style={{
-        width: Dimensions.get("window").width / 1.2,
-        height: Dimensions.get("window").height / 2.3,
-        marginTop: -50,
-        marginBottom: 30,
-      }}><Logo /></View>}
+      {isFocus ? <Text></Text> :
+        <View style={{
+          width: Dimensions.get("window").width / 1.2,
+          height: Dimensions.get("window").height / 2.3,
+          marginTop: -50,
+          marginBottom: 30,
+        }}>
+          <Logo />
+        </View>}
       <Text style={{ color: "white", fontSize: 22 }}>Inscription</Text>
-
       <FormInput
         focus={() => setIsFocus(true)}
         isDefocus={() => setIsFocus(false)}
@@ -59,7 +58,6 @@ function SignUp(props) {
         value={username}
         onChangeText={(val) => setUsername(val)}
       />
-
       <FormInput
         focus={() => setIsFocus(true)}
         isDefocus={() => setIsFocus(false)}
@@ -75,8 +73,6 @@ function SignUp(props) {
         value={password}
         onChangeText={(val) => setPassword(val)}
       />
-
-
       <SquareButtonBorder onPress={() => signUp()} buttonTitle="Valider" />
     </View>
   );
@@ -86,12 +82,11 @@ function maDispatchToProps(dispatch) {
   return {
     saveUser: function (gameUser) {
       dispatch({ type: "saveUser", gameUser });
-    },
+    }
   };
 }
 
 function mapStatesToProps(state) {
   return { user: state.user };
 }
-
 export default connect(mapStatesToProps, maDispatchToProps)(SignUp);

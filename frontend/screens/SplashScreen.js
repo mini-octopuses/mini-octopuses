@@ -1,12 +1,12 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import LottieView from "lottie-react-native";
 import React, { useEffect } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
-import LottieView from "lottie-react-native";
-
-import Logo from "../components/Logo";
-import StyleGuide from "../style/styleGuide";
 import { connect } from "react-redux";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import Logo from "../components/Logo";
 import config from "../config";
+import StyleGuide from "../style/styleGuide";
+
 
 function SplashScreen(props) {
   useEffect(() => {
@@ -39,7 +39,6 @@ function SplashScreen(props) {
       style={StyleGuide.container}
     >
       <Logo style={{ marginTop: 100 }} />
-
       <LottieView
         style={styles.loading}
         source={require("../assets/lottie/loading.json")}
@@ -51,8 +50,7 @@ function SplashScreen(props) {
 
 const styles = StyleSheet.create({
   loading: {
-    // paddingTop: 50,
-    height: 350,
+    height: 350
   },
 });
 function maDispatchToProps(dispatch) {
@@ -62,5 +60,4 @@ function maDispatchToProps(dispatch) {
     },
   };
 }
-
 export default connect(null, maDispatchToProps)(SplashScreen);

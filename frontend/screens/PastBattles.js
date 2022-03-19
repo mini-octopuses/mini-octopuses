@@ -1,19 +1,18 @@
 import { FontAwesome } from '@expo/vector-icons';
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { connect } from "react-redux";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import config from "../config";
 import StyleGuide from "../style/styleGuide";
 
-
 function PastBattles(props) {
     const [gameList, setGameList] = useState([]);
+
     useEffect(() => {
         async function loadGames() {
             let rawResponse = await fetch(`${config.myIp}/get-user-all-games?token=${props.user.token}`);
             let response = await rawResponse.json()
-
             if (response.result) {
                 setGameList(response.gameList)
             } else {
@@ -39,11 +38,12 @@ function PastBattles(props) {
 
     return (
         <View style={StyleGuide.container}>
-
             <View style={StyleGuide.header}>
-                <FontAwesome onPress={() => props.navigation.goBack()} style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white" />
+                <FontAwesome
+                    onPress={() => props.navigation.goBack()}
+                    style={{ marginTop: 30, marginLeft: 10 }} name="arrow-left" size={25} color="white"
+                />
             </View>
-
             <Text style={{ fontSize: 20, marginBottom: 20, color: 'white' }}>Batailles passées</Text>
             <ScrollView>
                 {tab}

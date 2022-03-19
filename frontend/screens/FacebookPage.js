@@ -1,24 +1,17 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from "react";
-import { Image, Dimensions, View } from "react-native";
+import { Dimensions, Image, View } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import config from "../config";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function FacebookPage(props) {
-
-  function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
   const facebookSignUp = async () => {
     let number = getRandomInt(1, 9999);
     let user = await fetch(`${config.myIp}/sign-up`, {
       method: "POST",
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `username=Facebook${number}&email=facebook${number}@facebook.com&password=ocotopuses&isGuest=false`,
+      body: `username=Hiken${number}&email=facebook${number}@facebook.com&password=ocotopuses&isGuest=false`,
     });
     let backResponse = await user.json();
     if (backResponse.result) {
@@ -28,12 +21,14 @@ function FacebookPage(props) {
     }
   };
 
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   return (
-    <View
-      style={{
-        position: "relative",
-      }}
-    >
+    <View style={{ position: "relative" }}>
       <View
         style={{
           position: "absolute",
@@ -52,7 +47,8 @@ function FacebookPage(props) {
           }}
           onPress={() => { facebookSignUp() }}
           title="Se connecter en tant que Hiken"
-        ></Button>
+        >
+        </Button>
         <Button
           buttonStyle={{
             width: Dimensions.get("window").width / 1.19,
@@ -62,14 +58,12 @@ function FacebookPage(props) {
           }}
           onPress={() => props.navigation.navigate("AllConnexion")}
           title="Annuler"
-        ></Button>
+        >
+        </Button>
       </View>
       <Image
         source={require("../assets/facebook.png")}
-        style={{
-          width: Dimensions.get("window").width / 1,
-          height: Dimensions.get("window").height / 0.9,
-        }}
+        style={{ width: Dimensions.get("window").width / 1, height: Dimensions.get("window").height / 0.9, }}
       />
     </View>
   );
@@ -82,5 +76,4 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
-
 export default connect(null, mapDispatchToProps)(FacebookPage)

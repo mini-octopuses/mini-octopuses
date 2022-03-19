@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-
-import StyleGuide from "../style/styleGuide";
+import React, { useEffect } from 'react';
+import { ImageBackground, Text, View } from 'react-native';
+import { connect } from 'react-redux';
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
-
-import { connect } from 'react-redux';
 import config from '../config';
-
-//* Import icons will be removed later on
+import StyleGuide from "../style/styleGuide";
 
 function ResultScreen(props) {
     useEffect(() => {
@@ -36,7 +32,12 @@ function ResultScreen(props) {
             source={require("../assets/Profile.png")}
             style={StyleGuide.container}
         >
-            <FontAwesome style={{ position: 'absolute', color: '#FFCB53', top: 50 }} name="trophy" size={170} color="white" />
+            <FontAwesome
+                style={{ position: 'absolute', color: '#FFCB53', top: 50 }}
+                name="trophy"
+                size={170}
+                color="white"
+            />
 
             <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 70, marginTop: 250 }}>
                 <Text style={{ fontSize: 34, color: 'white' }}>Voici ton score</Text>
@@ -44,17 +45,26 @@ function ResultScreen(props) {
             </View>
 
             <View >
-                <SquareButtonFilled onPress={() => { generateGame() }} buttonTitle="Rejouer" />
-                <SquareButtonBorder onPress={() => {
-                    props.navigation.navigate("HistoryScreen", { from: 'ResultScreen' })
-                    props.setTimeZero()
-                    props.resetPos()
-                }} buttonTitle="Voir les réponses" />
-                <SquareButtonBorder onPress={() => {
-                    props.setTimeZero()
-                    props.resetPos()
-                    props.navigation.navigate("Home")
-                }} buttonTitle="Accueil" />
+                <SquareButtonFilled
+                    onPress={() => { generateGame() }}
+                    buttonTitle="Rejouer"
+                />
+                <SquareButtonBorder
+                    onPress={() => {
+                        props.navigation.navigate("HistoryScreen", { from: 'ResultScreen' })
+                        props.setTimeZero()
+                        props.resetPos()
+                    }}
+                    buttonTitle="Voir les réponses"
+                />
+                <SquareButtonBorder
+                    onPress={() => {
+                        props.setTimeZero()
+                        props.resetPos()
+                        props.navigation.navigate("Home")
+                    }}
+                    buttonTitle="Accueil"
+                />
             </View>
         </ImageBackground>
     )

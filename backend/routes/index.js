@@ -9,48 +9,20 @@ const GameModel = require("../models/game");
 const QuestionModel = require("../models/question");
 const TopicModel = require("../models/topic");
 
-let data_react = require("../dist/react");
-let data_reactNative = require("../dist/react_native");
-let data_html = require("../dist/html")
-let data_mongo = require('../dist/mongo')
-let data_express = require('../dist/express')
-let data_css = require('../dist/css')
-let data_javaScript = require('../dist/javaScript')
-let data_regex = require('../dist/regex')
+let data_react = require("../dist/fr/react");
+let data_reactNative = require("../dist/fr/react_native");
+let data_html = require("../dist/fr/html")
+let data_mongo = require('../dist/fr/mongo')
+let data_express = require('../dist/fr/express')
+let data_css = require('../dist/fr/css')
+let data_javaScript = require('../dist/fr/javaScript')
+let data_regex = require('../dist/fr/regex')
 
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 
-router.get("/topics", async function (req, res, next) {
-  let topicFromBack = await TopicModel.find();
-  res.json({ topicFromBack });
-});
-
-async function pushInDB(data) {
-  for (const elem of data.questions) {
-    let newQuestion = new QuestionModel({
-      title: elem.title,
-      isFrench: elem.isFrench,
-      topic: elem.topic,
-      code: elem.code,
-      answers: elem.answers,
-    });
-    await newQuestion.save();
-  }
-}
-router.post("/populate-database", async function (req, res, next) {
-  pushInDB(data_react);
-  pushInDB(data_reactNative);
-  pushInDB(data_html)
-  pushInDB(data_mongo)
-  pushInDB(data_express)
-  pushInDB(data_css)
-  pushInDB(data_javaScript)
-  pushInDB(data_regex)
-  res.json({ result: true });
-});
-
+//* User's routes *//
 router.post("/sign-up", async function (req, res, next) {
   let user = await UserModel.findOne({ email: req.body.email });
 
@@ -79,7 +51,6 @@ router.post("/sign-up", async function (req, res, next) {
   }
 });
 
-//route signIn
 router.post("/sign-in", async function (req, res, next) {
   let user = await UserModel.findOne({
     email: req.body.email,
@@ -96,6 +67,57 @@ router.post("/sign-in", async function (req, res, next) {
   }
 });
 
+router.put("/update-user-topics", async function (req, res, nect) {
+  let user = await UserModel.findOne({ token: req.body.token });
+
+  if (!user) {
+    return res.json({ result: false });
+  }
+  let topics = req.body.topics.split(",");
+  user.topics = topics;
+
+  let status = await user.save();
+  if (!status) {
+    return res.json({ result: false });
+  }
+  res.json({ result: true });
+});
+
+router.get("/get-user", async function (req, res, next) {
+  let user = await UserModel.findOne({ token: req.query.token });
+  if (!user) {
+    return res.json({ result: false, message: "Error user not found" });
+  }
+  res.json({ result: true, user });
+});
+
+router.put("/update-user/", async function (req, res, next) {
+  let user = await UserModel.findOne({ token: req.body.token });
+  if (!user) {
+    return res.json({ result: false, message: "Error: User not found" });
+  }
+  await UserModel.updateOne({ token: req.body.token }, { username: req.body.username, email: req.body.email });
+  let updatedUser = await UserModel.findOne({ token: req.body.token });
+  if (!updatedUser) {
+    return res.json({ result: false, message: "Error: Updated user not found" });
+  }
+  res.json({ result: true, updatedUser, message: "Vos modifications ont bien été enregistrées." });
+});
+
+router.delete("/delete-user", async function (req, res, next) {
+  let status = await UserModel.deleteOne({ token: req.body.token });
+  if (status.deletedCount !== 0) {
+    return res.json({ result: true });
+  }
+  res.json({ result: false });
+});
+
+//* Game's routes *//
+router.get("/topics", async function (req, res, next) {
+  let topicFromBack = await TopicModel.find();
+  res.json({ topicFromBack });
+});
+
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -108,7 +130,6 @@ const shuffleArray = (array) => {
 router.post("/generate-game", async function (req, res, next) {
   let topics = req.body.topics.split(",");
   let gameQuestions = [];
-
 
   for (const elem of topics) {
     let data = await QuestionModel.find({ topic: elem });
@@ -145,7 +166,7 @@ router.post("/generate-game", async function (req, res, next) {
   res.json({ result: true, game: saveStatus });
 });
 
-router.post("/save-game", async function (req, res, next) {
+router.put("/save-game", async function (req, res, next) {
   let parsedGame = JSON.parse(req.body.game);
   await GameModel.updateOne({ _id: parsedGame._id }, { score: parsedGame.score, userAnswers: parsedGame.userAnswers });
 
@@ -179,56 +200,31 @@ router.get("/get-user-all-games", async function (req, res, next) {
   res.json({ result: true, gameList: user.gameList });
 });
 
-router.get("/get-game", async function (req, res, next) {
-  let game = await GameModel.findOne({ _id: req.query.id }).populate("questions").exec();
-  if (!game) {
-    req.json({ result: false, message: "Error: game not found" });
-  }
-  res.json({ result: true, game });
-});
 
-router.put("/update-user/", async function (req, res, next) {
-  let user = await UserModel.findOne({ token: req.body.token });
-  if (!user) {
-    return res.json({ result: false, message: "Error: User not found" });
-  }
-  await UserModel.updateOne({ token: req.body.token }, { username: req.body.username, email: req.body.email });
-  let updatedUser = await UserModel.findOne({ token: req.body.token });
-  if (!updatedUser) {
-    return res.json({ result: false, message: "Error: Updated user not found" });
-  }
-  res.json({ result: true, updatedUser, message: "Vos modifications ont bien été enregistrées." });
-});
 
-router.delete("/delete-user", async function (req, res, next) {
-  let status = await UserModel.deleteOne({ token: req.body.token });
-  if (status.deletedCount !== 0) {
-    return res.json({ result: true });
+//* Extra route to populate the database *//
+async function pushInDB(data) {
+  for (const elem of data.questions) {
+    let newQuestion = new QuestionModel({
+      title: elem.title,
+      isFrench: elem.isFrench,
+      topic: elem.topic,
+      code: elem.code,
+      answers: elem.answers,
+    });
+    await newQuestion.save();
   }
-  res.json({ result: false });
-});
+}
 
-router.get("/get-user", async function (req, res, next) {
-  let user = await UserModel.findOne({ token: req.query.token });
-  if (!user) {
-    return res.json({ result: false, message: "Error user not found" });
-  }
-  res.json({ result: true, user });
-});
-
-router.post("/update-user-topics", async function (req, res, nect) {
-  let user = await UserModel.findOne({ token: req.body.token });
-
-  if (!user) {
-    return res.json({ result: false });
-  }
-  let topics = req.body.topics.split(",");
-  user.topics = topics;
-
-  let status = await user.save();
-  if (!status) {
-    return res.json({ result: false });
-  }
+router.post("/populate-database", async function (req, res, next) {
+  pushInDB(data_react);
+  pushInDB(data_reactNative);
+  pushInDB(data_html)
+  pushInDB(data_mongo)
+  pushInDB(data_express)
+  pushInDB(data_css)
+  pushInDB(data_javaScript)
+  pushInDB(data_regex)
   res.json({ result: true });
 });
 

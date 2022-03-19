@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, Image, SafeAreaView, Pressable, ImageBackground, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { Dimensions, Image, ImageBackground, Pressable, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
-import { darcula } from 'react-syntax-highlighter/styles/prism';
 import { connect } from 'react-redux';
+import { darcula } from 'react-syntax-highlighter/styles/prism';
 import StyleGuide from "../style/styleGuide";
 
 const windowWidth = Dimensions.get('window').width;
@@ -52,64 +52,59 @@ function HistoryScreen(props) {
         code = <View></View>
     }
 
-
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#2b2b2b' }}>
-            <ImageBackground
-                source={require("../assets/training_bc.png")}
-                style={StyleGuide.container}
-            >
+            <ImageBackground source={require("../assets/training_bc.png")} style={StyleGuide.container}>
                 <View style={{ flex: 1 }}>
                     <View style={StyleGuide.header}>
                         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Image
-                                style={StyleGuide.profileImageButton}
-                                source={require("../assets/octo_blue.png")}
-                            />
+                            <Image style={StyleGuide.profileImageButton} source={require("../assets/octo_blue.png")} />
                             <Text style={{ marginLeft: 10, color: 'white' }}>#{props.user.username}</Text>
                         </TouchableOpacity>
                         <FontAwesome onPress={() => props.navigation.navigate("Settings")} style={{ marginTop: 15, marginRight: 10 }} name="gear" size={35} color="white" />
                     </View>
-
                     <View style={styles.container}>
                         <Text style={{ fontSize: 22, color: 'white', margin: 20, textAlign: 'center' }}>{props.game.questions[index].title}</Text>
                         {code}
                     </View>
-
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Button title={props.game.questions[index].answers[0].answer} buttonStyle={setButtonStyle(0)} />
-                            <Button title={props.game.questions[index].answers[1].answer} buttonStyle={setButtonStyle(1)} />
+                            <Button
+                                title={props.game.questions[index].answers[0].answer}
+                                buttonStyle={setButtonStyle(0)}
+                            />
+                            <Button
+                                title={props.game.questions[index].answers[1].answer}
+                                buttonStyle={setButtonStyle(1)}
+                            />
                         </View>
                         <View style={{ flexDirection: 'row' }}>
-                            <Button title={props.game.questions[index].answers[2].answer} buttonStyle={setButtonStyle(2)} />
-                            <Button title={props.game.questions[index].answers[3].answer} buttonStyle={setButtonStyle(3)} />
+                            <Button
+                                title={props.game.questions[index].answers[2].answer}
+                                buttonStyle={setButtonStyle(2)}
+                            />
+                            <Button
+                                title={props.game.questions[index].answers[3].answer}
+                                buttonStyle={setButtonStyle(3)}
+                            />
                         </View>
-
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', width: windowWidth / 1.1, padding: 10 }}>
-                            <Pressable onPress={() => {
-                                index > 0 ? setIndex(index - 1) : setIndex(0)
-                            }}>
+                            <Pressable onPress={() => { index > 0 ? setIndex(index - 1) : setIndex(0) }}>
                                 <View style={setPrevButtonStyle()}>
                                     <FontAwesome name="arrow-left" size={24} color="white" />
                                     <Text style={{ color: 'white', marginLeft: 10 }}>Précédent</Text>
                                 </View>
                             </Pressable>
-
-                            <Pressable onPress={() => {
-                                index < 7 ? setIndex(index + 1) : props.route.params.from === "PastBattles" ? props.navigation.navigate('PastBattles') : props.navigation.navigate('ResultScreen')
-                            }}>
+                            <Pressable onPress={() => { index < 7 ? setIndex(index + 1) : props.route.params.from === "PastBattles" ? props.navigation.navigate('PastBattles') : props.navigation.navigate('ResultScreen') }}>
                                 {setNextButtonArea()}
                             </Pressable>
                         </View>
                     </View>
-
                 </View>
             </ImageBackground>
         </SafeAreaView >
     )
 }
-
 
 const styles = StyleSheet.create({
     userIcon: {

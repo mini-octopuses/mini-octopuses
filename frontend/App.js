@@ -2,7 +2,7 @@ import React from "react";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Remote debugger"]);
 
-//* Import of the navigation tools
+// * Import of the navigation tools
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
@@ -14,11 +14,9 @@ import FacebookPage from "./screens/FacebookPage";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
 import Home from "./screens/Home";
-
 import Categories from "./screens/Categories";
 import TrainingScreen from "./screens/TrainingScreen";
 import ResultScreen from "./screens/ResultScreen";
-
 import Profile from "./screens/Profile";
 import PastBattles from "./screens/PastBattles";
 import HistoryScreen from "./screens/HistoryScreen";

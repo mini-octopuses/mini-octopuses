@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { View, Text, ImageBackground, Image, Dimensions } from "react-native";
 import { FontAwesome, Ionicons, MaterialIcons } from "@expo/vector-icons";
-
-import StyleGuide from "../style/styleGuide";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState } from "react";
+import { Dimensions, Image, ImageBackground, Text, View } from "react-native";
+import { connect } from "react-redux";
 import SquareButtonFilled from "../components/SquareButtonFilled";
 import SwitchComponent from "../components/SwitchComponent";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { connect } from "react-redux";
+import StyleGuide from "../style/styleGuide";
 
 function Settings(props) {
   const [effetSonore, setEffetSonore] = useState(false);
@@ -34,14 +33,7 @@ function Settings(props) {
         />
       </View>
 
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          position: "relative",
-          top: -40,
-        }}
-      >
+      <View style={{ justifyContent: "center", alignItems: "center", position: "relative", top: -40 }} >
         <Image
           style={{
             width: Dimensions.get("window").width / 3.5,
@@ -72,9 +64,7 @@ function Settings(props) {
           size={25}
           color="white"
         />
-        <Text style={{ color: "white", fontWeight: "bold", width: 130 }}>
-          Effets sonores
-        </Text>
+        <Text style={{ color: "white", fontWeight: "bold", width: 130 }}>Effets sonores</Text>
         <SwitchComponent
           isEnabled={effetSonore}
           toggleSwitch={setEffetSonore}
@@ -88,9 +78,7 @@ function Settings(props) {
           size={25}
           color="white"
         />
-        <Text style={{ color: "white", fontWeight: "bold", width: 130 }}>
-          Musique
-        </Text>
+        <Text style={{ color: "white", fontWeight: "bold", width: 130 }}>Musique</Text>
         <SwitchComponent isEnabled={musique} toggleSwitch={setMusique} />
       </View>
 
@@ -101,9 +89,7 @@ function Settings(props) {
           size={25}
           color="white"
         />
-        <Text style={{ color: "white", fontWeight: "bold", width: 130 }}>
-          Vibration
-        </Text>
+        <Text style={{ color: "white", fontWeight: "bold", width: 130 }}>Vibration</Text>
         <SwitchComponent isEnabled={vibration} toggleSwitch={setVibration} />
       </View>
 
@@ -114,9 +100,7 @@ function Settings(props) {
           size={25}
           color="white"
         />
-        <Text style={{ color: "white", fontWeight: "bold", width: 130 }}>
-          Notifications
-        </Text>
+        <Text style={{ color: "white", fontWeight: "bold", width: 130 }}>Notifications</Text>
         <SwitchComponent
           isEnabled={notification}
           toggleSwitch={setNotification}

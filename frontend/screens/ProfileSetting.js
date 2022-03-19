@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import { View, ImageBackground, Image, Dimensions } from "react-native";
-import { Text } from "react-native-elements";
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
-import { connect } from "react-redux";
-import { Root, Popup } from "react-native-popup-confirm-toast";
+import { FontAwesome } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import StyleGuide from "../style/styleGuide";
+import React, { useState } from "react";
+import { Dimensions, Image, ImageBackground, View } from "react-native";
+import { Text } from "react-native-elements";
+import { Popup, Root } from "react-native-popup-confirm-toast";
+import { connect } from "react-redux";
+import FormInput from "../components/FormInput";
 import SquareButtonBorder from "../components/SquareButtonBorder";
 import SquareButtonFilled from "../components/SquareButtonFilled";
-import FormInput from "../components/FormInput";
 import configIp from "../config";
+import StyleGuide from "../style/styleGuide";
 
 function ProfileSettings(props) {
   const [username, setUsername] = useState(props.user.username);
@@ -75,19 +74,11 @@ function ProfileSettings(props) {
 
   return (
     <Root>
-      <ImageBackground
-        source={require("../assets/Profile.png")}
-        style={StyleGuide.container}
-      >
+      <ImageBackground source={require("../assets/Profile.png")} style={StyleGuide.container} >
         <View style={StyleGuide.header}>
           <FontAwesome
-            onPress={() => {
-              props.navigation.goBack(null);
-            }}
-            style={{
-              marginTop: 30,
-              marginLeft: 10,
-            }}
+            onPress={() => { props.navigation.goBack(null) }}
+            style={{ marginTop: 30, marginLeft: 10 }}
             name="arrow-left"
             size={25}
             color="white"
@@ -179,8 +170,7 @@ function mapDispatchToProps(dsipatch) {
   return {
     saveUser: function (gameUser) {
       dsipatch({ type: "saveUser", gameUser });
-    },
+    }
   };
 }
-
 export default connect(mapStatesToProps, mapDispatchToProps)(ProfileSettings);
