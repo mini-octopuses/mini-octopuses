@@ -1,5 +1,5 @@
 const config = {
-  myIp: "http://192.168.137.146:3000",
+  myIp: "https://quiet-island-48221.herokuapp.com",
 };
 
 export default config;
